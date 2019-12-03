@@ -38,8 +38,13 @@
                 </div>
                 {% if cosmetic.price != "" %}
                   <div class="card-footer" style="height:60px;background-color:{{ cosmetic.color2 }};border-top:0px;padding:0px">
-                    <h5 class="card-title">
-                          {{ cosmetic.price }}<img src="{% static 'image/vbuck.png' %}">
+                    <h5 class="card-title" style="padding-left:20px">
+                          {{ cosmetic.price }}
+                          {% if "В-Баксов" in cosmetic.price %}
+                            <img src="{% static 'image/vbuck.png' %}">
+                          {% else %}
+                            <img src="{% static 'image/battlepassstar.png' %}">
+                          {% endif %}
                     </h5>
                   </div>
                 {% endif %}
