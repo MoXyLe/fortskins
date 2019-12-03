@@ -14,4 +14,5 @@ urlpatterns = [
     path('wrap/', views.wrap, name="wrap"),
     path('music/', views.music, name="music"),
     path('banner/', views.banner, name="banner"),
+    path('trail/', views.trail, name="trail"),
 ]

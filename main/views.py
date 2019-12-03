@@ -27,3 +27,6 @@ def music(request):
 
 def banner(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмблема")})
+
+def trail(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ")})
