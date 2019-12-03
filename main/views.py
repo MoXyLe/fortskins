@@ -2,7 +2,7 @@ from django.shortcuts import render
 from main.models import Cosmetic
 
 def main(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.all()})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.order_by('?')})
 
 def skin(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Экипировка")})
@@ -30,3 +30,6 @@ def banner(request):
 
 def trail(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ")})
+
+def screen_load(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Экран загрузки")})

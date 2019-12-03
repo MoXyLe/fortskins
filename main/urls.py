@@ -15,4 +15,5 @@ urlpatterns = [
     path('music/', views.music, name="music"),
     path('banner/', views.banner, name="banner"),
     path('trail/', views.trail, name="trail"),
+    path('screen_load/', views.screen_load, name="screen_load"),
 ]
