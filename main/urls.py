@@ -5,7 +5,7 @@ from main import views
 app_name = 'main'
 
 urlpatterns = [
-    path('', views.main, name="main"),
+    path('all/', views.main, name="main"),
     path('skin/', views.skin, name="skin"),
     path('pickaxe/', views.pickaxe, name="pickaxe"),
     path('backpack/', views.backpack, name="backpack"),
@@ -27,7 +27,7 @@ urlpatterns = [
     path('pass9/', views.pass9, name="pass9"),
     path('pass10/', views.pass10, name="pass10"),
     path('pass11/', views.pass11, name="pass11"),
-    path('rarity/', views.rarity, name="rarity"),
+    path('all/rarity/', views.rarity, name="rarity"),
     path('skin/rarity/', views.skin_rarity, name="rarity"),
     path('pickaxe/rarity/', views.pickaxe_rarity, name="rarity"),
     path('backpack/rarity/', views.backpack_rarity, name="rarity"),
