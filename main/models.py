@@ -14,3 +14,4 @@ class Cosmetic(models.Model):
     color1 = models.CharField(max_length=10)
     color2 = models.CharField(max_length=10)
     color3 = models.CharField(max_length=10)
+    rarity_sort = models.IntegerField(default=14)

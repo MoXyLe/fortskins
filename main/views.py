@@ -66,3 +66,69 @@ def pass10(request):
 
 def pass11(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 11 сезона")})
+
+def rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.order_by("rarity_sort")})
+
+def skin_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Экипировка").order_by("rarity_sort")})
+
+def pickaxe_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Инструмент").order_by("rarity_sort")})
+
+def backpack_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Украшение на спину").order_by("rarity_sort")})
+
+def emote_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмоция").order_by("rarity_sort")})
+
+def glider_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Дельтаплан").order_by("rarity_sort")})
+
+def wrap_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Обёртка").order_by("rarity_sort")})
+
+def music_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Музыка").order_by("rarity_sort")})
+
+def banner_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмблема").order_by("rarity_sort")})
+
+def trail_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ").order_by("rarity_sort")})
+
+def screen_load_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Экран загрузки").order_by("rarity_sort")})
+
+def pass_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source__contains="Боевой пропуск").order_by("rarity_sort")})
+
+def pass2_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 2 сезона").order_by("rarity_sort")})
+
+def pass3_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 3 сезона").order_by("rarity_sort")})
+
+def pass4_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 4 сезона").order_by("rarity_sort")})
+
+def pass5_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 5 сезона").order_by("rarity_sort")})
+
+def pass6_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 6 сезона").order_by("rarity_sort")})
+
+def pass7_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 7 сезона").order_by("rarity_sort")})
+
+def pass8_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 8 сезона").order_by("rarity_sort")})
+
+def pass9_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 9 сезона").order_by("rarity_sort")})
+
+def pass10_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 10 сезона").order_by("rarity_sort")})
+
+def pass11_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 11 сезона").order_by("rarity_sort")})
