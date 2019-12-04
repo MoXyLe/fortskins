@@ -5,34 +5,34 @@ def main(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.order_by("rarity_sort")})
 
 def skin(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Экипировка").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Экипировка").order_by("rarity_sort")})
 
 def pickaxe(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Инструмент").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Инструмент").order_by("rarity_sort")})
 
 def backpack(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Украшение на спину").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Украшение на спину").order_by("rarity_sort")})
 
 def pet(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Питомец").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Питомец").order_by("rarity_sort")})
 
 def emote(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Эмоция").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмоция").order_by("rarity_sort")})
 
 def glider(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Дельтаплан").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Дельтаплан").order_by("rarity_sort")})
 
 def wrap(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Обёртка").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Обёртка").order_by("rarity_sort")})
 
 def music(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Музыка").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Музыка").order_by("rarity_sort")})
 
 def banner(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Эмблема").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмблема").order_by("rarity_sort")})
 
 def trail(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity__istartswith="Воздушный ").order_by("rarity_sort")})
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ").order_by("rarity_sort")})
 
 def pass_all(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source__contains="Боевой пропуск").order_by("rarity_sort")})
