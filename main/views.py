@@ -13,6 +13,9 @@ def pickaxe(request):
 def backpack(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Украшение на спину")})
 
+def pet(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Питомец")})
+
 def emote(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмоция")})
 
@@ -30,9 +33,6 @@ def banner(request):
 
 def trail(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ")})
-
-def screen_load(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Экран загрузки")})
 
 def pass1(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source__contains="Боевой пропуск")})
@@ -79,6 +79,9 @@ def pickaxe_rarity(request):
 def backpack_rarity(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Украшение на спину").order_by("rarity_sort")})
 
+def pet_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Питомец").order_by("rarity_sort")})
+
 def emote_rarity(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмоция").order_by("rarity_sort")})
 
@@ -96,9 +99,6 @@ def banner_rarity(request):
 
 def trail_rarity(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ").order_by("rarity_sort")})
-
-def screen_load_rarity(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Экран загрузки").order_by("rarity_sort")})
 
 def pass_rarity(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source__contains="Боевой пропуск").order_by("rarity_sort")})
