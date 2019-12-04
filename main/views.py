@@ -34,8 +34,11 @@ def banner(request):
 def trail(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ")})
 
-def pass1(request):
+def pass_all(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source__contains="Боевой пропуск")})
+
+def pass1(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 1 сезона")})
 
 def pass2(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 2 сезона")})
@@ -102,6 +105,9 @@ def trail_rarity(request):
 
 def pass_rarity(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source__contains="Боевой пропуск").order_by("rarity_sort")})
+
+def pass1_rarity(request):
+    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 1 сезона").order_by("rarity_sort")})
 
 def pass2_rarity(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(source="Боевой пропуск 2 сезона").order_by("rarity_sort")})

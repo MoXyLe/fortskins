@@ -1,7 +1,7 @@
 from main.models import Cosmetic
 import codecs
 
-file = codecs.open("C:\\Users\\roofu\\Downloads\\Fails_03.12.2019_23_43.txt", "r", "utf_8_sig")
+file = codecs.open("C:\\Users\\roofu\\Downloads\\Fails_04.12.2019_20_25(2).txt", "r", "utf_8_sig")
 
 text = file.readlines()
 
