@@ -123,7 +123,7 @@ def shop(request):
     return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list})
 
 def oneskin(request, name):
-    name = name.replace("_", " ")
+    name = name.replace("-", " ")
     print(name)
     try:
         return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(name=name)})

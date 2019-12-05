@@ -41,5 +41,5 @@ urlpatterns = [
     path('lava/', views.lava, name="lava"),
     path('ice/', views.ice, name="ice"),
     path('shop/', views.shop, name="shop"),
-    path('skin/<str:name>', views.oneskin, name="oneskin"),
+    path('<str:name>', views.oneskin, name="oneskin"),
 ]

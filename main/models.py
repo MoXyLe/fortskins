@@ -17,3 +17,7 @@ class Cosmetic(models.Model):
     rarity_sort = models.IntegerField(default=14)
     hidden = models.BooleanField(default=False)
     free_pass = models.BooleanField(default=False)
+    href = models.CharField(max_length=50, default=name)
+
+    def make_href(self):
+        self.href = self.name.replace(" ", "-")

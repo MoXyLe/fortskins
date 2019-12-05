@@ -67,7 +67,7 @@
                 <div class="card text-center" style="width:360px; height:600px;background-color:{{ cosmetic.color2 }}">
                   <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="background-color: {{ cosmetic.color1 }};">
                   <div class="card-body" style="background-color:{{ cosmetic.color2 }};padding:1rem;">
-                    <h5 class="card-title">{{ cosmetic.name }}</h5>
+                    <h5 class="card-title"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
                     <p class="card-text" style="margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
                   </div>
                   {% if cosmetic.price != "" %}
@@ -101,7 +101,7 @@
                 <div class="card text-center" style="width:360px; height:600px">
                   <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="background-color:{{ cosmetic.color1 }};">
                   <div class="card-body" style="background-color:{{ cosmetic.color2 }};padding:1rem;">
-                    <h5 class="card-title">{{ cosmetic.name }}</h5>
+                    <h5 class="card-title"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
                     <p class="card-text" style="margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
                   </div>
                   {% if cosmetic.price != "" %}
@@ -135,7 +135,7 @@
                 <div class="card text-center" style="width:360px; height:600px">
                   <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="background-color:{{ cosmetic.color1 }};">
                   <div class="card-body" style="background-color:{{ cosmetic.color2 }};padding:1rem;">
-                    <h5 class="card-title">{{ cosmetic.name }}</h5>
+                    <h5 class="card-title"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
                     <p class="card-text" style="margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
                   </div>
                   {% if cosmetic.price != "" %}
