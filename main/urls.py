@@ -14,7 +14,6 @@ urlpatterns = [
     path('glider/', views.glider, name="glider"),
     path('wrap/', views.wrap, name="wrap"),
     path('music/', views.music, name="music"),
-    path('banner/', views.banner, name="banner"),
     path('trail/', views.trail, name="trail"),
     path('pass/', views.pass_all, name="pass_all"),
     path('pass1/', views.pass1, name="pass1"),

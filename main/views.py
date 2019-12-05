@@ -28,9 +28,6 @@ def wrap(request):
 def music(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Музыка").order_by("rarity_sort")})
 
-def banner(request):
-    return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description="Эмблема").order_by("rarity_sort")})
-
 def trail(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(short_description__istartswith="Воздушный ").order_by("rarity_sort")})
 
