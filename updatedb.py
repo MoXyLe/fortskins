@@ -1,7 +1,7 @@
 from main.models import Cosmetic
 import codecs
 
-file = codecs.open("C:\\Users\\roofu\\Downloads\\Fails_04.12.2019_20_25(3).txt", "r", "utf_8_sig")
+file = codecs.open("C:\\Users\\roofu\\Downloads\\Silver_Battle_Pass.txt", "r", "utf_8_sig")
 
 text = file.readlines()
 
@@ -9,13 +9,13 @@ for i in text:
     print(i)
     if i != "":
         type = i.split(":")[0]
-        name = i.split(":")[1]
-        name = name[1:len(name)-1]
-        lvl = i.split(":")[2][1:]
-        print(i)
+        str_name = i.split(":")[1]
+        name = str_name.split(".")[0]
+        print(type)
+        print(name[1:])
         try:
-            a = Cosmetic.objects.get(name=name, short_description=type)
-            a.price = lvl
+            a = Cosmetic.objects.get(name=name[1:], short_description=type)
+            a.free_pass = True
             a.save()
         except Exception as e:
             print(e)

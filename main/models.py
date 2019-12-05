@@ -16,3 +16,4 @@ class Cosmetic(models.Model):
     color3 = models.CharField(max_length=10)
     rarity_sort = models.IntegerField(default=14)
     hidden = models.BooleanField(default=False)
+    free_pass = models.BooleanField(default=False)
