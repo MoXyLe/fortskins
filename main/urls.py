@@ -40,4 +40,6 @@ urlpatterns = [
     path('ghost/', views.ghost, name="ghost"),
     path('lava/', views.lava, name="lava"),
     path('ice/', views.ice, name="ice"),
+    path('shop/', views.shop, name="shop"),
+    path('skin/<str:name>', views.oneskin, name="oneskin"),
 ]

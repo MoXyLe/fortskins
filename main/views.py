@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from main.models import Cosmetic
+import json
+import requests
+import os
 
 def main(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.order_by("rarity_sort")})
@@ -105,3 +108,25 @@ def lava(request):
 
 def ice(request):
     return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(display_rarity="Ледяная серия")})
+
+def shop(request):
+    response = requests.get("https://fortnite-api.com/shop/br?language=ru")
+    json_data = json.loads(response.text)["data"]
+    featured = json_data["featured"]
+    daily = json_data["daily"]
+    featured_list = list()
+    daily_list = list()
+    for i in featured:
+        featured_list.append(Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription']))
+    for i in daily:
+        daily_list.append(Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription']))
+    return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list})
+
+def oneskin(request, name):
+    name = name.replace("_", " ")
+    print(name)
+    try:
+        return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(name=name)})
+    except Exception as e:
+        print(e)
+        return render(request, 'main.html', {})
