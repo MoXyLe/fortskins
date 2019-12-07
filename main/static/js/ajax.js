@@ -1,20 +1,3 @@
-// $(document).ready(function () {
-//   $('#random_sort').on('click', function random () {
-//       $.ajax({
-//           type: 'GET',
-//           url: '/filter',
-//           datatype: 'JSON',
-//           data: {
-//             url: window.location.href
-//           },
-//           success: function (data) {
-//               $('#placeholder').html("")
-//               $('#placeholder').append(data)
-//           }
-//       })
-//   });
-// });
-
 function addOrUpdateUrlParam(name, value)
 {
   var href = window.location.href;
@@ -32,3 +15,20 @@ function addOrUpdateUrlParam(name, value)
       window.location.href = href + "?" + name + "=" + value;
   }
 }
+
+// $(document).ready(function () {
+//   $('#random_sort').on('click', function random () {
+//       $.ajax({
+//           type: 'GET',
+//           url: '/filter',
+//           datatype: 'JSON',
+//           data: {
+//             url: window.location.href
+//           },
+//           success: function (data) {
+//               $('#placeholder').html("")
+//               $('#placeholder').append(data)
+//           }
+//       })
+//   });
+// });

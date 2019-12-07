@@ -129,7 +129,7 @@ def skin(cosmetics):
     return ["Экипировка", cosmetics.filter(short_description="Экипировка").order_by("rarity_sort")]
 
 def pickaxe(cosmetics):
-    return ["Инструмент", cosmetics.filter(short_description="Инструмент").order_by("rarity_sort")]
+    return ["Кирка", cosmetics.filter(short_description="Инструмент").order_by("rarity_sort")]
 
 def backpack(cosmetics):
     return ["Украшение на спину", cosmetics.filter(short_description="Украшение на спину").order_by("rarity_sort")]
@@ -239,10 +239,13 @@ def ice(cosmetics):
 def shop(request):
     response = requests.get("https://fortnite-api.com/shop/br?language=ru")
     json_data = json.loads(response.text)["data"]
+    date = json_data["date"]
+    date = date.replace("T", " ")
     featured = json_data["featured"]
     daily = json_data["daily"]
     featured_list = list()
     daily_list = list()
+    print(date)
     for i in featured:
         try:
             featured_list.append(Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription']))
@@ -253,7 +256,7 @@ def shop(request):
             daily_list.append(Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription']))
         except Exception as e:
             print("Error loading item from shop")
-    return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list})
+    return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date})
 
 def oneskin(request, href):
     try:
