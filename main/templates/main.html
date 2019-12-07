@@ -5,7 +5,7 @@
   <div class="container-fluid" style="width:98%;">
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-family: 'Roboto', sans-serif; background-color: #264C7F !important; border-color: #264C7F !important">
-        Тип предмета
+        {{ type }}
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">Все</a>
@@ -22,7 +22,7 @@
     </div>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-family: 'Roboto', sans-serif; background-color: #264C7F !important; border-color: #264C7F !important">
-        Источник
+        {{ source }}
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'all');">Все</a>
@@ -45,7 +45,7 @@
     </div>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-family: 'Roboto', sans-serif; background-color: #264C7F !important; border-color: #264C7F !important">
-        Редкость
+        {{ rarity }}
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'all');">Все</a>
@@ -66,7 +66,7 @@
     </div>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-family: 'Roboto', sans-serif; background-color: #264C7F !important; border-color: #264C7F !important">
-        Сортировка
+        {{ sort }}
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('sort', 'rarity');">По редкости</a>
@@ -75,7 +75,7 @@
     </div>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-family: 'Roboto', sans-serif; background-color: #264C7F !important; border-color: #264C7F !important">
-        Количество
+        {{ amount }}
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '100');">100</a>
