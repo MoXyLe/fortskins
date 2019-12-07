@@ -6,7 +6,7 @@
 <div class="container-fluid" style="width:100%;">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; font-size: 70px; margin-left: 14px; margin-top:6px; margin-bottom: 0px;letter-spacing: 0.02em;"><img src="{% static 'image/v-bucks.png' %}">Рекомендуемые предметы<img src="{% static 'image/v-bucks.png' %}"></h1>
+      <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; font-size: 70px; margin-left: 14px; margin-top:0px; margin-bottom: 0px;letter-spacing: 0.02em;"><img style="padding-bottom:10px" src="{% static 'image/v-bucks.png' %}"> Рекомендуемые предметы <img style="padding-bottom:10px" src="{% static 'image/v-bucks.png' %}"></h1>
     </div>
     <div class="col-md-2">
       <p class="lead"><h1 class="text-right" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;font-size: 26px;">МАГАЗИН ОБНОВИТСЯ</h1></p>
@@ -119,7 +119,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color:white; font-size: 70px; margin-left:14px;margin-bottom: 0px;margin-top: 15px;letter-spacing: 0.02em;"><img src="{% static 'image/v-bucks.png' %}">Ежедневные предметы<img src="{% static 'image/v-bucks.png' %}"></h1>
+  <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color:white; font-size: 70px; margin-left:14px;margin-bottom: 0px;margin-top: 0px;letter-spacing: 0.02em;"><img style="padding-bottom:10px" src="{% static 'image/v-bucks.png' %}"> Ежедневные предметы <img style="padding-bottom:10px" src="{% static 'image/v-bucks.png' %}"></h1>
   <div class="row justify-content-sm-center" style="color:white;font-family:'Montserrat',sans-serif;margin-left:10px">
     {% for cosmetic in daily %}
       {% if cosmetic.hidden == False %}

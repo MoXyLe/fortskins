@@ -20,4 +20,4 @@ class Cosmetic(models.Model):
     href = models.CharField(max_length=50, default=name)
 
     def make_href(self):
-        self.href = self.name.replace(" ", "-")
+        self.href = self.name.replace(" ", "-") + "-" + str(self.pk)
