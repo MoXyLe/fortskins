@@ -1,3 +1,72 @@
 .custom-toggler .navbar-toggler-icon {
   background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
 }
+
+@media screen and (min-width:1200px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 100%;
+  }
+  h1 {
+    font-size: 3.5vw;
+  }
+  h2 {
+    font-size: 1.4vw;
+  }
+  h5 {
+    font-size: 1vw
+  }
+}
+
+@media screen and (max-width:1199px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 100%;
+  }
+  h1 {
+    font-size: 4vw;
+  }
+  h2 {
+    font-size: 1.5vw;
+  }
+  h5 {
+    font-size: 1.5vw
+  }
+}
+
+@media screen and (max-width: 991px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 100%;
+  }
+  h1 {
+    font-size: 6vw;
+  }
+  h2 {
+    font-size: 4vw;
+  }
+  h5 {
+    font-size: 2vw
+  }
+}
+
+@media screen and (max-width: 767px) {
+  p,.btn,input,div,span,h4 {
+    font-size: 100%;
+  }
+  h1 {
+    font-size: 8vw;
+  }
+  h2 {
+    font-size: 4vw;
+  }
+  h5 {
+    font-size: 2.7vw
+  }
+}
+.image_section img{
+    display: block;
+}
+
+@media (max-width:767px){
+    .image_section img:first-child{
+        display:none;
+    }
+}
