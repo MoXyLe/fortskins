@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from main.models import Cosmetic
+from main.models import Cosmetic, ItemShop
 import json
 import requests
 import os
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from datetime import datetime, timedelta
+from django.utils.timezone import utc
 
 def items(request):
     cosmetics = Cosmetic.objects.order_by("rarity_sort")
@@ -237,26 +239,58 @@ def ice(cosmetics):
     return ["Ледяная серия", cosmetics.filter(display_rarity="Ледяная серия")]
 
 def shop(request):
-    response = requests.get("https://fortnite-api.com/shop/br?language=ru")
-    json_data = json.loads(response.text)["data"]
-    date = json_data["date"]
-    date = date.replace("T", " ")
-    featured = json_data["featured"]
-    daily = json_data["daily"]
-    featured_list = list()
-    daily_list = list()
-    print(date)
-    for i in featured:
-        try:
-            featured_list.append(Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription']))
-        except Exception as e:
-            print("Error loading item from shop")
-    for i in daily:
-        try:
-            daily_list.append(Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription']))
-        except Exception as e:
-            print("Error loading item from shop")
-    return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date})
+    now = datetime.utcnow().replace(tzinfo=None)
+    if (datetime.strptime(ItemShop.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1)) < now:
+        response = requests.get("https://fortnite-api.com/shop/br?language=ru", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
+        json_data = json.loads(response.text)["data"]
+        date = json_data["date"]
+        date = date.replace("T", " ")
+        featured = json_data["featured"]
+        daily = json_data["daily"]
+        print('ItemShop updated!')
+        featured_list = list()
+        daily_list = list()
+        featured_str = ""
+        daily_str = ""
+        for i in featured:
+            try:
+                object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
+                featured_list.append(object)
+                featured_str += str(object.pk) + "."
+            except Exception as e:
+                print("Error loading item from shop")
+        for i in daily:
+            try:
+                object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
+                daily_list.append(object)
+                daily_str += str(object.pk) + "."
+            except Exception as e:
+                print("Error loading item from shop")
+        item_shop = ItemShop(date = date, featured = featured_str, daily = daily_str)
+        item_shop.save()
+        return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date})
+    else:
+        item_shop = ItemShop.objects.last()
+        date = item_shop.date
+        featured = item_shop.featured
+        daily = item_shop.daily
+        featured_list = featured.split(".")
+        daily_list = daily.split(".")
+        new_featured_list = list()
+        new_daily_list = list()
+        for i in range(0, len(featured_list)):
+            try:
+                object = Cosmetic.objects.get(pk=featured_list[i])
+                new_featured_list.append(object)
+            except Exception as e:
+                print("Error loading item from database")
+        for i in range(0, len(daily_list)):
+            try:
+                object = Cosmetic.objects.get(pk=daily_list[i])
+                new_daily_list.append(object)
+            except Exception as e:
+                print("Error loading item from database")
+        return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date})
 
 def oneskin(request, href):
     try:

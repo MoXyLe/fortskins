@@ -21,3 +21,8 @@ class Cosmetic(models.Model):
 
     def make_href(self):
         self.href = self.name.replace(" ", "-") + "-" + str(self.pk)
+
+class ItemShop(models.Model):
+    date = models.CharField(max_length=30)
+    featured = models.TextField()
+    daily = models.TextField()
