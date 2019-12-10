@@ -14,7 +14,6 @@ def items(request):
     type = ""
     source = ""
     rarity = ""
-    sort = ""
     amount = ""
     for i in request.GET:
         if i == "type":
@@ -99,8 +98,6 @@ def items(request):
                     [rarity, cosmetics] = ice(cosmetics)
         elif i == "amount":
             amount = request.GET['amount']
-        elif i == "sort":
-            sort = request.GET['sort']
 
     if type == "":
         type = "Все"
@@ -111,12 +108,6 @@ def items(request):
     if rarity == "":
         rarity = "Все"
 
-    if sort == 'random':
-        cosmetics = cosmetics.order_by("?")
-        sort = "Случайная"
-    else:
-        sort = "По редкости"
-
     if amount == 'all':
         amount = "Все"
     elif amount == '500':
@@ -125,7 +116,7 @@ def items(request):
         amount = '100'
         cosmetics = cosmetics[:100]
 
-    return render(request, 'main.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'sort': sort})
+    return render(request, 'main.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount})
 
 def skin(cosmetics):
     return ["Экипировка", cosmetics.filter(short_description="Экипировка").order_by("rarity_sort")]
@@ -245,6 +236,32 @@ def shop(request):
         json_data = json.loads(response.text)["data"]
         date = json_data["date"]
         date = date.replace("T", " ")
+        if date == ItemShop.objects.last().date:
+            item_shop = ItemShop.objects.last()
+            date = item_shop.date
+            featured = item_shop.featured
+            daily = item_shop.daily
+            featured_list = featured.split(".")
+            daily_list = daily.split(".")
+            new_featured_list = list()
+            new_daily_list = list()
+            for i in range(0, len(featured_list)-1):
+                try:
+                    object = Cosmetic.objects.get(pk=featured_list[i])
+                    new_featured_list.append(object)
+                except Exception as e:
+                    print(i)
+                    print(e)
+                    print("Error loading item from database")
+            for i in range(0, len(daily_list)-1):
+                try:
+                    object = Cosmetic.objects.get(pk=daily_list[i])
+                    new_daily_list.append(object)
+                except Exception as e:
+                    print(i)
+                    print(e)
+                    print("Error loading item from database")
+            return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date})
         featured = json_data["featured"]
         daily = json_data["daily"]
         print('ItemShop updated!')
@@ -278,17 +295,21 @@ def shop(request):
         daily_list = daily.split(".")
         new_featured_list = list()
         new_daily_list = list()
-        for i in range(0, len(featured_list)):
+        for i in range(0, len(featured_list)-1):
             try:
                 object = Cosmetic.objects.get(pk=featured_list[i])
                 new_featured_list.append(object)
             except Exception as e:
+                print(i)
+                print(e)
                 print("Error loading item from database")
-        for i in range(0, len(daily_list)):
+        for i in range(0, len(daily_list)-1):
             try:
                 object = Cosmetic.objects.get(pk=daily_list[i])
                 new_daily_list.append(object)
             except Exception as e:
+                print(i)
+                print(e)
                 print("Error loading item from database")
         return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date})
 
