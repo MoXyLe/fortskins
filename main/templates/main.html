@@ -2,12 +2,12 @@
 {% load staticfiles %}
 {% load static %}
 {% block content %}
-  <div class="container-fluid" style="width:98%;">
-    <div class="btn-group" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #264C7F !important; border-color: #264C7F !important">
+  <div class="container-fluid" style="width:60%;margin-left:20%;">
+    <div class="btn-group" style="padding-left: 2px !important;font-family: 'Roboto', sans-serif;padding: 8px 0px;">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:204px;background-color: #264C7F !important; border-radius: 2px;">
         Тип предмета: {{ type }}
       </button>
-      <div class="dropdown-menu" style="background-color: #264C7F;">
+      <div class="dropdown-menu" style="width:204px;background-color: #264C7F;">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">Все</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'skin');">Экипировка</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pickaxe');">Кирка</a>
@@ -20,11 +20,11 @@
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'trail');">Воздушный след</a>
       </div>
     </div>
-    <div class="btn-group" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #264C7F !important; border-color: #264C7F !important">
+    <div class="btn-group" style="font-family: 'Roboto', sans-serif;padding: 8px 0px;">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:248.45px;background-color: #264C7F !important; border-radius: 2px;">
         Источник: {{ source }}
       </button>
-      <div class="dropdown-menu" style="background-color: #264C7F">
+      <div class="dropdown-menu" style="width:248.45px;background-color: #264C7F">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'all');">Все</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pack');">Стартовый набор</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'exclusive');">Эксклюзив</a>
@@ -43,11 +43,11 @@
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass11');">Боевой пропуск 11 сезона</a>
       </div>
     </div>
-    <div class="btn-group" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #264C7F !important; border-color: #264C7F !important">
+    <div class="btn-group" style="font-family: 'Roboto', sans-serif;padding: 8px 0px;">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:232.3px; background-color: #264C7F !important; border-radius: 2px;">
         Редкость: {{ rarity }}
       </button>
-      <div class="dropdown-menu" style="background-color: #264C7F">
+      <div class="dropdown-menu" style="width:232.3px;background-color: #264C7F">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'all');">Все</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'leg');">Легендарная</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'epic');">Эпическая</a>
@@ -64,11 +64,11 @@
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ice');">Ледяная серия</a>
       </div>
     </div>
-    <div class="btn-group" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #264C7F !important; border-color: #264C7F !important">
+    <div class="btn-group" style="font-family: 'Roboto', sans-serif;padding: 8px 0px;">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 167.9px;background-color: #264C7F !important; border-radius: 2px;">
         Количество: {{ amount }}
       </button>
-      <div class="dropdown-menu" style="background-color: #264C7F">
+      <div class="dropdown-menu" style="background-color: #264C7F; width: 167.9px;">
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '100');">100</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '500');">500</a>
         <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">Все</a>
