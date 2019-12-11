@@ -3,21 +3,22 @@
 {% load static %}
 {% block content %}
 
-<div class="container-fluid" style="width:100%;">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2 align-self-center">
-      <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; margin-top:0px; margin-bottom: 0px; letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Рекомендуемые предметы <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
-    </div>
-    <div class="col-lg-2 align-self-center" style="margin-top:0.5%">
-      <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;">МАГАЗИН ОБНОВИТСЯ</h2>
-      <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; padding-right: 4%; margin-top: 0px;" id="timer"></h2>
-    </div>
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 align-self-center">
+    <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; margin-top:0px; margin-bottom: 0px; letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Рекомендуемые предметы <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
   </div>
+  <div class="col-lg-2 align-self-center" style="margin-top:0.5%">
+    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;">МАГАЗИН ОБНОВИТСЯ</h2>
+    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; padding-right: 4%; margin-top: 0px;" id="timer"></h2>
+  </div>
+</div>
+
+<div class="container-fluid" style="width:60%;margin-left:20%;">
   <div class="row justify-content-left" style="color:white;font-family:'Montserrat',sans-serif">
     {% for cosmetic in featured %}
       {% if cosmetic.hidden == False %}
         {% if cosmetic.icon != "" %}
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none d-md-inline" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
               <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
                 <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%">
                 <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
@@ -27,7 +28,7 @@
                 {% if cosmetic.price != "" %}
                   <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
                           {% if "В-Баксов" in cosmetic.price %}
-                            <h5 class="card-title text-center">
+                            <h5 class="card-title text-center" style="height:64px">
                               {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
                             </h5>
                           {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
@@ -50,12 +51,12 @@
                   </div>
                 {% endif %}
                 <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                  <h5 class="card-title">{{ cosmetic.source }}</h5>
+                  <h6 class="card-title">{{ cosmetic.source }}</h6>
                 </div>
               </div>
             </div>
         {% elif cosmetic.featured != "" %}
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none d-md-inline" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
             <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
               <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%">
               <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
@@ -65,7 +66,7 @@
               {% if cosmetic.price != "" %}
                 <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
                         {% if "В-Баксов" in cosmetic.price %}
-                          <h5 class="card-title text-center">
+                          <h5 class="card-title text-center" style="height:64px">
                             {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
                           </h5>
                         {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
@@ -88,12 +89,12 @@
                 </div>
               {% endif %}
               <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                <h5 class="card-title">{{ cosmetic.source }}</h5>
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
               </div>
             </div>
           </div>
         {% elif cosmetic.smallIcon != "" %}
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none d-md-inline" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
             <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
               <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%">
               <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
@@ -103,7 +104,7 @@
               {% if cosmetic.price != "" %}
                 <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
                         {% if "В-Баксов" in cosmetic.price %}
-                          <h5 class="card-title text-center">
+                          <h5 class="card-title text-center" style="height:64px">
                             {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
                           </h5>
                         {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
@@ -126,7 +127,7 @@
                 </div>
               {% endif %}
               <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                <h5 class="card-title">{{ cosmetic.source }}</h5>
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
               </div>
             </div>
           </div>
@@ -134,12 +135,138 @@
       {% endif %}
     {% endfor %}
   </div>
-  <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color:white; margin-left:14px;margin-bottom: 0px;margin-top: 0px;letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Ежедневные предметы <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
+</div>
+<div class="row d-md-none">
+  <div class="row justify-content-left" style="color:white;font-family:'Montserrat',sans-serif">
+    {% for cosmetic in featured %}
+      {% if cosmetic.hidden == False %}
+        {% if cosmetic.icon != "" %}
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2 d-md-none" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+              <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+                <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%">
+                <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
+                  <h5 class="card-title" style="height:8%"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                  <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
+                </div>
+                {% if cosmetic.price != "" %}
+                  <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                          {% if "В-Баксов" in cosmetic.price %}
+                            <h5 class="card-title text-center" style="height:64px">
+                              {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
+                            </h5>
+                          {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
+                            <h5 class="card-title text-center" style="height:64px">
+                              {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
+                            </h5>
+                          {% elif "Уровень" in cosmetic.price %}
+                            <h5 class="card-title text-center" style="height:64px">
+                              {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
+                            </h5>
+                          {% else %}
+                            <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                              {{ cosmetic.price }}
+                            </h5>
+                          {% endif %}
+                  </div>
+                {% else %}
+                  <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                    <h5 class="card-title text-center" style="height:64px;"></h5>
+                  </div>
+                {% endif %}
+                <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                  <h6 class="card-title">{{ cosmetic.source }}</h6>
+                </div>
+              </div>
+            </div>
+        {% elif cosmetic.featured != "" %}
+          <div class="col-6 col-sm-4 col-lg-3 col-xl-2 d-md-none" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+            <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+              <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%">
+              <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
+                <h5 class="card-title" style="height:8%"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
+              </div>
+              {% if cosmetic.price != "" %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                        {% if "В-Баксов" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
+                          </h5>
+                        {% else %}
+                          <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                            {{ cosmetic.price }}
+                          </h5>
+                        {% endif %}
+                </div>
+              {% else %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                  <h5 class="card-title text-center" style="height:64px;"></h5>
+                </div>
+              {% endif %}
+              <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
+              </div>
+            </div>
+          </div>
+        {% elif cosmetic.smallIcon != "" %}
+          <div class="col-6 col-sm-4 col-lg-3 col-xl-2 d-md-none" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+            <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+              <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%">
+              <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
+                <h5 class="card-title" style="height:8%"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
+              </div>
+              {% if cosmetic.price != "" %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                        {% if "В-Баксов" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
+                          </h5>
+                        {% else %}
+                          <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                            {{ cosmetic.price }}
+                          </h5>
+                        {% endif %}
+                </div>
+              {% else %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                  <h5 class="card-title text-center" style="height:64px;"></h5>
+                </div>
+              {% endif %}
+              <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+<h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color:white; margin-left:14px;margin-bottom: 0px;margin-top: 0px;letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Ежедневные предметы <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
+
+<div class="container-fluid" style="width:60%;margin-left:20%;">
   <div class="row justify-content-sm-left" style="color:white;font-family:'Montserrat',sans-serif">
     {% for cosmetic in daily %}
       {% if cosmetic.hidden == False %}
         {% if cosmetic.icon != "" %}
-            <div class="col-6 col-sm-4 col-lg-3 col-xl-2" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none d-md-inline" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
               <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
                 <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%">
                 <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
@@ -149,7 +276,7 @@
                 {% if cosmetic.price != "" %}
                   <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
                           {% if "В-Баксов" in cosmetic.price %}
-                            <h5 class="card-title text-center">
+                            <h5 class="card-title text-center" style="height:64px">
                               {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
                             </h5>
                           {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
@@ -172,12 +299,12 @@
                   </div>
                 {% endif %}
                 <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                  <h5 class="card-title">{{ cosmetic.source }}</h5>
+                  <h6 class="card-title">{{ cosmetic.source }}</h6>
                 </div>
               </div>
             </div>
         {% elif cosmetic.featured != "" %}
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none d-md-inline" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
             <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
               <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%">
               <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
@@ -187,7 +314,7 @@
               {% if cosmetic.price != "" %}
                 <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
                         {% if "В-Баксов" in cosmetic.price %}
-                          <h5 class="card-title text-center">
+                          <h5 class="card-title text-center" style="height:64px">
                             {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
                           </h5>
                         {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
@@ -210,12 +337,12 @@
                 </div>
               {% endif %}
               <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                <h5 class="card-title">{{ cosmetic.source }}</h5>
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
               </div>
             </div>
           </div>
         {% elif cosmetic.smallIcon != "" %}
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+          <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none d-md-inline" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
             <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
               <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%">
               <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
@@ -225,7 +352,7 @@
               {% if cosmetic.price != "" %}
                 <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
                         {% if "В-Баксов" in cosmetic.price %}
-                          <h5 class="card-title text-center">
+                          <h5 class="card-title text-center" style="height:64px">
                             {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
                           </h5>
                         {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
@@ -248,7 +375,7 @@
                 </div>
               {% endif %}
               <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                <h5 class="card-title">{{ cosmetic.source }}</h5>
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
               </div>
             </div>
           </div>
@@ -256,62 +383,186 @@
       {% endif %}
     {% endfor %}
   </div>
-  <h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;" id="timer2">МАГАЗИН ОБНОВИТСЯ</h2>
-  <script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("{{ date }}").getTime();
+</div>
+<div class="row d-md-none">
+  <div class="row justify-content-sm-left" style="color:white;font-family:'Montserrat',sans-serif">
+    {% for cosmetic in daily %}
+      {% if cosmetic.hidden == False %}
+        {% if cosmetic.icon != "" %}
+            <div class="col-6 col-sm-4 col-lg-3 col-xl-2 d-md-none" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+              <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+                <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%">
+                <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
+                  <h5 class="card-title" style="height:8%"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                  <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
+                </div>
+                {% if cosmetic.price != "" %}
+                  <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                          {% if "В-Баксов" in cosmetic.price %}
+                            <h5 class="card-title text-center" style="height:64px">
+                              {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
+                            </h5>
+                          {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
+                            <h5 class="card-title text-center" style="height:64px">
+                              {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
+                            </h5>
+                          {% elif "Уровень" in cosmetic.price %}
+                            <h5 class="card-title text-center" style="height:64px">
+                              {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
+                            </h5>
+                          {% else %}
+                            <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                              {{ cosmetic.price }}
+                            </h5>
+                          {% endif %}
+                  </div>
+                {% else %}
+                  <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                    <h5 class="card-title text-center" style="height:64px;"></h5>
+                  </div>
+                {% endif %}
+                <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                  <h6 class="card-title">{{ cosmetic.source }}</h6>
+                </div>
+              </div>
+            </div>
+        {% elif cosmetic.featured != "" %}
+          <div class="col-6 col-sm-4 col-lg-3 col-xl-2 d-md-none" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+            <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+              <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%">
+              <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
+                <h5 class="card-title" style="height:8%"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
+              </div>
+              {% if cosmetic.price != "" %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                        {% if "В-Баксов" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
+                          </h5>
+                        {% else %}
+                          <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                            {{ cosmetic.price }}
+                          </h5>
+                        {% endif %}
+                </div>
+              {% else %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                  <h5 class="card-title text-center" style="height:64px;"></h5>
+                </div>
+              {% endif %}
+              <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
+              </div>
+            </div>
+          </div>
+        {% elif cosmetic.smallIcon != "" %}
+          <div class="col-6 col-sm-4 col-lg-3 col-xl-2 d-md-none" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+            <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+              <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%">
+              <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding:5px;">
+                <h5 class="card-title" style="height:8%"><a href="/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
+              </div>
+              {% if cosmetic.price != "" %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                        {% if "В-Баксов" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price and cosmetic.free_pass %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
+                          </h5>
+                        {% elif "Уровень" in cosmetic.price %}
+                          <h5 class="card-title text-center" style="height:64px">
+                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
+                          </h5>
+                        {% else %}
+                          <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                            {{ cosmetic.price }}
+                          </h5>
+                        {% endif %}
+                </div>
+              {% else %}
+                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                  <h5 class="card-title text-center" style="height:64px;"></h5>
+                </div>
+              {% endif %}
+              <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                <h6 class="card-title">{{ cosmetic.source }}</h6>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;" id="timer2">МАГАЗИН ОБНОВИТСЯ</h2>
+<script>
+  // Set the date we're counting down to
+  var countDownDate = new Date("{{ date }}").getTime();
 
-    countDownDate += 24*60*60*1000;
+  countDownDate += 24*60*60*1000;
 
-    // Update the count down every 1 second
-    var x = setInterval(function() {
+  // Update the count down every 1 second
+  var x = setInterval(function() {
 
-      // Get today's date and time
-      var now = new Date().getTime();
+    // Get today's date and time
+    var now = new Date().getTime();
 
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
 
-      setTimeout(function() { window.location.reload(true); }, distance);
+    setTimeout(function() { window.location.reload(true); }, distance);
 
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      var str = "ЧЕРЕЗ: ";
-      if (hours < 10) {
-        str = str + "0" + hours + ":";
-      } else {
-        str = str + hours + ":";
-      }
+    var str = "ЧЕРЕЗ: ";
+    if (hours < 10) {
+      str = str + "0" + hours + ":";
+    } else {
+      str = str + hours + ":";
+    }
 
-      if (minutes < 10) {
-        str = str + "0" + minutes + ":";
-      } else {
-        str = str + minutes + ":";
-      }
+    if (minutes < 10) {
+      str = str + "0" + minutes + ":";
+    } else {
+      str = str + minutes + ":";
+    }
 
-      if (seconds < 10) {
-        str = str + "0" + seconds;
-      } else {
-        str = str + seconds;
-      }
+    if (seconds < 10) {
+      str = str + "0" + seconds;
+    } else {
+      str = str + seconds;
+    }
 
-      // Display the result in the element with id="demo"
-      document.getElementById("timer").innerHTML = str;
-      document.getElementById("timer2").innerHTML = "МАГАЗИН ОБНОВИТСЯ " + str;
+    // Display the result in the element with id="demo"
+    document.getElementById("timer").innerHTML = str;
+    document.getElementById("timer2").innerHTML = "МАГАЗИН ОБНОВИТСЯ " + str;
 
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("timer").innerHTML = "НЕИЗВЕСТНО";
-        document.getElementById("timer2").innerHTML = "НЕИЗВЕСТНО";
-        window.location.reload(true);
-      }
-    }, 1000);
-  </script>
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "НЕИЗВЕСТНО";
+      document.getElementById("timer2").innerHTML = "НЕИЗВЕСТНО";
+      window.location.reload(true);
+    }
+  }, 1000);
+</script>
 
 
 {% endblock %}

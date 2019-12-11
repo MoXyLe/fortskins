@@ -19,6 +19,9 @@
   h5 {
     font-size: 1vw;
   }
+  h6 {
+    font-size: 0.8vw;
+  }
   p {
     font-size: 0.8vw;
   }
@@ -36,6 +39,9 @@
   }
   h5 {
     font-size: 1.5vw;
+  }
+  h6 {
+    font-size: 1.2vw;
   }
   p {
     font-size: 1.2vw;
@@ -55,6 +61,9 @@
   h5 {
     font-size: 2vw;
   }
+  h6 {
+    font-size: 1.6vw;
+  }
   p {
     font-size: 1.5vw;
   }
@@ -72,6 +81,9 @@
   }
   h5 {
     font-size: 2vw;
+  }
+  h6 {
+    font-size: 1.6vw;
   }
   p {
     font-size: 2vw;
@@ -91,6 +103,9 @@
   h5 {
     font-size: 2.5vw;
   }
+  h6 {
+    font-size: 2vw;
+  }
   p {
     font-size: 2.5vw;
   }
@@ -102,9 +117,9 @@
 
 .dropdown-menu.show {
   border: 0px;
-  border-left: 1px solid rgba(0, 0, 0, 0.5);
-  border-right: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
   border-radius: 0rem !important;
   transform: translate3d(0px, 44px, 0px) !important;
 }
@@ -129,9 +144,8 @@
 
 .btn.btn-primary.dropdown-toggle{
   background-color: #264C7F !important;
-  border: 1px solid transparent;
+  border: 0px;
   border-color: rgba(0, 0, 0, 0.5) !important;
-  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25);
 }
 
 .dropdown-item {
