@@ -315,7 +315,7 @@ def shop(request):
 
 def oneskin(request, href):
     try:
-        return render(request, 'main.html', {'Cosmetics': Cosmetic.objects.filter(href=href)})
+        return render(request, 'skin.html', {'Cosmetics': Cosmetic.objects.get(href=href)})
     except Exception as e:
         print(e)
-        return render(request, 'main.html', {})
+        return HttpResponseNotFound('<h1>Page not found</h1>')
