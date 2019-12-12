@@ -5,11 +5,24 @@
 from main.models import Cosmetic
 import requests
 import json
+import shutil
+import os.path
+
+def download(image_url):
+    name = 'C:\\Users\\roofu\\Desktop\\fortniteskins\\main\\static\\image\\' + image_url.split("/image/")[1].replace("/", "_")
+    if os.path.exists(name) == False:
+        local_file = open(name, 'wb')
+        resp = requests.get(image_url, stream=True)
+        resp.raw.decode_content = True
+        shutil.copyfileobj(resp.raw, local_file)
+        print(image_url)
+        local_file.close()
+
 response = requests.get("https://fortnite-api.com/cosmetics/br?language=ru", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
 json_data = json.loads(response.text)
 for i in json_data["data"]:
     try:
-        if len(Cosmetic.objects.filter(name = i["name"])) < 1:
+        if len(Cosmetic.objects.filter(name = i["name"], short_description = i["shortDescription"])) < 1:
             name = i["name"]
             if name == "Чар О'Дей" or name == "TESTING DO NOT USE":
                 continue
@@ -30,21 +43,21 @@ for i in json_data["data"]:
             except Exception as e:
                 pass
 
-            smallIcon = ""
+            smallIcon = "image/"
 
             try:
                 smallIcon += i["images"]["smallIcon"]["url"].split("/image/")[1].replace("/", "_")
             except Exception as e:
                 pass
 
-            icon = ""
+            icon = "image/"
 
             try:
                 icon += i["images"]["icon"]["url"].split("/image/")[1].replace("/", "_")
             except Exception as e:
                 pass
 
-            featured = ""
+            featured = "image/"
 
             try:
                 featured += i["images"]["featured"]["url"].split("/image/")[1].replace("/", "_")
@@ -112,9 +125,16 @@ for i in json_data["data"]:
             color2 = obj.color2
             color3 = obj.color3
             rarity_sort = obj.rarity_sort
+            hidden = obj.hidden
 
-            skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort)
+            skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
             skin.save()
+
+            download(i["images"]["smallIcon"]["url"])
+            download(i["images"]["icon"]["url"])
+            download(i["images"]["featured"]["url"])
+
+            print(i["name"])
 
     except:
         print(i["name"])
