@@ -3,11 +3,13 @@ from main.models import Cosmetic, ItemShop
 import json
 import requests
 import os
+import shutil
+import os.path
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http import JsonResponse
-from django.template.loader import render_to_string
 from datetime import datetime, timedelta
 from django.utils.timezone import utc
+from appenddata import updatedb
 
 def items(request):
     cosmetics = Cosmetic.objects.order_by("rarity_sort")
@@ -262,6 +264,7 @@ def shop(request):
                     print(e)
                     print("Error loading item from database")
             return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date})
+        updatedb()
         featured = json_data["featured"]
         daily = json_data["daily"]
         print('ItemShop updated!')
@@ -274,6 +277,9 @@ def shop(request):
                 print(i["items"][0]['name'])
                 print(i["items"][0]['shortDescription'])
                 object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
+                object.source = "Магазин предметов"
+                object.price = str(i["finalPrice"]) + " В-Баксов"
+                object.save()
                 featured_list.append(object)
                 featured_str += str(object.pk) + "."
             except Exception as e:
@@ -283,6 +289,9 @@ def shop(request):
                 print(i["items"][0]['name'])
                 print(i["items"][0]['shortDescription'])
                 object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
+                object.source = "Магазин предметов"
+                object.price = str(i["finalPrice"]) + " В-Баксов"
+                object.save()
                 daily_list.append(object)
                 daily_str += str(object.pk) + "."
             except Exception as e:
