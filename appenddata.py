@@ -128,6 +128,7 @@ for i in json_data["data"]:
             hidden = obj.hidden
 
             skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
+            skin.make_href()
             skin.save()
 
             download(i["images"]["smallIcon"]["url"])

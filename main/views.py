@@ -3,7 +3,7 @@ from main.models import Cosmetic, ItemShop
 import json
 import requests
 import os
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from datetime import datetime, timedelta
