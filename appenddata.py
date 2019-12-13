@@ -136,5 +136,6 @@ for i in json_data["data"]:
 
             print(i["name"])
 
-    except:
+    except Exception as e:
+        print(e)
         print(i["name"])

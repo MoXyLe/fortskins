@@ -206,7 +206,7 @@ def common(cosmetics):
     return ["Обычный", cosmetics.filter(display_rarity="Обычный")]
 
 def starwars(cosmetics):
-    return ["Серия Звездные Войны", cosmetics.filter(display_rarity="Серия Звездные Войны")]
+    return ["Серия «Звёздные войны»", cosmetics.filter(display_rarity="Серия «Звёздные войны»")]
 
 def dc(cosmetics):
     return ["Серия DC", cosmetics.filter(display_rarity="Серия DC")]
@@ -271,6 +271,8 @@ def shop(request):
         daily_str = ""
         for i in featured:
             try:
+                print(i["items"][0]['name'])
+                print(i["items"][0]['shortDescription'])
                 object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
                 featured_list.append(object)
                 featured_str += str(object.pk) + "."
@@ -278,6 +280,8 @@ def shop(request):
                 print("Error loading item from shop")
         for i in daily:
             try:
+                print(i["items"][0]['name'])
+                print(i["items"][0]['shortDescription'])
                 object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
                 daily_list.append(object)
                 daily_str += str(object.pk) + "."
