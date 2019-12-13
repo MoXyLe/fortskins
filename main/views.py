@@ -12,7 +12,7 @@ from django.utils.timezone import utc
 from appenddata import updatedb
 
 def items(request):
-    cosmetics = Cosmetic.objects.order_by("rarity_sort")
+    cosmetics = Cosmetic.objects.all().order_by("-pk")
     type = ""
     source = ""
     rarity = ""
@@ -121,115 +121,115 @@ def items(request):
     return render(request, 'main.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount})
 
 def skin(cosmetics):
-    return ["Экипировка", cosmetics.filter(short_description="Экипировка").order_by("rarity_sort")]
+    return ["Экипировка", cosmetics.filter(short_description="Экипировка").order_by("-pk")]
 
 def pickaxe(cosmetics):
-    return ["Кирка", cosmetics.filter(short_description="Инструмент").order_by("rarity_sort")]
+    return ["Кирка", cosmetics.filter(short_description="Инструмент").order_by("-pk")]
 
 def backpack(cosmetics):
-    return ["Украшение на спину", cosmetics.filter(short_description="Украшение на спину").order_by("rarity_sort")]
+    return ["Украшение на спину", cosmetics.filter(short_description="Украшение на спину").order_by("-pk")]
 
 def pet(cosmetics):
-    return ["Питомец", cosmetics.filter(short_description="Питомец").order_by("rarity_sort")]
+    return ["Питомец", cosmetics.filter(short_description="Питомец").order_by("-pk")]
 
 def emote(cosmetics):
-    return ["Эмоция", cosmetics.filter(short_description="Эмоция").order_by("rarity_sort")]
+    return ["Эмоция", cosmetics.filter(short_description="Эмоция").order_by("-pk")]
 
 def glider(cosmetics):
-    return ["Дельтаплан", cosmetics.filter(short_description="Дельтаплан").order_by("rarity_sort")]
+    return ["Дельтаплан", cosmetics.filter(short_description="Дельтаплан").order_by("-pk")]
 
 def wrap(cosmetics):
-    return ["Обёртка", cosmetics.filter(short_description="Обёртка").order_by("rarity_sort")]
+    return ["Обёртка", cosmetics.filter(short_description="Обёртка").order_by("-pk")]
 
 def music(cosmetics):
-    return ["Музыка", cosmetics.filter(short_description="Музыка").order_by("rarity_sort")]
+    return ["Музыка", cosmetics.filter(short_description="Музыка").order_by("-pk")]
 
 def trail(cosmetics):
-    return ["Воздушный след", cosmetics.filter(short_description__istartswith="Воздушный ").order_by("rarity_sort")]
+    return ["Воздушный след", cosmetics.filter(short_description__istartswith="Воздушный ").order_by("-pk")]
 
 def pack(cosmetics):
-    return ["Стартовый набор", cosmetics.filter(source="Стартовый набор").order_by("rarity_sort")]
+    return ["Стартовый набор", cosmetics.filter(source="Стартовый набор").order_by("-pk")]
 
 def exclusive(cosmetics):
-    return ["Эксклюзив", cosmetics.filter(source="Эксклюзив").order_by("rarity_sort")]
+    return ["Эксклюзив", cosmetics.filter(source="Эксклюзив").order_by("-pk")]
 
 def item_shop(cosmetics):
-    return ["Магазин предметов", cosmetics.filter(source="Магазин предметов").order_by("rarity_sort")]
+    return ["Магазин предметов", cosmetics.filter(source="Магазин предметов").order_by("-pk")]
 
 def pass_all(cosmetics):
-    return ["Все боевые пропуски", cosmetics.filter(source__contains="Боевой пропуск").order_by("rarity_sort")]
+    return ["Все боевые пропуски", cosmetics.filter(source__contains="Боевой пропуск").order_by("-pk")]
 
 def pass1(cosmetics):
-    return ["Боевой пропуск 1 сезона", cosmetics.filter(source="Боевой пропуск 1 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 1 сезона", cosmetics.filter(source="Боевой пропуск 1 сезона").order_by("-pk")]
 
 def pass2(cosmetics):
-    return ["Боевой пропуск 2 сезона", cosmetics.filter(source="Боевой пропуск 2 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 2 сезона", cosmetics.filter(source="Боевой пропуск 2 сезона").order_by("-pk")]
 
 def pass3(cosmetics):
-    return ["Боевой пропуск 3 сезона", cosmetics.filter(source="Боевой пропуск 3 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 3 сезона", cosmetics.filter(source="Боевой пропуск 3 сезона").order_by("-pk")]
 
 def pass4(cosmetics):
-    return ["Боевой пропуск 4 сезона", cosmetics.filter(source="Боевой пропуск 4 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 4 сезона", cosmetics.filter(source="Боевой пропуск 4 сезона").order_by("-pk")]
 
 def pass5(cosmetics):
-    return ["Боевой пропуск 5 сезона", cosmetics.filter(source="Боевой пропуск 5 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 5 сезона", cosmetics.filter(source="Боевой пропуск 5 сезона").order_by("-pk")]
 
 def pass6(cosmetics):
-    return ["Боевой пропуск 6 сезона", cosmetics.filter(source="Боевой пропуск 6 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 6 сезона", cosmetics.filter(source="Боевой пропуск 6 сезона").order_by("-pk")]
 
 def pass7(cosmetics):
-    return ["Боевой пропуск 7 сезона", cosmetics.filter(source="Боевой пропуск 7 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 7 сезона", cosmetics.filter(source="Боевой пропуск 7 сезона").order_by("-pk")]
 
 def pass8(cosmetics):
-    return ["Боевой пропуск 8 сезона", cosmetics.filter(source="Боевой пропуск 8 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 8 сезона", cosmetics.filter(source="Боевой пропуск 8 сезона").order_by("-pk")]
 
 def pass9(cosmetics):
-    return ["Боевой пропуск 9 сезона", cosmetics.filter(source="Боевой пропуск 9 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 9 сезона", cosmetics.filter(source="Боевой пропуск 9 сезона").order_by("-pk")]
 
 def pass10(cosmetics):
-    return ["Боевой пропуск 10 сезона", cosmetics.filter(source="Боевой пропуск 10 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 10 сезона", cosmetics.filter(source="Боевой пропуск 10 сезона").order_by("-pk")]
 
 def pass11(cosmetics):
-    return ["Боевой пропуск 11 сезона", cosmetics.filter(source="Боевой пропуск 11 сезона").order_by("rarity_sort")]
+    return ["Боевой пропуск 11 сезона", cosmetics.filter(source="Боевой пропуск 11 сезона").order_by("-pk")]
 
 def leg(cosmetics):
-    return ["Легендарный", cosmetics.filter(display_rarity="Легендарный")]
+    return ["Легендарный", cosmetics.filter(display_rarity="Легендарный").order_by("-pk")]
 
 def epic(cosmetics):
-    return ["Эпический", cosmetics.filter(display_rarity="Эпический")]
+    return ["Эпический", cosmetics.filter(display_rarity="Эпический").order_by("-pk")]
 
 def rare(cosmetics):
-    return ["Редкий", cosmetics.filter(display_rarity="Редкий")]
+    return ["Редкий", cosmetics.filter(display_rarity="Редкий").order_by("-pk")]
 
 def uncom(cosmetics):
-    return ["Необычный", cosmetics.filter(display_rarity="Необычный")]
+    return ["Необычный", cosmetics.filter(display_rarity="Необычный").order_by("-pk")]
 
 def common(cosmetics):
-    return ["Обычный", cosmetics.filter(display_rarity="Обычный")]
+    return ["Обычный", cosmetics.filter(display_rarity="Обычный").order_by("-pk")]
 
 def starwars(cosmetics):
-    return ["Серия «Звёздные войны»", cosmetics.filter(display_rarity="Серия «Звёздные войны»")]
+    return ["Серия «Звёздные войны»", cosmetics.filter(display_rarity="Серия «Звёздные войны»").order_by("-pk")]
 
 def dc(cosmetics):
-    return ["Серия DC", cosmetics.filter(display_rarity="Серия DC")]
+    return ["Серия DC", cosmetics.filter(display_rarity="Серия DC").order_by("-pk")]
 
 def star(cosmetics):
-    return ["Звёздная серия", cosmetics.filter(display_rarity="Звёздная серия")]
+    return ["Звёздная серия", cosmetics.filter(display_rarity="Звёздная серия").order_by("-pk")]
 
 def evil(cosmetics):
-    return ["Зловещая серия", cosmetics.filter(display_rarity="Зловещая серия")]
+    return ["Зловещая серия", cosmetics.filter(display_rarity="Зловещая серия").order_by("-pk")]
 
 def marvel(cosmetics):
-    return ["Серия Марвел", cosmetics.filter(display_rarity="Серия Марвел")]
+    return ["Серия Марвел", cosmetics.filter(display_rarity="Серия Марвел").order_by("-pk")]
 
 def ghost(cosmetics):
-    return ["Призрачная серия", cosmetics.filter(display_rarity="Призрачная серия")]
+    return ["Призрачная серия", cosmetics.filter(display_rarity="Призрачная серия").order_by("-pk")]
 
 def lava(cosmetics):
-    return ["Лавовая серия", cosmetics.filter(display_rarity="Лавовая серия")]
+    return ["Лавовая серия", cosmetics.filter(display_rarity="Лавовая серия").order_by("-pk")]
 
 def ice(cosmetics):
-    return ["Ледяная серия", cosmetics.filter(display_rarity="Ледяная серия")]
+    return ["Ледяная серия", cosmetics.filter(display_rarity="Ледяная серия").order_by("-pk")]
 
 def shop(request):
     now = datetime.utcnow().replace(tzinfo=None)
@@ -329,44 +329,11 @@ def shop(request):
 def oneskin(request, href):
     try:
         object = Cosmetic.objects.get(href=href)
-        set_items = Cosmetic.objects.filter(setname=object.setname).exclude(href=href)
+        set_items = Cosmetic.objects.filter(setname=object.setname).exclude(href=href).order_by("-pk")
         return render(request, 'skin.html', {'cosmetic': object, 'set_items': set_items})
     except Exception as e:
         print(e)
         return HttpResponseNotFound('<h1>Page not found</h1>')
-
-def get1(request, *args, **kwargs):
-        context = {}
-        question = request.GET.get('search1')
-        if question is not None:
-            cosmetics = Cosmetic.objects.filter(name__icontains=question)
-            context = {
-                'Cosmetics': cosmetics
-            }
-
-        return render_to_response(template_name="main.html", context=context)
-
-def get2(request, *args, **kwargs):
-        context = {}
-        question = request.GET.get('search2')
-        if question is not None:
-            cosmetics = Cosmetic.objects.filter(name__icontains=question)
-            context = {
-                'Cosmetics': cosmetics
-            }
-
-        return render_to_response(template_name="main.html", context=context)
-
-def get3(request, *args, **kwargs):
-        context = {}
-        question = request.GET.get('search1=3')
-        if question is not None:
-            cosmetics = Cosmetic.objects.filter(name__icontains=question)
-            context = {
-                'Cosmetics': cosmetics
-            }
-
-        return render_to_response(template_name="main.html", context=context)
 
 def search(request):
     print('searching')
@@ -375,7 +342,7 @@ def search(request):
     if question is not None:
         cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
         context = {
-            'Cosmetics': cosmetics,
+            'Cosmetics': cosmetics.order_by("-pk"),
             'search': True
         }
         return render(request, template_name="main.html", context=context)
@@ -383,7 +350,7 @@ def search(request):
     if question is not None:
         cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
         context = {
-            'Cosmetics': cosmetics,
+            'Cosmetics': cosmetics.order_by("-pk"),
             'search': True
         }
         return render(request, template_name="main.html", context=context)
@@ -391,7 +358,7 @@ def search(request):
     if question is not None:
         cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
         context = {
-            'Cosmetics': cosmetics,
+            'Cosmetics': cosmetics.order_by("-pk"),
             'search': True
         }
         return render(request, template_name="main.html", context=context)
