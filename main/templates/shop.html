@@ -5,10 +5,10 @@
 
 <style>
   img.card-img-top:hover {
-    transform: scale(1.04);
+    transform: scale(1.05);
   }
   img.card-img-top {
-    transition: transform 300ms ease-in-out;
+    transition: transform 250ms ease-in-out;
     transform-origin: center;
   }
 </style>
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="container-fluid" style="width:60%;margin-left:20%;">
+<div class="container-fluid" style="margin-top:5px;width:60%;margin-left:20%;">
   <div class="row justify-content-left" style="color:white;font-family:'Montserrat',sans-serif">
     {% for cosmetic in featured %}
       {% if cosmetic.hidden == False %}
@@ -147,7 +147,7 @@
   </div>
 </div>
 <div class="row d-md-none">
-  <div class="row justify-content-left" style="color:white;font-family:'Montserrat',sans-serif">
+  <div class="row justify-content-left" style="margin-top:5px;color:white;font-family:'Montserrat',sans-serif">
     {% for cosmetic in featured %}
       {% if cosmetic.hidden == False %}
         {% if cosmetic.icon != "" %}
@@ -271,7 +271,7 @@
 </div>
 <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color:white; margin-left:14px;margin-bottom: 0px;margin-top: 0px;letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Ежедневные предметы <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
 
-<div class="container-fluid" style="width:60%;margin-left:20%;">
+<div class="container-fluid" style="margin-top:5px;width:60%;margin-left:20%;">
   <div class="row justify-content-sm-left" style="color:white;font-family:'Montserrat',sans-serif">
     {% for cosmetic in daily %}
       {% if cosmetic.hidden == False %}
@@ -395,7 +395,7 @@
   </div>
 </div>
 <div class="row d-md-none">
-  <div class="row justify-content-sm-left" style="color:white;font-family:'Montserrat',sans-serif">
+  <div class="row justify-content-sm-left" style="margin-top:5px;color:white;font-family:'Montserrat',sans-serif">
     {% for cosmetic in daily %}
       {% if cosmetic.hidden == False %}
         {% if cosmetic.icon != "" %}

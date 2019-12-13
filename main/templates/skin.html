@@ -6,14 +6,12 @@
   <style>
     a.image:hover {
       background-color: #174382;
-      transform: scale(1.02);
+      transform: scale(1.05);
     }
     a.image {
-      transition: transform 200ms ease-in-out;
+      transition: transform 250ms ease-in-out;
       transform-origin: center;
     }
-  </style>
-  <style>
     @media screen and (max-width: 767px) {
       h2 {
         font-size: 7vw;
@@ -33,7 +31,7 @@
     }
   </style>
 
-  <div class="container-fluid" style="color:white;width:60%;margin-left:20%;font-family:'Montserrat',sans-serif;">
+  <div class="container-fluid" style="padding-top:5px;background-color:#203869;color:white;width:60%;margin-left:20%;font-family:'Montserrat',sans-serif;">
     <div class="row justify-content-start d-none d-md-flex">
       <div class="col-3 col-xl-2" style="padding:0px; padding-right:3px;">
         {% if cosmetic.icon != "" and cosmetic.icon != "image/" %}
@@ -86,10 +84,21 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-start d-none d-md-flex">
+    <div class="row justify-content-center d-none d-md-flex">
+      <style>
+        img.hovered:hover {
+          transform: scale(1.01);
+        }
+        img.hovered {
+          transition: transform 250ms ease-in-out;
+          transform-origin: center;
+        }
+      </style>
       {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
-        <img src="{% static '' %}{{ cosmetic.featured }}">
+        <img class="hovered" style="margin-bottom:10px;" src="{% static '' %}{{ cosmetic.featured }}">
       {% endif %}
+    </div>
+    <div class="row justify-content-start d-none d-md-flex">
       {% if cosmetic.setname != "" %}
         <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
           <h5>Предметы из набора {{ cosmetic.setname }}:</h5>
@@ -159,10 +168,12 @@
         </div>
       {% endif %}
     </div>
-    <div class="row justify-content-start">
+    <div class="row justify-content-center">
       {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
-        <img src="{% static '' %}{{ cosmetic.featured }}">
+        <img style="margin-bottom:10px;" src="{% static '' %}{{ cosmetic.featured }}">
       {% endif %}
+    </div>
+    <div class="row justify-content-start">
       {% if cosmetic.setname != "" %}
         <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
           <h5>Предметы из набора {{ cosmetic.setname }}:</h5>

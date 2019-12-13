@@ -110,6 +110,8 @@ def items(request):
     if rarity == "":
         rarity = "Все"
 
+    cosmetics = cosmetics.exclude(hidden=True)
+
     if amount == 'all':
         amount = "Все"
     elif amount == '500':

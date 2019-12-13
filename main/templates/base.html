@@ -13,8 +13,19 @@
   <link rel="stylesheet" href="{% static '/css/styles.css' %}" type="text/css" charset="utf-8" />
 </head>
 <body style="background-color: #12325F">
+
+  <style>
+    a.nav-item.nav-link:hover {
+      transform: scale(1.05);
+    }
+    a.nav-item.nav-link {
+      transition: transform 250ms ease-in-out;
+      transform-origin: center;
+    }
+  </style>
+
   <p class="image_section" style="margin-bottom: 0"><img src="{% static '/image/Up_Panel.png' %}" style="width:100%"></p>
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="line-height: 1;padding: 0px 1rem; margin-bottom:5px;font-family: 'fortnite_battlefest', Arial, sans-serif; font-size: 35px; background-color: #004FB3 !important">
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="line-height: 1;padding: 0px 1rem;font-family: 'fortnite_battlefest', Arial, sans-serif; font-size: 35px; background-color: #004FB3 !important">
       <div class="d-flex align-items-end w-50 order-2">
           <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar" style="border:0px">
               <span class="navbar-toggler-icon"></span>

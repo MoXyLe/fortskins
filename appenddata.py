@@ -7,10 +7,13 @@ import requests
 import json
 import shutil
 import os.path
+import os
 
 def updatedb():
     def download(image_url):
-        name = 'C:\\Users\\roofu\\Desktop\\fortniteskins\\main\\static\\image\\' + image_url.split("/image/")[1].replace("/", "_")
+        path = os.getcwd()
+        path = os.path.join(path, "main", "static", "image")
+        name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
         if os.path.exists(name) == False:
             local_file = open(name, 'wb')
             resp = requests.get(image_url, stream=True)
