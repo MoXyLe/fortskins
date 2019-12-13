@@ -2,165 +2,224 @@
 {% load staticfiles %}
 {% load static %}
 {% block content %}
-  <div class="container-fluid" style="width:60%;margin-left:20%;">
-    <div class="row justify-content-center" style="">
-      <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
-        <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
-            Тип предмета: {{ type }}
-          </button>
-          <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">Все</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'skin');">Экипировка</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pickaxe');">Кирка</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'backpack');">Украшение на спину</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pet');">Питомец</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'emote');">Эмоция</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'glider');">Дельтаплан</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'wrap');">Обёртка</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'music');">Музыка</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'trail');">Воздушный след</a>
+
+  <style>
+
+    @media (min-width:1615px) {
+      .d-xxl-none{display:none!important}
+      .d-xxl-inline{display:inline!important}
+      .d-xxl-inline-block{display:inline-block!important}
+      .d-xxl-block{display:block!important}
+      .d-xxl-table{display:table!important}
+      .d-xxl-table-row{display:table-row!important}
+      .d-xxl-table-cell{display:table-cell!important}
+      .d-xxl-flex{display:-ms-flexbox!important;display:flex!important}
+      .d-xxl-inline-flex{display:-ms-inline-flexbox!important;display:inline-flex!important}
+    }
+  </style>
+  {% if search %}
+    <div class="row">
+      <div class="container-fluid" style="width:60%;margin-left:20%;">
+        <div class="row justify-content-center" style="">
+          <div class="col-12" style="padding-right: 0px;padding-left: 0px;">
+            <form class="form-inline d-none d-md-flex d-xxl-none justify-content-center" action='{% url "main:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <input class="form-control mr-sm-2" name="search1" type="search" placeholder="Поиск" aria-label="Search" style="border-radius:0px;">
+              <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Поиск</button>
+            </form>
           </div>
         </div>
-      </div>
-      <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
-        <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
-            Источник: {{ source }}
-          </button>
-          <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'all');">Все</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pack');">Стартовый набор</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'exclusive');">Эксклюзив</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'shop');">Магазин предметов</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass');">Все боевые пропуски</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass1');">Боевой пропуск 1 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass2');">Боевой пропуск 2 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass3');">Боевой пропуск 3 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass4');">Боевой пропуск 4 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass5');">Боевой пропуск 5 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass6');">Боевой пропуск 6 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass7');">Боевой пропуск 7 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass8');">Боевой пропуск 8 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass9');">Боевой пропуск 9 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass10');">Боевой пропуск 10 сезона</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass11');">Боевой пропуск 11 сезона</a>
-          </div>
+        <div class="row d-none d-md-inline">
+          {% include "skin_list.html" %}
         </div>
       </div>
-      <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
-        <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
-            Редкость: {{ rarity }}
-          </button>
-          <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'all');">Все</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'leg');">Легендарная</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'epic');">Эпическая</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'rare');">Редкая</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'uncom');">Необычная</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'common');">Обычная</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'starwars');">Серия «Звёздные войны»</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'dc');">Серия DC</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'star');">Звёздная серия</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'evil');">Зловещая серия</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'marvel');">Серия Марвел</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ghost');">Призрачная серия</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'lava');">Лавовая серия</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ice');">Ледяная серия</a>
+      <form class="form-inline d-none d-xxl-flex justify-content-end" action='{% url "main:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;align-items: start;">
+        <input class="form-control mr-sm-2" name="search2" type="search" placeholder="Поиск" aria-label="Search" style="border-radius:0px;">
+        <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Поиск</button>
+      </form>
+    </div>
+    <div class="row justify-content-center">
+      <form class="form-inline d-md-none justify-content-center" action='{% url "main:search" %}' style="width:280px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:10px;margin-right:5px;">
+        <input class="form-control mr-1" name="search3" type="search" placeholder="Поиск" aria-label="Search" style="width: 200px; border-radius:0px;">
+        <button class="btn btn-outline-success text-center" type="submit" style="height:38px; width: 75px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Поиск</button>
+      </form>
+    </div>
+  {% else %}
+    <div class="row">
+      <div class="container-fluid" style="width:60%;margin-left:20%;">
+        <div class="row justify-content-center" style="">
+          <div class="col-12" style="padding-right: 0px;padding-left: 0px;">
+            <form class="form-inline d-none d-md-flex d-xxl-none justify-content-center" action='{% url "main:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <input class="form-control mr-sm-2" name="search1" type="search" placeholder="Поиск" aria-label="Search" style="border-radius:0px;">
+              <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Поиск</button>
+            </form>
+          </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Тип предмета: {{ type }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">Все</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'skin');">Экипировка</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pickaxe');">Кирка</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'backpack');">Украшение на спину</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pet');">Питомец</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'emote');">Эмоция</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'glider');">Дельтаплан</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'wrap');">Обёртка</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'music');">Музыка</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'trail');">Воздушный след</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Источник: {{ source }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'all');">Все</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pack');">Стартовый набор</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'exclusive');">Эксклюзив</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'shop');">Магазин предметов</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass');">Все боевые пропуски</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass1');">Боевой пропуск 1 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass2');">Боевой пропуск 2 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass3');">Боевой пропуск 3 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass4');">Боевой пропуск 4 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass5');">Боевой пропуск 5 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass6');">Боевой пропуск 6 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass7');">Боевой пропуск 7 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass8');">Боевой пропуск 8 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass9');">Боевой пропуск 9 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass10');">Боевой пропуск 10 сезона</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass11');">Боевой пропуск 11 сезона</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Редкость: {{ rarity }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'all');">Все</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'leg');">Легендарная</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'epic');">Эпическая</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'rare');">Редкая</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'uncom');">Необычная</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'common');">Обычная</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'starwars');">Серия «Звёздные войны»</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'dc');">Серия DC</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'star');">Звёздная серия</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'evil');">Зловещая серия</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'marvel');">Серия Марвел</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ghost');">Призрачная серия</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'lava');">Лавовая серия</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ice');">Ледяная серия</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Количество предметов: {{ amount }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '50');">50</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '500');">500</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">Все</a>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="row d-none d-md-inline">
+          {% include "skin_list.html" %}
+        </div>
       </div>
-      <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
-        <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
-            Количество предметов: {{ amount }}
-          </button>
-          <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '100');">100</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '500');">500</a>
-            <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">Все</a>
-          </div>
+      <form class="form-inline d-none d-xxl-flex justify-content-end" action='{% url "main:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;align-items: start;">
+        <input class="form-control mr-sm-2" name="search2" type="search" placeholder="Поиск" aria-label="Search" style="border-radius:0px;">
+        <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Поиск</button>
+      </form>
+    </div>
+    <div class="row justify-content-center">
+      <form class="form-inline d-md-none justify-content-center" action='{% url "main:search" %}' style="width:280px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:10px;margin-right:5px;">
+        <input class="form-control mr-1" name="search3" type="search" placeholder="Поиск" aria-label="Search" style="width: 200px; border-radius:0px;">
+        <button class="btn btn-outline-success text-center" type="submit" style="height:38px; width: 75px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Поиск</button>
+      </form>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
+          Тип предмета: {{ type }}
+        </button>
+        <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">Все</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'skin');">Экипировка</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pickaxe');">Кирка</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'backpack');">Украшение на спину</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pet');">Питомец</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'emote');">Эмоция</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'glider');">Дельтаплан</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'wrap');">Обёртка</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'music');">Музыка</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'trail');">Воздушный след</a>
+        </div>
+      </div>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
+          Источник: {{ source }}
+        </button>
+        <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'all');">Все</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pack');">Стартовый набор</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'exclusive');">Эксклюзив</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'shop');">Магазин предметов</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass');">Все боевые пропуски</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass1');">Боевой пропуск 1 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass2');">Боевой пропуск 2 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass3');">Боевой пропуск 3 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass4');">Боевой пропуск 4 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass5');">Боевой пропуск 5 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass6');">Боевой пропуск 6 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass7');">Боевой пропуск 7 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass8');">Боевой пропуск 8 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass9');">Боевой пропуск 9 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass10');">Боевой пропуск 10 сезона</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass11');">Боевой пропуск 11 сезона</a>
+        </div>
+      </div>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
+          Редкость: {{ rarity }}
+        </button>
+        <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'all');">Все</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'leg');">Легендарная</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'epic');">Эпическая</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'rare');">Редкая</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'uncom');">Необычная</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'common');">Обычная</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'starwars');">Серия Звездные Войны</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'dc');">Серия DC</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'star');">Звёздная серия</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'evil');">Зловещая серия</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'marvel');">Серия Марвел</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ghost');">Призрачная серия</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'lava');">Лавовая серия</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ice');">Ледяная серия</a>
+        </div>
+      </div>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
+          Количество предметов: {{ amount }}
+        </button>
+        <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '50');">50</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '500');">500</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">Все</a>
         </div>
       </div>
     </div>
-    <div class="row d-none d-md-inline">
-      {% include "skin_list.html" %}
-    </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
-        Тип предмета: {{ type }}
-      </button>
-      <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">Все</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'skin');">Экипировка</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pickaxe');">Кирка</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'backpack');">Украшение на спину</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pet');">Питомец</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'emote');">Эмоция</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'glider');">Дельтаплан</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'wrap');">Обёртка</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'music');">Музыка</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'trail');">Воздушный след</a>
-      </div>
-    </div>
-    <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
-        Источник: {{ source }}
-      </button>
-      <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'all');">Все</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pack');">Стартовый набор</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'exclusive');">Эксклюзив</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'shop');">Магазин предметов</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass');">Все боевые пропуски</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass1');">Боевой пропуск 1 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass2');">Боевой пропуск 2 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass3');">Боевой пропуск 3 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass4');">Боевой пропуск 4 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass5');">Боевой пропуск 5 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass6');">Боевой пропуск 6 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass7');">Боевой пропуск 7 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass8');">Боевой пропуск 8 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass9');">Боевой пропуск 9 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass10');">Боевой пропуск 10 сезона</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('source', 'pass11');">Боевой пропуск 11 сезона</a>
-      </div>
-    </div>
-    <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
-        Редкость: {{ rarity }}
-      </button>
-      <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'all');">Все</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'leg');">Легендарная</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'epic');">Эпическая</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'rare');">Редкая</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'uncom');">Необычная</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'common');">Обычная</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'starwars');">Серия Звездные Войны</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'dc');">Серия DC</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'star');">Звёздная серия</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'evil');">Зловещая серия</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'marvel');">Серия Марвел</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ghost');">Призрачная серия</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'lava');">Лавовая серия</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('rarity', 'ice');">Ледяная серия</a>
-      </div>
-    </div>
-    <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
-        Количество предметов: {{ amount }}
-      </button>
-      <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '100');">100</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '500');">500</a>
-        <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">Все</a>
-      </div>
-    </div>
-  </div>
+  {% endif %}
   <div class="row d-md-none">
     {% include "skin_list.html" %}
   </div>

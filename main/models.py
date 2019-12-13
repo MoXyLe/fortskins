@@ -18,9 +18,12 @@ class Cosmetic(models.Model):
     hidden = models.BooleanField(default=False)
     free_pass = models.BooleanField(default=False)
     href = models.CharField(max_length=50, default=name)
+    search_name = models.CharField(max_length=50, default="")
 
     def make_href(self):
         self.href = self.name.replace(" ", "-") + "-" + str(self.pk)
+    def make_search(self):
+        self.search_name = self.name.lower()
 
 class ItemShop(models.Model):
     date = models.CharField(max_length=30)

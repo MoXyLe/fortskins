@@ -2,6 +2,10 @@
   background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='4' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
 }
 
+button.btn.btn-outline-success:focus, button.btn.btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0rem rgba(0,123,255,.25)
+}
+
 .navbar-toggler {
   padding: .25rem 0rem;
 }

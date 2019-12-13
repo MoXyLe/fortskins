@@ -115,8 +115,8 @@ def items(request):
     elif amount == '500':
         cosmetics = cosmetics[:500]
     else:
-        amount = '100'
-        cosmetics = cosmetics[:100]
+        amount = '50'
+        cosmetics = cosmetics[:50]
 
     return render(request, 'main.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount})
 
@@ -328,7 +328,71 @@ def shop(request):
 
 def oneskin(request, href):
     try:
-        return render(request, 'skin.html', {'Cosmetics': Cosmetic.objects.get(href=href)})
+        object = Cosmetic.objects.get(href=href)
+        set_items = Cosmetic.objects.filter(setname=object.setname).exclude(href=href)
+        return render(request, 'skin.html', {'cosmetic': object, 'set_items': set_items})
     except Exception as e:
         print(e)
         return HttpResponseNotFound('<h1>Page not found</h1>')
+
+def get1(request, *args, **kwargs):
+        context = {}
+        question = request.GET.get('search1')
+        if question is not None:
+            cosmetics = Cosmetic.objects.filter(name__icontains=question)
+            context = {
+                'Cosmetics': cosmetics
+            }
+
+        return render_to_response(template_name="main.html", context=context)
+
+def get2(request, *args, **kwargs):
+        context = {}
+        question = request.GET.get('search2')
+        if question is not None:
+            cosmetics = Cosmetic.objects.filter(name__icontains=question)
+            context = {
+                'Cosmetics': cosmetics
+            }
+
+        return render_to_response(template_name="main.html", context=context)
+
+def get3(request, *args, **kwargs):
+        context = {}
+        question = request.GET.get('search1=3')
+        if question is not None:
+            cosmetics = Cosmetic.objects.filter(name__icontains=question)
+            context = {
+                'Cosmetics': cosmetics
+            }
+
+        return render_to_response(template_name="main.html", context=context)
+
+def search(request):
+    print('searching')
+    context = {}
+    question = request.GET.get('search1')
+    if question is not None:
+        cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+        context = {
+            'Cosmetics': cosmetics,
+            'search': True
+        }
+        return render(request, template_name="main.html", context=context)
+    question = request.GET.get('search2')
+    if question is not None:
+        cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+        context = {
+            'Cosmetics': cosmetics,
+            'search': True
+        }
+        return render(request, template_name="main.html", context=context)
+    question = request.GET.get('search3')
+    if question is not None:
+        cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+        context = {
+            'Cosmetics': cosmetics,
+            'search': True
+        }
+        return render(request, template_name="main.html", context=context)
+    return render(request, template_name="main.html", context=context)

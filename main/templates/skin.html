@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+
+  <style>
+    a.image:hover {
+      background-color: #174382;
+      transform: scale(1.02);
+    }
+    a.image {
+      transition: transform 200ms ease-in-out;
+      transform-origin: center;
+    }
+  </style>
+  <style>
+    @media screen and (max-width: 767px) {
+      h2 {
+        font-size: 7vw;
+      }
+      h5 {
+        font-size: 4vw;
+      }
+    }
+
+    @media screen and (max-width: 575px) {
+      h2 {
+        font-size: 7vw;
+      }
+      h5 {
+        font-size: 4vw;
+      }
+    }
+  </style>
+
+  <div class="container-fluid" style="color:white;width:60%;margin-left:20%;font-family:'Montserrat',sans-serif;">
+    <div class="row justify-content-start d-none d-md-flex">
+      <div class="col-3 col-xl-2" style="padding:0px; padding-right:3px;">
+        {% if cosmetic.icon != "" and cosmetic.icon != "image/" %}
+          <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top">
+        {% elif cosmetic.featured != "" and cosmetic.featured != "image/" %}
+          <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top">
+        {% elif cosmetic.smallIcon != "" and cosmetic.smallIcon != "image/" %}
+          <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
+        {% endif %}
+      </div>
+      <div class="col-9 col-xl-10" style="padding:0px">
+        <div class="row align-items-start">
+          <div class="col-12 text-left" style="padding:0px;">
+            <h2 style="margin-bottom: 0rem;">{{ cosmetic.name }}</h2>
+          </div>
+          {% if cosmetic.short_description != "" %}
+            <div class="col-12 text-left" style="padding:0px;">
+              <h5 style="margin-bottom: 0rem;">Тип предмета: {{ cosmetic.short_description }}</h5>
+            </div>
+          {% endif %}
+          {% if cosmetic.description != "" %}
+            <div class="col-12 text-left" style="padding:0px">
+              <h5 style="margin-bottom: 0rem;">Описание: {{ cosmetic.description }}</h5>
+            </div>
+          {% endif %}
+          {% if cosmetic.display_rarity != "" %}
+            <div class="col-12 text-left" style="padding:0px">
+              <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
+            </div>
+          {% endif %}
+          {% if cosmetic.source != "" %}
+            <div class="col-12 text-left" style="padding:0px">
+              <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
+            </div>
+            {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+              <div class="col-12 text-left" style="padding:0px">
+                <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+              </div>
+            {% else %}
+              <div class="col-12 text-left" style="padding:0px">
+                <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+              </div>
+            {% endif %}
+          {% endif %}
+          {% if cosmetic.setname != "" %}
+            <div class="col-12 text-left" style="padding:0px">
+              <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-start d-none d-md-flex">
+      {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
+        <img src="{% static '' %}{{ cosmetic.featured }}">
+      {% endif %}
+      {% if cosmetic.setname != "" %}
+        <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
+          <h5>Предметы из набора {{ cosmetic.setname }}:</h5>
+        </div>
+        {% for i in set_items %}
+            {% if i.hidden == False %}
+              <div class="col-3" style="padding:5px;">
+                {% if i.icon != "" and i.icon != "image/" %}
+                  <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img  style="width:100%" src="{% static '' %}{{ i.icon }}"></a>
+                {% elif i.featured != "" and i.featured != "image/" %}
+                  <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.featured }}"></a>
+                {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
+                  <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.smallIcon }}"></a>
+                {% endif %}
+              </div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  <div class="container-fluid d-md-none" style="color:white;width:100%;font-family:'Montserrat',sans-serif;">
+    <div class="row align-items-start">
+      <div class="col-12" style="padding:0px;">
+        {% if cosmetic.icon != "" and cosmetic.icon != "image/" %}
+          <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top">
+        {% elif cosmetic.featured != "" and cosmetic.featured != "image/" %}
+          <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top">
+        {% elif cosmetic.smallIcon != "" and cosmetic.smallIcon != "image/" %}
+          <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
+        {% endif %}
+      </div>
+      <div class="col-12 text-left" style="padding:0px;">
+        <h2 style="margin-bottom: 0rem;">{{ cosmetic.name }}</h2>
+      </div>
+      {% if cosmetic.short_description != "" %}
+        <div class="col-12 text-left" style="padding:0px;">
+          <h5 style="margin-bottom: 0rem;">Тип предмета: {{ cosmetic.short_description }}</h5>
+        </div>
+      {% endif %}
+      {% if cosmetic.description != "" %}
+        <div class="col-12 text-left" style="padding:0px">
+          <h5 style="margin-bottom: 0rem;">Описание: {{ cosmetic.description }}</h5>
+        </div>
+      {% endif %}
+      {% if cosmetic.display_rarity != "" %}
+        <div class="col-12 text-left" style="padding:0px">
+          <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
+        </div>
+      {% endif %}
+      {% if cosmetic.source != "" %}
+        <div class="col-12 text-left" style="padding:0px">
+          <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
+        </div>
+        {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+          <div class="col-12 text-left" style="padding:0px">
+            <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+          </div>
+        {% else %}
+          <div class="col-12 text-left" style="padding:0px">
+            <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+          </div>
+        {% endif %}
+      {% endif %}
+      {% if cosmetic.setname != "" %}
+        <div class="col-12 text-left" style="padding:0px">
+          <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
+        </div>
+      {% endif %}
+    </div>
+    <div class="row justify-content-start">
+      {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
+        <img src="{% static '' %}{{ cosmetic.featured }}">
+      {% endif %}
+      {% if cosmetic.setname != "" %}
+        <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
+          <h5>Предметы из набора {{ cosmetic.setname }}:</h5>
+        </div>
+        {% for i in set_items %}
+            {% if i.hidden == False %}
+              <div class="col-4" style="padding:5px;">
+                {% if i.icon != "" and i.icon != "image/" %}
+                  <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img  style="width:100%" src="{% static '' %}{{ i.icon }}"></a>
+                {% elif i.featured != "" and i.featured != "image/" %}
+                  <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.featured }}"></a>
+                {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
+                  <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.smallIcon }}"></a>
+                {% endif %}
+              </div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
