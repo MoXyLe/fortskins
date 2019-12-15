@@ -12,7 +12,7 @@ import os
 def updatedb():
     def download(image_url):
         try:
-            path = os.getcwd()
+            path = "/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/"
             path = os.path.join(path, "main", "static", "image")
             name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
             if os.path.exists(name) == False:
@@ -136,7 +136,10 @@ def updatedb():
                 hidden = obj.hidden
 
                 skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
+                skin.save()
+                
                 skin.make_href()
+                skin.make_search()
                 skin.save()
 
                 download(i["images"]["smallIcon"]["url"])
