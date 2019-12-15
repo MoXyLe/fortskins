@@ -11,16 +11,20 @@ import os
 
 def updatedb():
     def download(image_url):
-        path = os.getcwd()
-        path = os.path.join(path, "main", "static", "image")
-        name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
-        if os.path.exists(name) == False:
-            local_file = open(name, 'wb')
-            resp = requests.get(image_url, stream=True)
-            resp.raw.decode_content = True
-            shutil.copyfileobj(resp.raw, local_file)
-            print(image_url)
-            local_file.close()
+        try:
+            path = os.getcwd()
+            path = os.path.join(path, "main", "static", "image")
+            name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
+            if os.path.exists(name) == False:
+                local_file = open(name, 'wb')
+                resp = requests.get(image_url, stream=True)
+                resp.raw.decode_content = True
+                shutil.copyfileobj(resp.raw, local_file)
+                print(image_url)
+                local_file.close()
+        except Exception as e:
+            print("Error loading image")
+            print(e)
 
     response = requests.get("https://fortnite-api.com/cosmetics/br?language=ru", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
     json_data = json.loads(response.text)
