@@ -25,7 +25,7 @@ SECRET_KEY = '@-#6ey)abjh$i69-4(zrw=0&5p3h2ow^mo!*t)@pg0e1v!9q57'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["fortwhat.com"]
 
 APPEND_SLASH = False
 
