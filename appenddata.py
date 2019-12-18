@@ -32,7 +32,7 @@ def updatedb():
         try:
             if len(Cosmetic.objects.filter(name = i["name"], short_description = i["shortDescription"])) < 1:
                 name = i["name"]
-                if name == "Чар О'Дей" or name == "TESTING DO NOT USE" or name == "Флаг главной базы":
+                if name == "Чар О'Дей" or name == "TESTING DO NOT USE" or name == "Флаг главной базы" or "_01_" in name:
                     continue
                 display_rarity = i["displayRarity"]
                 short_description = i["shortDescription"]

@@ -5,11 +5,13 @@ from django.views.generic.base import RedirectView
 
 app_name = 'main'
 favicon_view = RedirectView.as_view(url='/static/favicon.ico', permanent=True)
+sitemap = RedirectView.as_view(url='/static/sitemap.xml', permanent=True)
 
 urlpatterns = [
     path('', views.items, name="items"),
     path('shop', views.shop, name="shop"),
     path('seacrh', views.search, name="search"),
     path('favicon.ico', favicon_view),
+    path('sitemap.xml', sitemap),
     path('<str:href>', views.oneskin, name="oneskin"),
 ]

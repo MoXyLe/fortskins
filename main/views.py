@@ -114,8 +114,8 @@ def items(request):
 
     if amount == 'all':
         amount = "Все"
-    elif amount == '500':
-        cosmetics = cosmetics[:500]
+    elif amount == '100':
+        cosmetics = cosmetics[:100]
     else:
         amount = '50'
         cosmetics = cosmetics[:50]
@@ -338,30 +338,32 @@ def oneskin(request, href):
         return HttpResponseNotFound('<h1>Page not found</h1>')
 
 def search(request):
-    print('searching')
     context = {}
     question = request.GET.get('search1')
     if question is not None:
-        cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
-        context = {
-            'Cosmetics': cosmetics.order_by("-pk"),
-            'search': True
-        }
-        return render(request, template_name="main.html", context=context)
+        if len(question) > 0:
+            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+            context = {
+                'Cosmetics': cosmetics.order_by("-pk"),
+                'search': True
+            }
+            return render(request, template_name="main.html", context=context)
     question = request.GET.get('search2')
     if question is not None:
-        cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
-        context = {
-            'Cosmetics': cosmetics.order_by("-pk"),
-            'search': True
-        }
-        return render(request, template_name="main.html", context=context)
+        if len(question) > 0:
+            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+            context = {
+                'Cosmetics': cosmetics.order_by("-pk"),
+                'search': True
+            }
+            return render(request, template_name="main.html", context=context)
     question = request.GET.get('search3')
     if question is not None:
-        cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
-        context = {
-            'Cosmetics': cosmetics.order_by("-pk"),
-            'search': True
-        }
-        return render(request, template_name="main.html", context=context)
+        if len(question) > 0:
+            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+            context = {
+                'Cosmetics': cosmetics.order_by("-pk"),
+                'search': True
+            }
+            return render(request, template_name="main.html", context=context)
     return render(request, template_name="main.html", context=context)

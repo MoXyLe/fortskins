@@ -87,7 +87,7 @@ button.btn.btn-outline-success:focus, button.btn.btn-primary.dropdown-toggle:foc
     font-size: 2vw;
   }
   h6 {
-    font-size: 1.6vw;
+    font-size: 2vw;
   }
   p {
     font-size: 2vw;
@@ -102,16 +102,16 @@ button.btn.btn-outline-success:focus, button.btn.btn-primary.dropdown-toggle:foc
     font-size: 8vw;
   }
   h2 {
-    font-size: 4vw;
+    font-size: 5vw;
   }
   h5 {
-    font-size: 2.5vw;
+    font-size: 4vw;
   }
   h6 {
-    font-size: 2vw;
+    font-size: 3vw;
   }
   p {
-    font-size: 2.5vw;
+    font-size: 3.5vw;
   }
 }
 

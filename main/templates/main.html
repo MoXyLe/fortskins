@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load static %}
 {% block title %}Шкафчик{% endblock %}
+{% block description %}<meta name="description" content="В шкафчике вы можете найти любой предмет из фортнайта. Например: Кирку, Скин или Эмоцию.">{% endblock %}
 {% block content %}
 
   <style>
@@ -128,7 +129,7 @@
               </button>
               <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
                 <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '50');">50</a>
-                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '500');">500</a>
+                <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '100');">100</a>
                 <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">Все</a>
               </div>
             </div>
@@ -215,7 +216,7 @@
         </button>
         <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
           <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '50');">50</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '500');">500</a>
+          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '100');">100</a>
           <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">Все</a>
         </div>
       </div>
