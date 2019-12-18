@@ -19,9 +19,9 @@
   <div class="col-lg-8 offset-lg-2 align-self-center">
     <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; margin-top:0px; margin-bottom: 0px; letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Рекомендуемые предметы <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
   </div>
-  <div class="col-lg-2 align-self-center" style="margin-top:0.5%">
-    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;">МАГАЗИН ОБНОВИТСЯ</h2>
-    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; padding-right: 4%; margin-top: 0px;" id="timer"></h2>
+  <div class="col-lg-2 align-self-center text-center" style="margin-top:0.5%">
+    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;">МАГАЗИН ОБНОВИТСЯ<br>ЧЕРЕЗ: </h2>
+    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;" id="timer">{{ delta }}</h2>
   </div>
 </div>
 
@@ -519,58 +519,54 @@
     {% endfor %}
   </div>
 </div>
-<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;" id="timer2">МАГАЗИН ОБНОВИТСЯ</h2>
+<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;">МАГАЗИН ОБНОВИТСЯ ЧЕРЕЗ </h2>
+<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;" id="timer2">{{ delta }}</h2>
 <script>
-  // Set the date we're counting down to
-  var countDownDate = new Date("{{ date }}").getTime();
-
-  countDownDate += 24*60*60*1000;
-
-  // Update the count down every 1 second
-  var x = setInterval(function() {
-
-    // Get today's date and time
-    var now = new Date().getTime();
-
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-
-    setTimeout(function() {  }, distance);
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    var str = "ЧЕРЕЗ: ";
-    if (hours < 10) {
-      str = str + "0" + hours + ":";
-    } else {
-      str = str + hours + ":";
-    }
-
-    if (minutes < 10) {
-      str = str + "0" + minutes + ":";
-    } else {
-      str = str + minutes + ":";
-    }
-
-    if (seconds < 10) {
-      str = str + "0" + seconds;
-    } else {
-      str = str + seconds;
-    }
-
-    // Display the result in the element with id="demo"
-    document.getElementById("timer").innerHTML = str;
-    document.getElementById("timer2").innerHTML = "МАГАЗИН ОБНОВИТСЯ " + str;
-
-    // If the count down is finished, write some text
-    if (distance < 0) {
-      document.getElementById("timer").innerHTML = "ОБНОВИТЕ МАГАЗИН";
-      document.getElementById("timer2").innerHTML = "ОБНОВИТЕ МАГАЗИН";
-    }
+    
+    var x = setInterval(function() {
+        var timertext = document.getElementById("timer").textContent;
+        if (timertext.length < 8) {
+            timertext = "0" + timertext;
+        }
+        var distance = new Date('1970-01-01T' + timertext + 'Z');
+        distance = distance - 1000;
+    
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+        var str = "";
+        if (hours < 10) {
+          str = str + "0" + hours + ":";
+        } else {
+          str = str + hours + ":";
+        }
+    
+        if (minutes < 10) {
+          str = str + "0" + minutes + ":";
+        } else {
+          str = str + minutes + ":";
+        }
+    
+        if (seconds < 10) {
+          str = str + "0" + seconds;
+        } else {
+          str = str + seconds;
+        }
+    
+        // Display the result in the element with id="demo"
+        document.getElementById("timer").innerHTML = str;
+        document.getElementById("timer2").innerHTML = str;
+    
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("timer").innerHTML = "ОБНОВИТЕ МАГАЗИН";
+          document.getElementById("timer2").innerHTML = "ОБНОВИТЕ МАГАЗИН";
+          window.location.reload(true);
+        }
   }, 1000);
 </script>
 

@@ -265,7 +265,9 @@ def shop(request):
                     print(i)
                     print(e)
                     print("Error loading item from database")
-            return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date})
+            delta = datetime.strptime(ItemShop.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
+            delta = str(delta).split(".")[0]
+            return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date, 'delta' : delta})
         updatedb()
         featured = json_data["featured"]
         daily = json_data["daily"]
@@ -300,7 +302,9 @@ def shop(request):
                 print("Error loading item from shop")
         item_shop = ItemShop(date = date, featured = featured_str, daily = daily_str)
         item_shop.save()
-        return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date})
+        delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
+        delta = str(delta).split(".")[0]
+        return render(request, 'shop.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date, 'delta' : delta})
     else:
         item_shop = ItemShop.objects.last()
         date = item_shop.date
@@ -326,7 +330,9 @@ def shop(request):
                 print(i)
                 print(e)
                 print("Error loading item from database")
-        return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date})
+        delta = datetime.strptime(ItemShop.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
+        delta = str(delta).split(".")[0]
+        return render(request, 'shop.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date, 'delta' : delta})
 
 def oneskin(request, href):
     try:
