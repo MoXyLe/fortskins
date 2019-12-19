@@ -21,7 +21,7 @@
   </div>
   <div class="col-lg-2 align-self-center text-center" style="margin-top:0.5%">
     <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;">МАГАЗИН ОБНОВИТСЯ<br>ЧЕРЕЗ: </h2>
-    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;" id="timer">{{ delta }}</h2>
+    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;" id="timer"></h2>
   </div>
 </div>
 
@@ -520,16 +520,26 @@
   </div>
 </div>
 <h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;">МАГАЗИН ОБНОВИТСЯ ЧЕРЕЗ </h2>
-<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;" id="timer2">{{ delta }}</h2>
+<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;" id="timer2"></h2>
 <script>
     
+    var delta = "{{ delta }}";
+    if (delta.length < 8) {
+            delta = "0" + delta;
+    }
+    
+    var date = new Date('1970-01-01T' + delta + 'Z').getTime();
+    
+    var now = new Date().getTime();
+    
+    date = date + now + 5000;
+    
     var x = setInterval(function() {
-        var timertext = document.getElementById("timer").textContent;
-        if (timertext.length < 8) {
-            timertext = "0" + timertext;
-        }
-        var distance = new Date('1970-01-01T' + timertext + 'Z');
-        distance = distance - 1000;
+        
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = date - now;
     
         // Time calculations for days, hours, minutes and seconds
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
