@@ -238,7 +238,7 @@ def ice(cosmetics):
 def shop(request):
     now = datetime.utcnow().replace(tzinfo=None)
     if (datetime.strptime(ItemShop_en.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1)) < now:
-        response = requests.get("https://fortnite-api.com/shop/br?language=ru", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
+        response = requests.get("https://fortnite-api.com/shop/br", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
         json_data = json.loads(response.text)["data"]
         date = json_data["date"]
         date = date.replace("T", " ")
@@ -290,6 +290,7 @@ def shop(request):
                 featured_str += str(object.pk) + "."
             except Exception as e:
                 print("Error loading item from shop")
+
         for i in daily:
             try:
                 print(i["items"][0]['name'])
@@ -302,11 +303,13 @@ def shop(request):
                 daily_str += str(object.pk) + "."
             except Exception as e:
                 print("Error loading item from shop")
+
         item_shop = ItemShop_en(date = date, featured = featured_str, daily = daily_str)
         item_shop.save()
         delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
         return render(request, 'shop_en.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date, 'delta' : delta})
+        
     else:
         item_shop = ItemShop_en.objects.last()
         date = item_shop.date
