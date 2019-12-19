@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+
+<html lang="ru">
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154604444-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-154604444-1');
+  </script>
+
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap&subset=cyrillic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static '/css/fonts/stylesheet.css' %}" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="{% static '/css/styles.css' %}" type="text/css" charset="utf-8" />
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  <meta name="yandex-verification" content="0d22305ac7d59d62" />
+  <script data-ad-client="ca-pub-8266466406989751" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+  {% block description %}{% endblock %}
+</head>
+<body style="background-color: #12325F">
+
+  <style>
+    a.nav-item.nav-link:hover {
+      transform: scale(1.05);
+    }
+  </style>
+
+  <p class="image_section" style="margin-bottom: 0"><img class="lazyload" data-src="{% static '/image/Up_Panel.png' %}" style="width:100%"></p>
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="flex-basis: none;line-height: 1;padding: 0px 1rem;font-family: 'fortnite_battlefest', Arial, sans-serif; font-size: 35px; background-color: #004FB3 !important">
+      <span class="navbar-brand mb-0 h1 d-md-none" style="font-size:24px;">FORTWHAT</span>
+      <div class="d-flex align-items-end w-50 order-2">
+          <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar" style="border:0px">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
+          <ul class="navbar-nav text-center">
+              <li class="nav-item">
+                  <a class="nav-item nav-link" href="/en/shop" style="color:#FFFFFF; letter-spacing: 0.02em;">Item shop</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-item nav-link" href="/en/" style="color:#FFFFFF; letter-spacing: 0.02em;">Locker</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-item nav-link" href="/en/challenges" style="color:#FFFFFF; letter-spacing: 0.02em;">Challenges</a>
+              </li>
+          </ul>
+      </div>
+      <span class="navbar-text small text-truncate mt-1 w-50 text-right order-1 order-md-last d-none d-md-block"></span>
+  </nav>
+  {% block content %}
+  {% endblock %}
+  <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static '/js/ajax.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+</body>
