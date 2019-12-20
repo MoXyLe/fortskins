@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.http import JsonResponse
 from datetime import datetime, timedelta
 from django.utils.timezone import utc
-from appenddata import updatedb
+from appenddata import updatedb, updatedb_en
 
 def items(request):
     cosmetics = Cosmetic_en.objects.all().order_by("-pk")
@@ -309,7 +309,7 @@ def shop(request):
         delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
         return render(request, 'shop_en.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date, 'delta' : delta})
-        
+
     else:
         item_shop = ItemShop_en.objects.last()
         date = item_shop.date
