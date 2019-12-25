@@ -4,10 +4,9 @@
 {% block title %}Locker{% endblock %}
 {% block description %}<meta name="description" content="In the locker you can find any item from Fortnite. For example: Pickaxe, Skin or Emote.">{% endblock %}
 {% block content %}
-
   <style>
 
-    @media (min-width:1615px) {
+    @media (min-width:1620px) {
       .d-xxl-none{display:none!important}
       .d-xxl-inline{display:inline!important}
       .d-xxl-inline-block{display:inline-block!important}
@@ -19,36 +18,101 @@
       .d-xxl-inline-flex{display:-ms-inline-flexbox!important;display:inline-flex!important}
     }
   </style>
-  {% if search %}
-    <div class="row" style="margin-top:5px">
-      <div class="container-fluid" style="width:60%;margin-left:20%;">
-        <div class="row justify-content-center" style="">
+    <div class="row justify-content-between" style="margin-top:5px">
+      <form class="form-inline d-none d-xxl-flex justify-content-end order-last" action='{% url "en:search" %}' style="width:312.167px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;align-items: start;">
+        <input class="form-control mr-sm-2" name="search2" type="search" placeholder="Search" aria-label="Search" style="border-radius:0px;">
+        <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
+      </form>    
+      <div class="container d-none d-xxl-flex" style="width:322.167px; padding:0px; margin:0px;"></div>
+      <div class="container-md" style="padding-right: 0px;padding-left: 0px;">
+        {% if search %}<div class="row justify-content-center" style="">
           <div class="col-12" style="padding-right: 0px;padding-left: 0px;">
             <form class="form-inline d-none d-md-flex d-xxl-none justify-content-center" action='{% url "en:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
               <input class="form-control mr-sm-2" name="search1" type="search" placeholder="Search" aria-label="Search" style="border-radius:0px;">
               <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
             </form>
           </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Item type: {{ type }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+                <a class="dropdown-item" href="/en/?type=all">All</a>
+                <a class="dropdown-item" href="/en/?type=skin">Outfit</a>
+                <a class="dropdown-item" href="/en/?type=pickaxe">Pickaxe</a>
+                <a class="dropdown-item" href="/en/?type=backpack">back Bling</a>
+                <a class="dropdown-item" href="/en/?type=pet">Pet</a>
+                <a class="dropdown-item" href="/en/?type=emote">Emote</a>
+                <a class="dropdown-item" href="/en/?type=glider">Glider</a>
+                <a class="dropdown-item" href="/en/?type=wrap">Wrap</a>
+                <a class="dropdown-item" href="/en/?type=music">Music</a>
+                <a class="dropdown-item" href="/en/?type=trail">Contrail</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Source: {{ source }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+                <a class="dropdown-item" href="/en/?source=all">All</a>
+                <a class="dropdown-item" href="/en/?source=pack">Starter pack</a>
+                <a class="dropdown-item" href="/en/?source=exclusive">Exclusive</a>
+                <a class="dropdown-item" href="/en/?source=shop">Item shop</a>
+                <a class="dropdown-item" href="/en/?source=pass">Battle pass</a>
+                <a class="dropdown-item" href="/en/?source=pass1">Battle pass 1 season</a>
+                <a class="dropdown-item" href="/en/?source=pass2">Battle pass 2 season</a>
+                <a class="dropdown-item" href="/en/?source=pass3">Battle pass 3 season</a>
+                <a class="dropdown-item" href="/en/?source=pass4">Battle pass 4 season</a>
+                <a class="dropdown-item" href="/en/?source=pass5">Battle pass 5 season</a>
+                <a class="dropdown-item" href="/en/?source=pass6">Battle pass 6 season</a>
+                <a class="dropdown-item" href="/en/?source=pass7">Battle pass 7 season</a>
+                <a class="dropdown-item" href="/en/?source=pass8">Battle pass 8 season</a>
+                <a class="dropdown-item" href="/en/?source=pass9">Battle pass 9 season</a>
+                <a class="dropdown-item" href="/en/?source=pass10">Battle pass 10 season</a>
+                <a class="dropdown-item" href="/en/?source=pass11">Battle pass 11 season</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Rarity: {{ rarity }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+                <a class="dropdown-item" href="/en/?rarity=all">All</a>
+                <a class="dropdown-item" href="/en/?rarity=leg">Legendary</a>
+                <a class="dropdown-item" href="/en/?rarity=epic">Epic</a>
+                <a class="dropdown-item" href="/en/?rarity=rare">Rare</a>
+                <a class="dropdown-item" href="/en/?rarity=uncom">Uncommon</a>
+                <a class="dropdown-item" href="/en/?rarity=common">Common</a>
+                <a class="dropdown-item" href="/en/?rarity=starwars">Star Wars Series</a>
+                <a class="dropdown-item" href="/en/?rarity=dc">DC Series</a>
+                <a class="dropdown-item" href="/en/?rarity=star">Icon Series</a>
+                <a class="dropdown-item" href="/en/?rarity=evil">Dark Series</a>
+                <a class="dropdown-item" href="/en/?rarity=marvel">Marvel Series</a>
+                <a class="dropdown-item" href="/en/?rarity=ghost">Shadow Series</a>
+                <a class="dropdown-item" href="/en/?rarity=lava">Lava Series</a>
+                <a class="dropdown-item" href="/en/?rarity=ice">Frozen Series</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-6" style="padding-right: 0px;padding-left: 0px;">
+            <div class="btn-group d-none d-md-flex" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+                Item amount: {{ amount }}
+              </button>
+              <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+                <a class="dropdown-item" href="/en/?amount=50">50</a>
+                <a class="dropdown-item" href="/en/?amount=100">100</a>
+                <a class="dropdown-item" href="/en/?amount=all">All</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="row d-none d-md-inline">
-          {% include "skin_list_en.html" %}
-        </div>
-      </div>
-      <form class="form-inline d-none d-xxl-flex justify-content-end" action='{% url "en:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;align-items: start;">
-        <input class="form-control mr-sm-2" name="search2" type="search" placeholder="Search" aria-label="Search" style="border-radius:0px;">
-        <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
-      </form>
-    </div>
-    <div class="row justify-content-center">
-      <form class="form-inline d-md-none justify-content-center" action='{% url "en:search" %}' style="width:280px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:10px;margin-right:5px;">
-        <input class="form-control mr-1" name="search3" type="search" placeholder="Search" aria-label="Search" style="width: 200px; border-radius:0px;">
-        <button class="btn btn-outline-success text-center" type="submit" style="height:38px; width: 75px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
-      </form>
-    </div>
-  {% else %}
-    <div class="row" style="margin-top:5px">
-      <div class="container-fluid" style="width:60%;margin-left:20%;">
-        <div class="row justify-content-center" style="">
+        {% else %}<div class="row justify-content-center" style="">
           <div class="col-12" style="padding-right: 0px;padding-left: 0px;">
             <form class="form-inline d-none d-md-flex d-xxl-none justify-content-center" action='{% url "en:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
               <input class="form-control mr-sm-2" name="search1" type="search" placeholder="Search" aria-label="Search" style="border-radius:0px;">
@@ -134,37 +198,107 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row d-none d-md-inline">
-          {% include "skin_list_en.html" %}
-        </div>
+        </div>{% endif %}
       </div>
-      <form class="form-inline d-none d-xxl-flex justify-content-end" action='{% url "en:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;align-items: start;">
-        <input class="form-control mr-sm-2" name="search2" type="search" placeholder="Search" aria-label="Search" style="border-radius:0px;">
-        <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
-      </form>
     </div>
-    <div class="row justify-content-center" style="margin-top:5px">
+    {% if search %}<div class="row justify-content-center">
       <form class="form-inline d-md-none justify-content-center" action='{% url "en:search" %}' style="width:280px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:10px;margin-right:5px;">
         <input class="form-control mr-1" name="search3" type="search" placeholder="Search" aria-label="Search" style="width: 200px; border-radius:0px;">
         <button class="btn btn-outline-success text-center" type="submit" style="height:38px; width: 75px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
       </form>
       <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
-          Item type: {{ type }}
-        </button>
-        <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">All</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'skin');">Skin</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pickaxe');">Pickaxe</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'backpack');">Back bling</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pet');">Pet</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'emote');">Emote</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'glider');">Glider</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'wrap');">Wrap</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'music');">Music</a>
-          <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'trail');">Trail</a>
-        </div>
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+            Item type: {{ type }}
+          </button>
+          <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+            <a class="dropdown-item" href="/en/?type=all">All</a>
+            <a class="dropdown-item" href="/en/?type=skin">Outfit</a>
+            <a class="dropdown-item" href="/en/?type=pickaxe">Pickaxe</a>
+            <a class="dropdown-item" href="/en/?type=backpack">back Bling</a>
+            <a class="dropdown-item" href="/en/?type=pet">Pet</a>
+            <a class="dropdown-item" href="/en/?type=emote">Emote</a>
+            <a class="dropdown-item" href="/en/?type=glider">Glider</a>
+            <a class="dropdown-item" href="/en/?type=wrap">Wrap</a>
+            <a class="dropdown-item" href="/en/?type=music">Music</a>
+            <a class="dropdown-item" href="/en/?type=trail">Contrail</a>
+          </div>
+      </div>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+            Source: {{ source }}
+          </button>
+          <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+            <a class="dropdown-item" href="/en/?source=all">All</a>
+            <a class="dropdown-item" href="/en/?source=pack">Starter pack</a>
+            <a class="dropdown-item" href="/en/?source=exclusive">Exclusive</a>
+            <a class="dropdown-item" href="/en/?source=shop">Item shop</a>
+            <a class="dropdown-item" href="/en/?source=pass">Battle pass</a>
+            <a class="dropdown-item" href="/en/?source=pass1">Battle pass 1 season</a>
+            <a class="dropdown-item" href="/en/?source=pass2">Battle pass 2 season</a>
+            <a class="dropdown-item" href="/en/?source=pass3">Battle pass 3 season</a>
+            <a class="dropdown-item" href="/en/?source=pass4">Battle pass 4 season</a>
+            <a class="dropdown-item" href="/en/?source=pass5">Battle pass 5 season</a>
+            <a class="dropdown-item" href="/en/?source=pass6">Battle pass 6 season</a>
+            <a class="dropdown-item" href="/en/?source=pass7">Battle pass 7 season</a>
+            <a class="dropdown-item" href="/en/?source=pass8">Battle pass 8 season</a>
+            <a class="dropdown-item" href="/en/?source=pass9">Battle pass 9 season</a>
+            <a class="dropdown-item" href="/en/?source=pass10">Battle pass 10 season</a>
+            <a class="dropdown-item" href="/en/?source=pass11">Battle pass 11 season</a>
+          </div>
+      </div>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+            Rarity: {{ rarity }}
+          </button>
+          <div class="dropdown-menu" style="width:100%;background-color: #264C7F">
+            <a class="dropdown-item" href="/en/?rarity=all">All</a>
+            <a class="dropdown-item" href="/en/?rarity=leg">Legendary</a>
+            <a class="dropdown-item" href="/en/?rarity=epic">Epic</a>
+            <a class="dropdown-item" href="/en/?rarity=rare">Rare</a>
+            <a class="dropdown-item" href="/en/?rarity=uncom">Uncommon</a>
+            <a class="dropdown-item" href="/en/?rarity=common">Common</a>
+            <a class="dropdown-item" href="/en/?rarity=starwars">Star Wars Series</a>
+            <a class="dropdown-item" href="/en/?rarity=dc">DC Series</a>
+            <a class="dropdown-item" href="/en/?rarity=star">Icon Series</a>
+            <a class="dropdown-item" href="/en/?rarity=evil">Dark Series</a>
+            <a class="dropdown-item" href="/en/?rarity=marvel">Marvel Series</a>
+            <a class="dropdown-item" href="/en/?rarity=ghost">Shadow Series</a>
+            <a class="dropdown-item" href="/en/?rarity=lava">Lava Series</a>
+            <a class="dropdown-item" href="/en/?rarity=ice">Frozen Series</a>
+          </div>
+      </div>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:315px;background-color: #264C7F !important; border-radius: 0px;">
+            Item amount: {{ amount }}
+          </button>
+          <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+            <a class="dropdown-item" href="/en/?amount=50">50</a>
+            <a class="dropdown-item" href="/en/?amount=100">100</a>
+            <a class="dropdown-item" href="/en/?amount=all">All</a>
+          </div>
+      </div>
+    </div>
+    {% else %}<div class="row justify-content-center">
+      <form class="form-inline d-md-none justify-content-center" action='{% url "en:search" %}' style="width:280px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:10px;margin-right:5px;">
+        <input class="form-control mr-1" name="search3" type="search" placeholder="Search" aria-label="Search" style="width: 200px; border-radius:0px;">
+        <button class="btn btn-outline-success text-center" type="submit" style="height:38px; width: 75px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
+      </form>
+      <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
+            Item type: {{ type }}
+          </button>
+          <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'all');">All</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'skin');">Skin</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pickaxe');">Pickaxe</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'backpack');">Back bling</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'pet');">Pet</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'emote');">Emote</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'glider');">Glider</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'wrap');">Wrap</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'music');">Music</a>
+              <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('type', 'trail');">Trail</a>
+          </div>
       </div>
       <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
@@ -212,7 +346,7 @@
       </div>
       <div class="btn-group d-md-none" style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size:14px;width:280px;background-color: #264C7F !important; border-radius: 0px;">
-          item amount: {{ amount }}
+          Item amount: {{ amount }}
         </button>
         <div class="dropdown-menu" style="width:100%;background-color: #264C7F;">
           <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', '50');">50</a>
@@ -220,9 +354,16 @@
           <a class="dropdown-item" href="javascript:addOrUpdateUrlParam('amount', 'all');">All</a>
         </div>
       </div>
-    </div>
-  {% endif %}
-  <div class="row d-md-none" style="margin-top:5px">
-    {% include "skin_list_en.html" %}
-  </div>
+    </div>{% endif %}
+    {% if not_found %}
+        <h1 class="text-center" style="color:white;font-family: 'Roboto', sans-serif;">No results were found for your request.</h1>
+    {% else %}
+        <div class="row justify-content-between">
+          <div class="container md" style="padding-right: 0px;padding-left: 0px;">    
+            <div class="row">
+              {% include "skin_list_en.html" %}
+            </div>
+          </div>
+        </div>
+    {% endif %}
 {% endblock %}

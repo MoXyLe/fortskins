@@ -15,7 +15,6 @@ function addOrUpdateUrlParam(name, value)
       window.location.href = href + "?" + name + "=" + value;
   }
 }
-
 $(function() {
     let images = document.querySelectorAll(".lazyload");
     let images2 = document.querySelectorAll(".card-img-top");

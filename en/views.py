@@ -285,6 +285,7 @@ def shop(request):
                 object = Cosmetic_en.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
                 object.source = "Item shop"
                 object.price = str(i["finalPrice"]) + " V-Bucks"
+                object.hidden = False
                 object.save()
                 featured_list.append(object)
                 featured_str += str(object.pk) + "."
@@ -298,6 +299,7 @@ def shop(request):
                 object = Cosmetic_en.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
                 object.source = "Item shop"
                 object.price = str(i["finalPrice"]) + " V-Bucks"
+                object.hidden = False
                 object.save()
                 daily_list.append(object)
                 daily_str += str(object.pk) + "."
@@ -341,16 +343,19 @@ def shop(request):
 
 def oneskin(request, href):
     try:
-        object = Cosmetic_en.objects.get(href=href)
-        set_items = Cosmetic_en.objects.filter(setname=object.setname).exclude(href=href).order_by("-pk")
-        return render(request, 'skin_en.html', {'cosmetic': object, 'set_items': set_items})
+        obj = Cosmetic_en.objects.get(href=href)
+        set_items = Cosmetic_en.objects.filter(setname=obj.setname).exclude(href=href).order_by("-pk")
+        return render(request, 'skin_en.html', {'cosmetic': obj, 'set_items': set_items})
     except Exception as e:
         print(e)
         return HttpResponseNotFound('<h1>Page not found</h1>')
 
 def search(request):
-    context = {}
     question = request.GET.get('search1')
+    context = {
+        'not_found' : True,
+        'search': True
+    }
     if question is not None:
         if len(question) > 0:
             cosmetics = Cosmetic_en.objects.filter(search_name__contains=question.lower())
@@ -358,6 +363,8 @@ def search(request):
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True
             }
+            if len(cosmetics) == 0:
+                context = {'not_found' : True}
             return render(request, template_name="main_en.html", context=context)
     question = request.GET.get('search2')
     if question is not None:
@@ -367,6 +374,8 @@ def search(request):
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True
             }
+            if len(cosmetics) == 0:
+                context = {'not_found' : True}
             return render(request, template_name="main_en.html", context=context)
     question = request.GET.get('search3')
     if question is not None:
@@ -376,5 +385,7 @@ def search(request):
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True
             }
+            if len(cosmetics) == 0:
+                context = {'not_found' : True}
             return render(request, template_name="main_en.html", context=context)
     return render(request, template_name="main_en.html", context=context)

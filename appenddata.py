@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 # import requests
 # response = requests.get("https://fortnite-api.com/cosmetics/br?language=ru", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
 # print(response.content)
 
+from urllib.parse import quote
 from main.models import Cosmetic
 from en.models import Cosmetic_en
 import requests
@@ -9,11 +11,12 @@ import json
 import shutil
 import os.path
 import os
+import datetime
 
 def updatedb():
     def download(image_url):
         try:
-            path = str(os.getcwd())
+            path = "/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins"
             path = os.path.join(path, "static", "image")
             name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
             if os.path.exists(name) == False:
@@ -29,6 +32,7 @@ def updatedb():
 
     response = requests.get("https://fortnite-api.com/cosmetics/br?language=ru", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
     json_data = json.loads(response.text)
+    hrefs = list()
     for i in json_data["data"]:
         try:
             if len(Cosmetic.objects.filter(name = i["name"], short_description = i["shortDescription"])) < 1:
@@ -129,7 +133,7 @@ def updatedb():
                     pass
 
 
-                obj = Cosmetic.objects.filter(display_rarity=display_rarity)[0]
+                obj = Cosmetic.objects.filter(display_rarity=display_rarity).last()
                 color1 = obj.color1
                 color2 = obj.color2
                 color3 = obj.color3
@@ -142,6 +146,12 @@ def updatedb():
                 skin.make_href()
                 skin.make_search()
                 skin.save()
+                
+                try:
+                    hrefs.append(str(skin.href))
+                except Exception as e:
+                    print(e)
+                    print("Error appending href")
 
                 download(i["images"]["smallIcon"]["url"])
                 download(i["images"]["icon"]["url"])
@@ -152,13 +162,32 @@ def updatedb():
         except Exception as e:
             print(e)
             print(i["name"])
-
+            
+    if len(hrefs) > 0:        
+        try:
+            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', encoding="utf-8") as f1:
+                lines = f1.readlines()
+            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', 'w', encoding="utf-8") as f2:
+                f2.writelines(lines[:-1])
+                for href in hrefs:
+                    hexed = quote(href)
+                    hexed = "https://fortwhat.com/" + hexed
+                    f2.write("""	<url>
+        		<loc>{i}</loc>
+        		<lastmod>{time}+03:00</lastmod>
+        		<priority>0.5</priority>
+        		<changefreq>hourly</changefreq>
+        	</url>\n""".format(i=hexed, time=datetime.datetime.now().isoformat()))
+                f2.write("</urlset>")
+        except Exception as e:
+            print(e)
+            print("Smth went wrong with appending data to xml")
 
 
 def updatedb_en():
     def download(image_url):
         try:
-            path = str(os.getcwd())
+            path = "/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins"
             path = os.path.join(path, "static", "image")
             name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
             if os.path.exists(name) == False:
@@ -174,6 +203,7 @@ def updatedb_en():
 
     response = requests.get("https://fortnite-api.com/cosmetics/br", headers={"x-api-key":"7810743c94bace6ecb065c5d1732c2fe52480d1f1a1236a0f4e34834fb4a9148"})
     json_data = json.loads(response.text)
+    hrefs = list()
     for i in json_data["data"]:
         try:
             if len(Cosmetic_en.objects.filter(name = i["name"], short_description = i["shortDescription"])) < 1:
@@ -283,7 +313,7 @@ def updatedb_en():
                 try:
                     obj = Cosmetic.objects.filter(icon=icon)
                     if len(obj) > 0:
-                        obj = obj[0]
+                        obj = obj.last()
                         color1 = obj.color1
                         color2 = obj.color2
                         color3 = obj.color3
@@ -298,6 +328,12 @@ def updatedb_en():
                 skin.make_href()
                 skin.make_search()
                 skin.save()
+                
+                try:
+                    hrefs.append(str(skin.href))
+                except Exception as e:
+                    print(e)
+                    print("Can't append to hrefs")
 
                 try:
                     download(i["images"]["smallIcon"]["url"])
@@ -311,3 +347,23 @@ def updatedb_en():
         except Exception as e:
             print(e)
             print(i["name"])
+        
+    if len(hrefs) > 0:        
+        try:
+            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', encoding="utf-8") as f1:
+                lines = f1.readlines()
+            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', 'w', encoding="utf-8") as f2:
+                f2.writelines(lines[:-1])
+                for href in hrefs:
+                    hexed = quote(href)
+                    hexed = "https://fortwhat.com/en/" + hexed
+                    f2.write("""	<url>
+        		<loc>{i}</loc>
+        		<lastmod>{time}+03:00</lastmod>
+        		<priority>0.5</priority>
+        		<changefreq>hourly</changefreq>
+        	</url>\n""".format(i=hexed, time=datetime.datetime.now().isoformat()))
+                f2.write("</urlset>")
+        except Exception as e:
+            print(e)
+            print("Smth went wrong with appending data to xml")

@@ -28,7 +28,6 @@
   {% block description %}{% endblock %}
 </head>
 <body style="background-color: #12325F">
-
   <style>
     a.nav-item.nav-link:hover {
       transform: scale(1.05);
@@ -36,10 +35,20 @@
     a#navbarDropdown.nav-link.dropdown-toggle:hover {
       transform: scale(1.05);
     }
+    a#navbarDropdown.nav-link.dropdown-toggle:active, a#navbarDropdown.nav-link.dropdown-toggle:focus, a#navbarDropdown.nav-link.dropdown-toggle::after {
+      outline: none;
+    }
+    a#navbarDropdown.nav-link.dropdown-toggle::after {
+      margin-left: 0px;
+      border-top: .3em solid;
+      border-right: .2em solid transparent;
+      border-bottom: 0;
+      border-left: .2em solid transparent;
+    }
   </style>
 
   <p class="image_section" style="margin-bottom: 0"><img class="lazyload" data-src="{% static '/image/Up_Panel.png' %}" style="width:100%"></p>
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="flex-basis: none;line-height: 1;padding: 0px 1rem;font-family: 'fortnite_battlefest', Arial, sans-serif; font-size: 35px; background-color: #004FB3 !important">
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="line-height: 1;padding: 0px 1rem;font-family: 'fortnite_battlefest', Arial, sans-serif; font-size: 35px; background-color: #004FB3 !important">
       <span class="navbar-brand mb-0 h1 d-md-none" style="font-size:24px;">FORTWHAT</span>
       <div class="d-flex align-items-end w-50 order-2">
           <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar" style="border:0px">
@@ -48,22 +57,40 @@
       </div>
       <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
           <ul class="navbar-nav text-center">
-              <li class="nav-item">
+              <li class="nav-item d-none d-md-block">
                   <a class="nav-item nav-link" href="/en/shop" style="color:#FFFFFF; letter-spacing: 0.02em;">ITEMSHOP</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-md-block">
                   <a class="nav-item nav-link" href="/en/" style="color:#FFFFFF; letter-spacing: 0.02em;">LOCKER</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-md-block">
                   <a class="nav-item nav-link" href="/en/challenges" style="color:#FFFFFF; letter-spacing: 0.02em;">CHALLENGES</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown d-none d-md-block">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
                   LANGUAGE
                 </a>
                 <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="transform: translate3d(0px, 0px, 0px) !important;width:100%;background-color: #004FB3 !important; font-size: 24px;">
                   <a class="dropdown-item" href="/en/">ENGLISH</a>
                   <a class="dropdown-item" href="/">РУССКИЙ</a>
+                </div>
+              </li>
+              <li class="nav-item d-md-none">
+                  <a class="nav-item nav-link" href="/en/shop" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">ITEMSHOP</a>
+              </li>
+              <li class="nav-item d-md-none">
+                  <a class="nav-item nav-link" href="/en/" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">LOCKER</a>
+              </li>
+              <li class="nav-item d-md-none">
+                  <a class="nav-item nav-link" href="/en/challenges" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">CHALLENGES</a>
+              </li>
+              <li class="nav-item dropdown d-md-none" style="margin-left:20px;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:0px;color:white;">
+                  LANGUAGE
+                </a>
+                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="padding-top:0px;padding-right: 20px;transform: translate3d(0px, 0px, 0px) !important;width:100%;background-color: #004FB3 !important; font-size: 24px;">
+                  <a class="dropdown-item" href="/en/" style="padding:0px;width:100%;">ENGLISH</a>
+                  <a class="dropdown-item" href="/" style="padding:0px;width:100%;">РУССКИЙ</a>
                 </div>
               </li>
           </ul>

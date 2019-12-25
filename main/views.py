@@ -254,7 +254,7 @@ def shop(request):
                     object = Cosmetic.objects.get(pk=featured_list[i])
                     new_featured_list.append(object)
                 except Exception as e:
-                    print(i)
+                    print(daily_list[i])
                     print(e)
                     print("Error loading item from database")
             for i in range(0, len(daily_list)-1):
@@ -262,7 +262,7 @@ def shop(request):
                     object = Cosmetic.objects.get(pk=daily_list[i])
                     new_daily_list.append(object)
                 except Exception as e:
-                    print(i)
+                    print(daily_list[i])
                     print(e)
                     print("Error loading item from database")
             delta = datetime.strptime(ItemShop.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
@@ -283,6 +283,7 @@ def shop(request):
                 object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
                 object.source = "Магазин предметов"
                 object.price = str(i["finalPrice"]) + " В-Баксов"
+                object.hidden = False
                 object.save()
                 featured_list.append(object)
                 featured_str += str(object.pk) + "."
@@ -295,6 +296,7 @@ def shop(request):
                 object = Cosmetic.objects.get(name=i["items"][0]['name'], short_description=i["items"][0]['shortDescription'])
                 object.source = "Магазин предметов"
                 object.price = str(i["finalPrice"]) + " В-Баксов"
+                object.hidden = False
                 object.save()
                 daily_list.append(object)
                 daily_str += str(object.pk) + "."
@@ -319,7 +321,7 @@ def shop(request):
                 object = Cosmetic.objects.get(pk=featured_list[i])
                 new_featured_list.append(object)
             except Exception as e:
-                print(i)
+                print(daily_list[i])
                 print(e)
                 print("Error loading item from database")
         for i in range(0, len(daily_list)-1):
@@ -327,7 +329,7 @@ def shop(request):
                 object = Cosmetic.objects.get(pk=daily_list[i])
                 new_daily_list.append(object)
             except Exception as e:
-                print(i)
+                print(daily_list[i])
                 print(e)
                 print("Error loading item from database")
         delta = datetime.strptime(ItemShop.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
@@ -344,8 +346,11 @@ def oneskin(request, href):
         return HttpResponseNotFound('<h1>Page not found</h1>')
 
 def search(request):
-    context = {}
     question = request.GET.get('search1')
+    context = {
+        'not_found' : True,
+        'search': True
+    }
     if question is not None:
         if len(question) > 0:
             cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
@@ -353,6 +358,8 @@ def search(request):
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True
             }
+            if len(cosmetics) == 0:
+                context = {'not_found' : True}
             return render(request, template_name="main.html", context=context)
     question = request.GET.get('search2')
     if question is not None:
@@ -362,6 +369,8 @@ def search(request):
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True
             }
+            if len(cosmetics) == 0:
+                context = {'not_found' : True}
             return render(request, template_name="main.html", context=context)
     question = request.GET.get('search3')
     if question is not None:
@@ -371,5 +380,7 @@ def search(request):
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True
             }
+            if len(cosmetics) == 0:
+                context = {'not_found' : True}
             return render(request, template_name="main.html", context=context)
     return render(request, template_name="main.html", context=context)

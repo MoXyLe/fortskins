@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static '/css/fonts/stylesheet.css' %}" type="text/css" charset="utf-8" />
   <link rel="stylesheet" href="{% static '/css/styles.css' %}" type="text/css" charset="utf-8" />
-  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
   <meta name="yandex-verification" content="0d22305ac7d59d62" />
   <script data-ad-client="ca-pub-8266466406989751" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,6 +36,16 @@
     a#navbarDropdown.nav-link.dropdown-toggle:hover {
       transform: scale(1.05);
     }
+    a#navbarDropdown.nav-link.dropdown-toggle:active, a#navbarDropdown.nav-link.dropdown-toggle:focus, a#navbarDropdown.nav-link.dropdown-toggle::after {
+      outline: none;
+    }
+    a#navbarDropdown.nav-link.dropdown-toggle::after {
+      margin-left: 0px;
+      border-top: .3em solid;
+      border-right: .2em solid transparent;
+      border-bottom: 0;
+      border-left: .2em solid transparent;
+    }
   </style>
 
   <p class="image_section" style="margin-bottom: 0"><img class="lazyload" data-src="{% static '/image/Up_Panel.png' %}" style="width:100%"></p>
@@ -48,22 +58,40 @@
       </div>
       <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
           <ul class="navbar-nav text-center">
-              <li class="nav-item">
+              <li class="nav-item d-none d-md-block">
                   <a class="nav-item nav-link" href="/shop" style="color:#FFFFFF; letter-spacing: 0.02em;">МАГАЗИН</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-md-block">
                   <a class="nav-item nav-link" href="/" style="color:#FFFFFF; letter-spacing: 0.02em;">ШКАФЧИК</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none d-md-block">
                   <a class="nav-item nav-link" href="/challenges" style="color:#FFFFFF; letter-spacing: 0.02em;">ИСПЫТАНИЯ</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown d-none d-md-block">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
                   ЯЗЫК
                 </a>
                 <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="transform: translate3d(0px, 0px, 0px) !important;width:100%;background-color: #004FB3 !important; font-size: 24px;">
                   <a class="dropdown-item" href="/en/">ENGLISH</a>
                   <a class="dropdown-item" href="/">РУССКИЙ</a>
+                </div>
+              </li>
+              <li class="nav-item d-md-none">
+                  <a class="nav-item nav-link" href="/shop" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">МАГАЗИН</a>
+              </li>
+              <li class="nav-item d-md-none">
+                  <a class="nav-item nav-link" href="/" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">ШКАФЧИК</a>
+              </li>
+              <li class="nav-item d-md-none">
+                  <a class="nav-item nav-link" href="/challenges" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">ИСПЫТАНИЯ</a>
+              </li>
+              <li class="nav-item dropdown d-md-none" style="margin-left:20px;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:0px;color:white;">
+                  ЯЗЫК
+                </a>
+                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="padding-top:0px;padding-right: 20px;transform: translate3d(0px, 0px, 0px) !important;width:100%;background-color: #004FB3 !important; font-size: 24px;">
+                  <a class="dropdown-item" href="/en/" style="padding:0px;width:100%;">ENGLISH</a>
+                  <a class="dropdown-item" href="/" style="padding:0px;width:100%;">РУССКИЙ</a>
                 </div>
               </li>
           </ul>

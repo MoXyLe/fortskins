@@ -74,8 +74,8 @@
       </div>
       <div class="col-9 col-xl-10" style="padding:0px">
         <div class="row align-items-start">
-          <div class="col-12 text-left" style="padding:0px;margin-bottom:10px;">
-            <h2 style="margin-bottom: 0rem;">{{ cosmetic.name }}</h2>
+          <div class="col-12 text-left" style="padding:0px;">
+            <h2 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">{{ cosmetic.name }}</h2>
           </div>
           {% if cosmetic.short_description != "" %}
             <div class="col-12 text-left" style="padding:0px;">
@@ -92,7 +92,17 @@
               <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
             </div>
           {% endif %}
-          {% if cosmetic.source != "" %}
+          {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+            {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+              <div class="col-12 text-left" style="padding:0px">
+                <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+              </div>
+            {% else %}
+              <div class="col-12 text-left" style="padding:0px">
+                <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+              </div>
+            {% endif %}
+          {% elif cosmetic.source != "" %}
             <div class="col-12 text-left" style="padding:0px">
               <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
             </div>
@@ -160,8 +170,8 @@
           <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
         {% endif %}
       </div>
-      <div class="col-12 text-left" style="padding:0px;margin-bottom:10px;">
-        <h2 style="margin-bottom: 0rem;">{{ cosmetic.name }}</h2>
+      <div class="col-12 text-left" style="padding:0px;">
+        <h2 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">{{ cosmetic.name }}</h2>
       </div>
       {% if cosmetic.short_description != "" %}
         <div class="col-12 text-left" style="padding:0px;">
@@ -178,7 +188,17 @@
           <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
         </div>
       {% endif %}
-      {% if cosmetic.source != "" %}
+      {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+        {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+          <div class="col-12 text-left" style="padding:0px">
+            <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+          </div>
+        {% else %}
+          <div class="col-12 text-left" style="padding:0px">
+            <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+          </div>
+        {% endif %}
+      {% elif cosmetic.source != "" %}
         <div class="col-12 text-left" style="padding:0px">
           <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
         </div>
