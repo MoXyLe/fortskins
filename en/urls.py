@@ -7,6 +7,7 @@ app_name = 'en'
 urlpatterns = [
     path('', views.items, name="items"),
     path('shop', views.shop, name="shop"),
+    path('shop/history', views.history, name="history"),
     path('seacrh', views.search, name="search"),
     path('<str:href>', views.oneskin, name="oneskin"),
 ]

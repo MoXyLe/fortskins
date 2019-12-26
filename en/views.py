@@ -288,7 +288,8 @@ def shop(request):
                 object.hidden = False
                 object.save()
                 featured_list.append(object)
-                featured_str += str(object.pk) + "."
+                if "." + str(object.pk) + "." not in featured_str and featured_str.startswith(str(object.pk) + ".") == False:
+                    featured_str += str(object.pk) + "."
             except Exception as e:
                 print("Error loading item from shop")
 
@@ -302,7 +303,8 @@ def shop(request):
                 object.hidden = False
                 object.save()
                 daily_list.append(object)
-                daily_str += str(object.pk) + "."
+                if "." + str(object.pk) + "." not in daily_str and daily_str.startswith(str(object.pk) + ".") == False:
+                    daily_str += str(object.pk) + "."
             except Exception as e:
                 print("Error loading item from shop")
 
@@ -344,7 +346,7 @@ def shop(request):
 def oneskin(request, href):
     try:
         obj = Cosmetic_en.objects.get(href=href)
-        set_items = Cosmetic_en.objects.filter(setname=obj.setname).exclude(href=href).order_by("-pk")
+        set_items = Cosmetic_en.objects.filter(setname=obj.setname).order_by("-pk")
         return render(request, 'skin_en.html', {'cosmetic': obj, 'set_items': set_items})
     except Exception as e:
         print(e)
@@ -389,3 +391,48 @@ def search(request):
                 context = {'not_found' : True}
             return render(request, template_name="main_en.html", context=context)
     return render(request, template_name="main_en.html", context=context)
+
+def history(request):
+    ru_months = {
+        1:'January',
+        2:'February',
+        3:'March',
+        4:'April',
+        5:'May',
+        6:'June',
+        7:'July',
+        8:'August',
+        9:'September',
+        10:'October',
+        11:'November',
+        12:'December',
+    }
+    shop_set = set()
+    for i in ItemShop_en.objects.all():
+        shop_set.add(i.date)
+    shops = []
+    for i in shop_set:
+        shops.append(ItemShop_en.objects.filter(date=i)[0])
+    all_shops = ItemShop_en.objects.all().order_by("-pk")
+    for i in all_shops:
+        if i not in shop_set:
+            all_shops.exclude(pk=i.pk)
+    skins_dict = dict()
+    for i in range(1, len(all_shops)):
+        if all_shops[i-1].date != all_shops[i].date:
+            skins = list()
+            skin_set = set()
+            for j in all_shops[i].featured.split(".")[:-1]:
+                if Cosmetic_en.objects.get(pk=int(j)) not in skin_set:
+                    skins.append(Cosmetic_en.objects.get(pk=int(j)))
+                    skin_set.add(Cosmetic_en.objects.get(pk=int(j)))
+            for j in all_shops[i].daily.split(".")[:-1]:
+                if Cosmetic_en.objects.get(pk=int(j)) not in skin_set:
+                    skins.append(Cosmetic_en.objects.get(pk=int(j)))
+                    skin_set.add(Cosmetic_en.objects.get(pk=int(j)))
+            date = all_shops[i].date.split("-")[2].split(" ")[0] + " " + ru_months[int(all_shops[i].date.split("-")[1])] + " " + all_shops[i].date.split("-")[0]
+            skins_dict[all_shops[i].pk] = {"skins" : skins, "shop" : date}
+    context = {
+        "Cosmetics": skins_dict
+    }
+    return render(request, template_name="history_en.html", context=context)

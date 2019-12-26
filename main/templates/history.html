@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block title %}История магазина предметов{% endblock %}
+{% block description %}<meta name="description" content="Здесь вы можете посмотреть содержимое магазина предметов Фортнайта за предыдущие даты.">{% endblock %}
+{% block content %}
+
+<style>
+  img.card-img-top:hover {
+    transform: scale(1.05);
+  }
+  img.card-img-top {
+    transition: transform 250ms ease-in-out;
+    transform-origin: center;
+  }
+    a.image:hover {
+      background-color: #174382;
+      transform: scale(1.05);
+    }
+    a.image {
+      transition: transform 250ms ease-in-out;
+      transform-origin: center;
+    }
+</style>
+
+<div class="container-md" style="padding:5px !important;font-family:'Montserrat',sans-serif;color:white;padding:0px;">
+    <h1 style="line-height:1; margin-bottom:0px;">ИСТОРИЯ МАГАЗИНА</h1>
+    {% for k, j in Cosmetics.items %}
+        <h2 style="margin-left: 3px;">{{ j.shop }}</h2>
+        <div class="overflow-auto" style="max-width: 100%;">
+            <div class="row">
+                {% for i in j.skins %}
+                    <div class="col-4 col-md-3 col-lg-2" style="padding:5px;">
+                        {% if i.icon != "" and i.icon != "image/" %}
+                          <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img class="lazyload" style="width:100%" data-src="{% static '' %}{{ i.icon }}"></a>
+                        {% elif i.featured != "" and i.featured != "image/" %}
+                          <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img class="lazyload" style="width:100%" data-src="{% static '' %}{{ i.featured }}"></a>
+                        {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
+                          <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img class="lazyload" style="width:100%" data-src="{% static '' %}{{ i.smallIcon }}"></a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

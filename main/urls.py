@@ -10,6 +10,7 @@ sitemap = RedirectView.as_view(url='/static/sitemap.xml', permanent=True)
 urlpatterns = [
     path('', views.items, name="items"),
     path('shop', views.shop, name="shop"),
+    path('shop/history', views.history, name="history"),
     path('seacrh', views.search, name="search"),
     path('favicon.ico', favicon_view),
     path('sitemap.xml', sitemap),
