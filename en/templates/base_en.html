@@ -45,6 +45,15 @@
       border-bottom: 0;
       border-left: .2em solid transparent;
     }
+    img {
+		opacity: 0;
+	}
+	img.initial,
+	img.loaded,
+	img.error {
+	    transition: opacity 1s;
+		opacity: 1;
+	}
   </style>
 
   <p class="image_section" style="margin-bottom: 0"><img class="lazyload" data-src="{% static '/image/Up_Panel.png' %}" style="width:100%"></p>
@@ -102,5 +111,5 @@
   <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static '/js/ajax.js' %}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.4.0/dist/lazyload.min.js"></script>
 </body>

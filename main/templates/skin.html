@@ -11,7 +11,7 @@
       transform: scale(1.05);
     }
     a.image {
-      transition: transform 250ms ease-in-out;
+      transition: opacity 1s, transform 250ms ease-in-out;
       transform-origin: center;
     }
     
@@ -61,190 +61,263 @@
     }
   </style>
 
-  <div class="container-fluid" style="padding-top:5px;background-color:#203869;color:white;width:60%;margin-left:20%;font-family:'Montserrat',sans-serif;">
-    <div class="row justify-content-start d-none d-md-flex">
-      <div class="col-3 col-xl-2" style="padding:0px; padding-right:3px;">
-        {% if cosmetic.icon != "" and cosmetic.icon != "image/" %}
-          <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top">
-        {% elif cosmetic.featured != "" and cosmetic.featured != "image/" %}
-          <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top">
-        {% elif cosmetic.smallIcon != "" and cosmetic.smallIcon != "image/" %}
-          <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
-        {% endif %}
-      </div>
-      <div class="col-9 col-xl-10" style="padding:0px">
-        <div class="row align-items-start">
-          <div class="col-12 text-left" style="padding:0px;">
-            <h2 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">{{ cosmetic.name }}</h2>
-          </div>
-          {% if cosmetic.short_description != "" %}
-            <div class="col-12 text-left" style="padding:0px;">
-              <h5 style="margin-bottom: 0rem;">Тип предмета: {{ cosmetic.short_description }}</h5>
+  <style type="text/css">
+    .adslot_1 { width: 320px !important; height: 100px !important; }
+        @media (min-width:575px) { .adslot_1 { width: 468px !important; height: 60px !important; } }
+        @media (min-width:767px) { .adslot_1 { width: 728px !important; height: 90px !important; } }
+    .adslot_2 { width: 160px !important; }
+  </style>
+
+  <style>
+    .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+    }
+  </style>
+  
+    <div class="container-lg justify-content-center adslot_1" style="padding:0px;padding-top:5px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Horizontal -->
+        <ins class="adsbygoogle adslot_1"
+             style="display:block;"
+             data-ad-client="ca-pub-8266466406989751"
+             data-ad-slot="7555271179"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    <div class="row">
+        <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Vertical -->
+            <ins class="adsbygoogle sticky adslot_2"
+                 style="display:block"
+                 data-ad-client="ca-pub-8266466406989751"
+                 data-ad-slot="1760853168"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="col-12 col-lg-8" style="padding:0px;">
+            <div class="container" style="margin-top: 10px; margin-bottom: 5px; background-color:#203869;color:white;max-width:100%;width:100%;font-family:'Montserrat',sans-serif;">
+                <div class="row justify-content-start d-none d-md-flex">
+                  <div class="col-3 col-xl-2" style="padding:0px; padding-right:3px;">
+                    {% if cosmetic.icon != "" and cosmetic.icon != "image/" %}
+                      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top">
+                    {% elif cosmetic.featured != "" and cosmetic.featured != "image/" %}
+                      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top">
+                    {% elif cosmetic.smallIcon != "" and cosmetic.smallIcon != "image/" %}
+                      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
+                    {% endif %}
+                  </div>
+                  <div class="col-9 col-xl-10" style="padding:0px">
+                    <div class="row align-items-start">
+                      <div class="col-12 text-left" style="padding:0px;">
+                        <h2 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">{{ cosmetic.name }}</h2>
+                      </div>
+                      {% if cosmetic.short_description != "" %}
+                        <div class="col-12 text-left" style="padding:0px;">
+                          <h5 style="margin-bottom: 0rem;">Тип предмета: {{ cosmetic.short_description }}</h5>
+                        </div>
+                      {% endif %}
+                      {% if cosmetic.description != "" %}
+                        <div class="col-12 text-left" style="padding:0px">
+                          <h5 style="margin-bottom: 0rem;">Описание: {{ cosmetic.description }}</h5>
+                        </div>
+                      {% endif %}
+                      {% if cosmetic.display_rarity != "" %}
+                        <div class="col-12 text-left" style="padding:0px">
+                          <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
+                        </div>
+                      {% endif %}
+                      {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+                        {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+                          <div class="col-12 text-left" style="padding:0px">
+                            <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+                          </div>
+                        {% else %}
+                          <div class="col-12 text-left" style="padding:0px">
+                            <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+                          </div>
+                        {% endif %}
+                      {% elif cosmetic.source != "" %}
+                        <div class="col-12 text-left" style="padding:0px">
+                          <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
+                        </div>
+                        {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+                          <div class="col-12 text-left" style="padding:0px">
+                            <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+                          </div>
+                        {% else %}
+                          <div class="col-12 text-left" style="padding:0px">
+                            <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                      {% if cosmetic.setname != "" %}
+                        <div class="col-12 text-left" style="padding:0px">
+                          <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center d-none d-md-flex">
+                  <style>
+                    img.hovered:hover {
+                      transform: scale(1.01);
+                    }
+                    img.hovered {
+                      transition: transform 250ms ease-in-out;
+                      transform-origin: center;
+                    }
+                  </style>
+                  {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="hovered" style="margin-bottom:10px;width:100%;" data-src="{% static '' %}{{ cosmetic.featured }}">
+                  {% endif %}
+                </div>
+                <!--<figure>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ciqAznPvzv0" frameborder="0" allowfullscreen></iframe>
+                </figure>-->
+                <div class="row justify-content-start d-none d-md-flex">
+                  {% if cosmetic.setname != "" %}
+                    <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
+                      <h5>Предметы из набора {{ cosmetic.setname }}:</h5>
+                    </div>
+                    {% for i in set_items %}
+                        {% if i.hidden == False %}
+                          <div class="col-3" style="padding:5px;">
+                            {% if i.icon != "" and i.icon != "image/" %}
+                              <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.icon }}"></a>
+                            {% elif i.featured != "" and i.featured != "image/" %}
+                              <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.featured }}"></a>
+                            {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
+                              <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.smallIcon }}"></a>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>                    
             </div>
-          {% endif %}
-          {% if cosmetic.description != "" %}
-            <div class="col-12 text-left" style="padding:0px">
-              <h5 style="margin-bottom: 0rem;">Описание: {{ cosmetic.description }}</h5>
-            </div>
-          {% endif %}
-          {% if cosmetic.display_rarity != "" %}
-            <div class="col-12 text-left" style="padding:0px">
-              <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
-            </div>
-          {% endif %}
-          {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
-            {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
-              <div class="col-12 text-left" style="padding:0px">
-                <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+              <div class="container d-md-none" style="color:white;max-width:100%;width:100%;font-family:'Montserrat',sans-serif;">
+                <div class="row align-items-start">
+                  <div class="col-12" style="padding:0px;">
+                    {% if cosmetic.icon != "" and cosmetic.icon != "image/" %}
+                      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top">
+                    {% elif cosmetic.featured != "" and cosmetic.featured != "image/" %}
+                      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top">
+                    {% elif cosmetic.smallIcon != "" and cosmetic.smallIcon != "image/" %}
+                      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
+                    {% endif %}
+                  </div>
+                  <div class="col-12 text-left" style="padding:0px;">
+                    <h2 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">{{ cosmetic.name }}</h2>
+                  </div>
+                  {% if cosmetic.short_description != "" %}
+                    <div class="col-12 text-left" style="padding:0px;">
+                      <h5 style="margin-bottom: 0rem;">Тип предмета: {{ cosmetic.short_description }}</h5>
+                    </div>
+                  {% endif %}
+                  {% if cosmetic.description != "" %}
+                    <div class="col-12 text-left" style="padding:0px">
+                      <h5 style="margin-bottom: 0rem;">Описание: {{ cosmetic.description }}</h5>
+                    </div>
+                  {% endif %}
+                  {% if cosmetic.display_rarity != "" %}
+                    <div class="col-12 text-left" style="padding:0px">
+                      <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
+                    </div>
+                  {% endif %}
+                  {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+                    {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+                      <div class="col-12 text-left" style="padding:0px">
+                        <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+                      </div>
+                    {% else %}
+                      <div class="col-12 text-left" style="padding:0px">
+                        <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+                      </div>
+                    {% endif %}
+                  {% elif cosmetic.source != "" %}
+                    <div class="col-12 text-left" style="padding:0px">
+                      <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
+                    </div>
+                    {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
+                      <div class="col-12 text-left" style="padding:0px">
+                        <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
+                      </div>
+                    {% else %}
+                      <div class="col-12 text-left" style="padding:0px">
+                        <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                  {% if cosmetic.setname != "" %}
+                    <div class="col-12 text-left" style="padding:0px">
+                      <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="row justify-content-center">
+                  {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
+                    <div class="col-12" style="padding:0px">
+                      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="margin-bottom:10px;width:100%;" data-src="{% static '' %}{{ cosmetic.featured }}">
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="row justify-content-start">
+                  {% if cosmetic.setname != "" %}
+                    <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
+                      <h5>Предметы из набора {{ cosmetic.setname }}:</h5>
+                    </div>
+                    {% for i in set_items %}
+                        {% if i.hidden == False %}
+                          <div class="col-4" style="padding:5px;">
+                            {% if i.icon != "" and i.icon != "image/" %}
+                              <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="width:100%" data-src="{% static '' %}{{ i.icon }}"></a>
+                            {% elif i.featured != "" and i.featured != "image/" %}
+                              <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="width:100%" data-src="{% static '' %}{{ i.featured }}"></a>
+                            {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
+                              <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="width:100%" data-src="{% static '' %}{{ i.smallIcon }}"></a>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
               </div>
-            {% else %}
-              <div class="col-12 text-left" style="padding:0px">
-                <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
-              </div>
-            {% endif %}
-          {% elif cosmetic.source != "" %}
-            <div class="col-12 text-left" style="padding:0px">
-              <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
-            </div>
-            {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
-              <div class="col-12 text-left" style="padding:0px">
-                <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
-              </div>
-            {% else %}
-              <div class="col-12 text-left" style="padding:0px">
-                <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
-              </div>
-            {% endif %}
-          {% endif %}
-          {% if cosmetic.setname != "" %}
-            <div class="col-12 text-left" style="padding:0px">
-              <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
-            </div>
-          {% endif %}
         </div>
-      </div>
+        <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Vertical -->
+            <ins class="adsbygoogle sticky adslot_2"
+                 style="display:block"
+                 data-ad-client="ca-pub-8266466406989751"
+                 data-ad-slot="1760853168"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
-    <div class="row justify-content-center d-none d-md-flex">
-      <style>
-        img.hovered:hover {
-          transform: scale(1.01);
-        }
-        img.hovered {
-          transition: transform 250ms ease-in-out;
-          transform-origin: center;
-        }
-      </style>
-      {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
-        <img class="hovered" style="margin-bottom:10px;width:100%;" src="{% static '' %}{{ cosmetic.featured }}">
-      {% endif %}
+    <div class="container-lg justify-content-center adslot_1" style="padding:0px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Horizontal -->
+        <ins class="adsbygoogle adslot_1"
+             style="display:block;"
+             data-ad-client="ca-pub-8266466406989751"
+             data-ad-slot="7555271179"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
-    <div class="row justify-content-start d-none d-md-flex">
-      {% if cosmetic.setname != "" %}
-        <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
-          <h5>Предметы из набора {{ cosmetic.setname }}:</h5>
-        </div>
-        {% for i in set_items %}
-            {% if i.hidden == False %}
-              <div class="col-3" style="padding:5px;">
-                {% if i.icon != "" and i.icon != "image/" %}
-                  <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img  style="width:100%" src="{% static '' %}{{ i.icon }}"></a>
-                {% elif i.featured != "" and i.featured != "image/" %}
-                  <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.featured }}"></a>
-                {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
-                  <a class="image"  style="display:inline-block;height:100%"  href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.smallIcon }}"></a>
-                {% endif %}
-              </div>
-            {% endif %}
-        {% endfor %}
-      {% endif %}
-    </div>
-  </div>
-  <div class="container-fluid d-md-none" style="color:white;width:100%;font-family:'Montserrat',sans-serif;">
-    <div class="row align-items-start">
-      <div class="col-12" style="padding:0px;">
-        {% if cosmetic.icon != "" and cosmetic.icon != "image/" %}
-          <img src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top">
-        {% elif cosmetic.featured != "" and cosmetic.featured != "image/" %}
-          <img src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top">
-        {% elif cosmetic.smallIcon != "" and cosmetic.smallIcon != "image/" %}
-          <img src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
-        {% endif %}
-      </div>
-      <div class="col-12 text-left" style="padding:0px;">
-        <h2 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">{{ cosmetic.name }}</h2>
-      </div>
-      {% if cosmetic.short_description != "" %}
-        <div class="col-12 text-left" style="padding:0px;">
-          <h5 style="margin-bottom: 0rem;">Тип предмета: {{ cosmetic.short_description }}</h5>
-        </div>
-      {% endif %}
-      {% if cosmetic.description != "" %}
-        <div class="col-12 text-left" style="padding:0px">
-          <h5 style="margin-bottom: 0rem;">Описание: {{ cosmetic.description }}</h5>
-        </div>
-      {% endif %}
-      {% if cosmetic.display_rarity != "" %}
-        <div class="col-12 text-left" style="padding:0px">
-          <h5 style="margin-bottom: 0rem;">Редкость: {{ cosmetic.display_rarity }}</h5>
-        </div>
-      {% endif %}
-      {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
-        {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
-          <div class="col-12 text-left" style="padding:0px">
-            <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
-          </div>
-        {% else %}
-          <div class="col-12 text-left" style="padding:0px">
-            <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
-          </div>
-        {% endif %}
-      {% elif cosmetic.source != "" %}
-        <div class="col-12 text-left" style="padding:0px">
-          <h5 style="margin-bottom: 0rem;">Источник: {{ cosmetic.source }}</h5>
-        </div>
-        {% if cosmetic.source == "Магазин предметов" and cosmetic.price != "" %}
-          <div class="col-12 text-left" style="padding:0px">
-            <h5 style="margin-bottom: 0rem;">Цена: {{ cosmetic.price }}</h5>
-          </div>
-        {% else %}
-          <div class="col-12 text-left" style="padding:0px">
-            <h5 style="margin-bottom: 0rem;">{{ cosmetic.price }}</h5>
-          </div>
-        {% endif %}
-      {% endif %}
-      {% if cosmetic.setname != "" %}
-        <div class="col-12 text-left" style="padding:0px">
-          <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
-        </div>
-      {% endif %}
-    </div>
-    <div class="row justify-content-center">
-      {% if cosmetic.featured != "" and cosmetic.featured != "image/"  %}
-        <div class="col-12" style="padding:0px">
-          <img style="margin-bottom:10px;width:100%;" src="{% static '' %}{{ cosmetic.featured }}">
-        </div>
-      {% endif %}
-    </div>
-    <div class="row justify-content-start">
-      {% if cosmetic.setname != "" %}
-        <div class="col-12 text-left" style="padding:0px; margin: 10px 0px;">
-          <h5>Предметы из набора {{ cosmetic.setname }}:</h5>
-        </div>
-        {% for i in set_items %}
-            {% if i.hidden == False %}
-              <div class="col-4" style="padding:5px;">
-                {% if i.icon != "" and i.icon != "image/" %}
-                  <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.icon }}"></a>
-                {% elif i.featured != "" and i.featured != "image/" %}
-                  <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.featured }}"></a>
-                {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
-                  <a class="image" style="display:inline-block;height:100%" href="{{ i.href }}"><img style="width:100%" src="{% static '' %}{{ i.smallIcon }}"></a>
-                {% endif %}
-              </div>
-            {% endif %}
-        {% endfor %}
-      {% endif %}
-    </div>
-  </div>
 
 {% endblock %}

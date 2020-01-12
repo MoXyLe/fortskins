@@ -4,9 +4,10 @@
 {% block title %}Locker{% endblock %}
 {% block description %}<meta name="description" content="In the locker you can find any item from Fortnite. For example: Pickaxe, Skin or Emote.">{% endblock %}
 {% block content %}
+
   <style>
 
-    @media (min-width:1620px) {
+    @media (min-width:1950px) {
       .d-xxl-none{display:none!important}
       .d-xxl-inline{display:inline!important}
       .d-xxl-inline-block{display:inline-block!important}
@@ -18,13 +19,39 @@
       .d-xxl-inline-flex{display:-ms-inline-flexbox!important;display:inline-flex!important}
     }
   </style>
-    <div class="row justify-content-between" style="margin-top:5px">
-      <form class="form-inline d-none d-xxl-flex justify-content-end order-last" action='{% url "en:search" %}' style="width:312.167px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;align-items: start;">
-        <input class="form-control mr-sm-2" name="search2" type="search" placeholder="Search" aria-label="Search" style="border-radius:0px;">
-        <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
-      </form>    
-      <div class="container d-none d-xxl-flex" style="width:322.167px; padding:0px; margin:0px;"></div>
-      <div class="container-md" style="padding-right: 0px;padding-left: 0px;">
+
+  <style type="text/css">
+    .adslot_1 { width: 320px !important; height: 100px !important; }
+        @media (min-width:575px) { .adslot_1 { width: 468px !important; height: 60px !important; } }
+        @media (min-width:767px) { .adslot_1 { width: 728px !important; height: 90px !important; } }
+    .adslot_2 { width: 160px !important; }
+  </style>
+
+  <style>
+    .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+    }
+  </style>
+  
+    <div class="container-lg justify-content-center adslot_1" style="padding:0px;padding-top:5px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Horizontal -->
+        <ins class="adsbygoogle adslot_1"
+             style="display:block;"
+             data-ad-client="ca-pub-8266466406989751"
+             data-ad-slot="7555271179"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="row" style="margin-top:5px">
+      <div class="col-2 d-none d-md-block"></div>
+      <div class="col-12 col-md-8" style="padding-right: 0px;padding-left: 0px;">
+        <div class="container" style="max-width:100%;padding-right: 0px;padding-left: 0px;">
         {% if search %}<div class="row justify-content-center" style="">
           <div class="col-12" style="padding-right: 0px;padding-left: 0px;">
             <form class="form-inline d-none d-md-flex d-xxl-none justify-content-center" action='{% url "en:search" %}' style="font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;">
@@ -200,6 +227,13 @@
           </div>
         </div>{% endif %}
       </div>
+      </div>
+      <div class="col-2 d-none d-md-block">
+          <form class="form-inline d-none d-xxl-flex justify-content-end order-last" action='{% url "en:search" %}' style="width:312.167px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:5px;margin-right:5px;align-items: start;">
+            <input class="form-control mr-sm-2" name="search2" type="search" placeholder="Search" aria-label="Search" style="border-radius:0px;">
+            <button class="btn btn-outline-success" type="submit" style="height:38px; background-color:#264c7f; border-radius:0px; border:0px; color:white;">Search</button>
+          </form>
+      </div>
     </div>
     {% if search %}<div class="row justify-content-center">
       <form class="form-inline d-md-none justify-content-center" action='{% url "en:search" %}' style="width:280px;font-family: 'Roboto', sans-serif;padding: 5px 0px;margin-left:10px;margin-right:5px;">
@@ -358,12 +392,50 @@
     {% if not_found %}
         <h1 class="text-center" style="color:white;font-family: 'Roboto', sans-serif;">No results were found for your request.</h1>
     {% else %}
-        <div class="row justify-content-between">
-          <div class="container md" style="padding-right: 0px;padding-left: 0px;">    
-            <div class="row">
-              {% include "skin_list_en.html" %}
+        <div class="row">
+            <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Vertical -->
+                <ins class="adsbygoogle sticky adslot_2"
+                     style="display:block"
+                     data-ad-client="ca-pub-8266466406989751"
+                     data-ad-slot="1760853168"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
-          </div>
+            <div class="col-12 col-lg-8" style="padding:0px;">
+                <div class="container" style="max-width:100%;padding:0px;">
+                    {% include "skin_list_en.html" %}
+                </div>
+            </div>
+            <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Vertical -->
+                <ins class="adsbygoogle sticky adslot_2"
+                     style="display:block"
+                     data-ad-client="ca-pub-8266466406989751"
+                     data-ad-slot="1760853168"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
         </div>
     {% endif %}
+    <div class="container-lg justify-content-center adslot_1" style="padding:0px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Horizontal -->
+        <ins class="adsbygoogle adslot_1"
+             style="display:block;"
+             data-ad-client="ca-pub-8266466406989751"
+             data-ad-slot="7555271179"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 {% endblock %}

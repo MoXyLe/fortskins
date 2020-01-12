@@ -426,7 +426,7 @@ def history(request):
                     skins.append(Cosmetic.objects.get(pk=int(j)))
                     skin_set.add(Cosmetic.objects.get(pk=int(j)))
             date = all_shops[i].date.split("-")[2].split(" ")[0] + " " + ru_months[int(all_shops[i].date.split("-")[1])] + " " + all_shops[i].date.split("-")[0]
-            skins_dict[all_shops[i].pk] = {"skins" : skins, "shop" : date}
+            skins_dict[all_shops[i].pk] = {"skins" : skins, "shop" : date, "i" : i % 4}
     context = {
         "Cosmetics": skins_dict
     }

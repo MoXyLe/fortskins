@@ -10,130 +10,202 @@
     transform: scale(1.05);
   }
   img.card-img-top {
-    transition: transform 250ms ease-in-out;
+    transition: opacity 1s, transform 250ms ease-in-out;
     transform-origin: center;
   }
 </style>
 
+<style type="text/css">
+    .adslot_1 { width: 320px !important; height: 100px !important; }
+        @media (min-width:575px) { .adslot_1 { width: 468px !important; height: 60px !important; } }
+        @media (min-width:767px) { .adslot_1 { width: 728px !important; height: 90px !important; } }
+    .adslot_2 { width: 160px !important; }
+</style>
+
+<style>
+    .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+    }
+</style>
+
+<div class="container-lg justify-content-center adslot_1 d-none d-md-block" style="padding:0px;padding-top:5px;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Horizontal -->
+    <ins class="adsbygoogle adslot_1"
+         style="display:block;"
+         data-ad-client="ca-pub-8266466406989751"
+         data-ad-slot="7555271179"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
 <div class="row">
   <div class="col-lg-8 offset-lg-2 align-self-center">
-    <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; margin-top:0px; margin-bottom: 0px; letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Featured items <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
+    <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; margin-top:0px; margin-bottom: 0px; letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" data-src="{% static 'image/v-bucks.png' %}"> FEATURED ITEMS <img class="d-none d-lg-inline" style="padding-bottom:5px" data-src="{% static 'image/v-bucks.png' %}"></h1>
   </div>
   <div class="col-lg-2 align-self-center text-center" style="margin-top:0.5%">
-    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;">ITEMSHOP UPDATES IN: </h2>
+    <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;">ITEM SHOP UPDATES IN: </h2>
     <h2 class="text-right d-none d-lg-inline" style="line-height: 0.5; font-family: 'Roboto', sans-serif; color: white; margin-top: 0px;" id="timer"></h2>
   </div>
 </div>
 
-<div class="container-md" style="padding:0px;">
-  <div class="row justify-content-left" style="color:white;font-family:'Montserrat',sans-serif">
-    {% for cosmetic in featured %}
-      {% if cosmetic.hidden == False %}
-        {% if comsetic.icon != "" or cosmetic.featured != "" or cosmetic.smallIcon != "" %}
-          <div class="col-6 col-sm-4 col-md-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
-            <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
-              {% if cosmetic.icon != "" %}
-                <a href="/en/{{ cosmetic.href }}"><img data-src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%"></a>
-              {% elif cosmetic.featured != "" %}
-                <a href="/en/{{ cosmetic.href }}"><img data-src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%"></a>
-              {% elif cosmetic.smallIcon != "" %} 
-                <a href="/en/{{ cosmetic.href }}"><img data-src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%"></a>
+<div class="row">
+    <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Vertical -->
+        <ins class="adsbygoogle sticky adslot_2"
+             style="display:block"
+             data-ad-client="ca-pub-8266466406989751"
+             data-ad-slot="1760853168"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <div class="col-12 col-lg-8" style="padding:0px;">
+        <div class="container" style="max-width:100%;padding:0px;">
+          <div class="row justify-content-left" style="color:white;font-family:'Montserrat',sans-serif">
+            {% for cosmetic in featured %}
+              {% if cosmetic.hidden == False %}
+                {% if comsetic.icon != "" or cosmetic.featured != "" or cosmetic.smallIcon != "" %}
+                  <div class="col-6 col-sm-4 col-xl-3" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+                    <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+                      {% if cosmetic.icon != "" %}
+                        <a href="/en/{{ cosmetic.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%"></a>
+                      {% elif cosmetic.featured != "" %}
+                        <a href="/en/{{ cosmetic.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%"></a>
+                      {% elif cosmetic.smallIcon != "" %} 
+                        <a href="/en/{{ cosmetic.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%"></a>
+                      {% endif %}
+                      <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding: 15px 0px;">
+                        <h5 class="card-title" style="height:8%;margin-bottom: 2rem;"><a href="/en/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                        <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat', sans-serif;">{{ cosmetic.description }}</p>
+                      </div>
+                      {% if cosmetic.price != "" %}
+                        <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                                {% if "V-Bucks" in cosmetic.price %}
+                                  <h5 class="card-title text-center" style="height:64px">
+                                    {{ cosmetic.price }}<img style="width:27%" data-src="{% static 'image/vbuck.png' %}">
+                                  </h5>
+                                {% elif "Level" in cosmetic.price and cosmetic.free_pass %}
+                                  <h5 class="card-title text-center" style="height:64px">
+                                    {{ cosmetic.price }}<img style="width:27%" data-src="{% static 'image/battlepassstar-silver.png' %}">
+                                  </h5>
+                                {% elif "Level" in cosmetic.price %}
+                                  <h5 class="card-title text-center" style="height:64px">
+                                    {{ cosmetic.price }}<img style="width:27%" data-src="{% static 'image/battlepassstar.png' %}">
+                                  </h5>
+                                {% else %}
+                                  <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                                    {{ cosmetic.price }}
+                                  </h5>
+                                {% endif %}
+                        </div>
+                      {% else %}
+                        <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                          <h5 class="card-title text-center" style="height:64px;"></h5>
+                        </div>
+                      {% endif %}
+                      <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                        <h6 class="card-title">{{ cosmetic.source }}</h6>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
               {% endif %}
-              <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding: 15px 0px;">
-                <h5 class="card-title" style="height:8%;margin-bottom: 2rem;"><a href="/en/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
-                <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
-              </div>
-              {% if cosmetic.price != "" %}
-                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
-                        {% if "V-Bucks" in cosmetic.price %}
-                          <h5 class="card-title text-center" style="height:64px">
-                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
-                          </h5>
-                        {% elif "Level" in cosmetic.price and cosmetic.free_pass %}
-                          <h5 class="card-title text-center" style="height:64px">
-                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
-                          </h5>
-                        {% elif "Level" in cosmetic.price %}
-                          <h5 class="card-title text-center" style="height:64px">
-                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
-                          </h5>
-                        {% else %}
-                          <h5 class="card-title text-center" style="height:64px; margin-top:8%">
-                            {{ cosmetic.price }}
-                          </h5>
-                        {% endif %}
-                </div>
-              {% else %}
-                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
-                  <h5 class="card-title text-center" style="height:64px;"></h5>
-                </div>
-              {% endif %}
-              <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                <h6 class="card-title">{{ cosmetic.source }}</h6>
-              </div>
-            </div>
+            {% endfor %}
           </div>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-  </div>
-</div>
-<h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color:white; margin-left:14px;margin-bottom: 0px;margin-top: 0px;letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"> Daily items <img class="d-none d-lg-inline" style="padding-bottom:5px" src="{% static 'image/v-bucks.png' %}"></h1>
-
-<div class="container-md" style="padding:0px;">
-  <div class="row justify-content-sm-left" style="color:white;font-family:'Montserrat',sans-serif">
-    {% for cosmetic in daily %}
-      {% if cosmetic.hidden == False %}
-        {% if comsetic.icon != "" or cosmetic.featured != "" or cosmetic.smallIcon != "" %}
-          <div class="col-6 col-sm-4 col-md-6 col-xl-3" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
-            <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
-              {% if cosmetic.icon != "" %}
-                <a href="/en/{{ cosmetic.href }}"><img data-src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%"></a>
-              {% elif cosmetic.featured != "" %}
-                <a href="/en/{{ cosmetic.href }}"><img data-src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%"></a>
-              {% elif cosmetic.smallIcon != "" %} 
-                <a href="/en/{{ cosmetic.href }}"><img data-src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%"></a>
+        </div>
+        
+        <div class="container-lg justify-content-center d-md-none" style="padding:0px;padding-top:5px;">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Horizontal -->
+            <ins class="adsbygoogle adslot_1"
+                 style="display:block;"
+                 data-ad-client="ca-pub-8266466406989751"
+                 data-ad-slot="7555271179"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color:white; margin-left:14px;margin-bottom: 0px;margin-top: 0px;letter-spacing: 0.02em;"><img class="d-none d-lg-inline" style="padding-bottom:5px" data-src="{% static 'image/v-bucks.png' %}"> DAILY ITEMS <img class="d-none d-lg-inline" style="padding-bottom:5px" data-src="{% static 'image/v-bucks.png' %}"></h1>
+        
+        <div class="container" style="max-width:100%;padding:0px;">
+          <div class="row justify-content-sm-left" style="color:white;font-family:'Montserrat',sans-serif">
+            {% for cosmetic in daily %}
+              {% if cosmetic.hidden == False %}
+                {% if comsetic.icon != "" or cosmetic.featured != "" or cosmetic.smallIcon != "" %}
+                  <div class="col-6 col-sm-4 col-xl-3" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px;flex-grow: 0;">
+                    <div class="card text-center h-100" style="background: radial-gradient(circle, {{ cosmetic.color1 }}, {{ cosmetic.color2 }}); border-color: #32B6EF; border: 5px solid {{ cosmetic.color3 }};">
+                      {% if cosmetic.icon != "" %}
+                        <a href="/en/{{ cosmetic.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.icon }}" class="card-img-top" style="width:100%"></a>
+                      {% elif cosmetic.featured != "" %}
+                        <a href="/en/{{ cosmetic.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.featured }}" class="card-img-top" style="width:100%"></a>
+                      {% elif cosmetic.smallIcon != "" %} 
+                        <a href="/en/{{ cosmetic.href }}"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top" style="width:100%"></a>
+                      {% endif %}
+                      <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding: 15px 0px;">
+                        <h5 class="card-title" style="height:8%;margin-bottom: 2rem;"><a href="/en/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
+                        <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat', sans-serif;">{{ cosmetic.description }}</p>
+                      </div>
+                      {% if cosmetic.price != "" %}
+                        <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                                {% if "V-Bucks" in cosmetic.price %}
+                                  <h5 class="card-title text-center" style="height:64px">
+                                    {{ cosmetic.price }}<img style="width:27%" data-src="{% static 'image/vbuck.png' %}">
+                                  </h5>
+                                {% elif "Level" in cosmetic.price and cosmetic.free_pass %}
+                                  <h5 class="card-title text-center" style="height:64px">
+                                    {{ cosmetic.price }}<img style="width:27%" data-src="{% static 'image/battlepassstar-silver.png' %}">
+                                  </h5>
+                                {% elif "Level" in cosmetic.price %}
+                                  <h5 class="card-title text-center" style="height:64px">
+                                    {{ cosmetic.price }}<img style="width:27%" data-src="{% static 'image/battlepassstar.png' %}">
+                                  </h5>
+                                {% else %}
+                                  <h5 class="card-title text-center" style="height:64px; margin-top:8%">
+                                    {{ cosmetic.price }}
+                                  </h5>
+                                {% endif %}
+                        </div>
+                      {% else %}
+                        <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
+                          <h5 class="card-title text-center" style="height:64px;"></h5>
+                        </div>
+                      {% endif %}
+                      <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
+                        <h6 class="card-title">{{ cosmetic.source }}</h6>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
               {% endif %}
-              <div class="card-body" style="height:20%;background-color:rgba(0,0,0,0.15);padding: 15px 0px;">
-                <h5 class="card-title" style="height:8%;margin-bottom: 2rem;"><a href="/en/{{ cosmetic.href }}" style="color:white;text-decoration: none;">{{ cosmetic.name }}</a></h5>
-                <p class="card-text" style="height:8%;padding-top:10%; height:7%; margin-bottom:5px;font-family: 'Montserrat Medium', sans-serif;">{{ cosmetic.description }}</p>
-              </div>
-              {% if cosmetic.price != "" %}
-                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
-                        {% if "V-Bucks" in cosmetic.price %}
-                          <h5 class="card-title text-center" style="height:64px">
-                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/vbuck.png' %}">
-                          </h5>
-                        {% elif "Level" in cosmetic.price and cosmetic.free_pass %}
-                          <h5 class="card-title text-center" style="height:64px">
-                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar-silver.png' %}">
-                          </h5>
-                        {% elif "Level" in cosmetic.price %}
-                          <h5 class="card-title text-center" style="height:64px">
-                            {{ cosmetic.price }}<img style="width:27%" src="{% static 'image/battlepassstar.png' %}">
-                          </h5>
-                        {% else %}
-                          <h5 class="card-title text-center" style="height:64px; margin-top:8%">
-                            {{ cosmetic.price }}
-                          </h5>
-                        {% endif %}
-                </div>
-              {% else %}
-                <div class="card-footer" style="height:20%;background-color:rgba(0,0,0,0.15);border-top:0px;padding:0px">
-                  <h5 class="card-title text-center" style="height:64px;"></h5>
-                </div>
-              {% endif %}
-              <div class="card-footer" style="background-color:rgba(0,0,0,0.3);border-top:0px;padding:0px;padding-top:7px;">
-                <h6 class="card-title">{{ cosmetic.source }}</h6>
-              </div>
-            </div>
+            {% endfor %}
           </div>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-  </div>
+        </div>
+    </div>
+    <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Vertical -->
+        <ins class="adsbygoogle sticky adslot_2"
+             style="display:block"
+             data-ad-client="ca-pub-8266466406989751"
+             data-ad-slot="1760853168"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 </div>
-<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;">ITEMSHOP UPDATES IN </h2>
+<h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;">ITEM SHOP UPDATES IN </h2>
 <h2 class="text-center d-lg-none" style="line-height: 1; font-family: 'Roboto', sans-serif; color: white; margin-top: 0.5%;" id="timer2"></h2>
 <style>
     a:hover, a:visited, a:link, a:active {
@@ -141,6 +213,19 @@
     }
 </style>
 <h2 class="text-center" style="line-height: 1; font-family: 'Roboto', sans-serif; margin-top: 1%;margin-bottom: 1.2rem;"><a href="/en/shop/history" style="color: white;">ITEM SHOP HISTORY</a></h2>
+
+<div class="container-lg justify-content-center adslot_1" style="padding:0px;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Horizontal -->
+    <ins class="adsbygoogle adslot_1"
+         style="display:block;"
+         data-ad-client="ca-pub-8266466406989751"
+         data-ad-slot="7555271179"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
 <script>
 
     var delta = "{{ delta }}";
