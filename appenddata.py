@@ -133,7 +133,7 @@ def updatedb():
                     pass
 
 
-                obj = Cosmetic.objects.filter(display_rarity=display_rarity).last()
+                obj = Cosmetic.objects.filter(short_description=short_description).last()
                 color1 = obj.color1
                 color2 = obj.color2
                 color3 = obj.color3
@@ -310,17 +310,12 @@ def updatedb_en():
                     else:
                         source = "Exclusive"
 
-                try:
-                    obj = Cosmetic.objects.filter(icon=icon)
-                    if len(obj) > 0:
-                        obj = obj.last()
-                        color1 = obj.color1
-                        color2 = obj.color2
-                        color3 = obj.color3
-                        rarity_sort = obj.rarity_sort
-                        hidden = obj.hidden
-                except Exception as e:
-                    print(e)
+                obj = Cosmetic_en.objects.filter(short_description=short_description).last()
+                color1 = obj.color1
+                color2 = obj.color2
+                color3 = obj.color3
+                rarity_sort = obj.rarity_sort
+                hidden = obj.hidden
 
                 skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
                 skin.save()
