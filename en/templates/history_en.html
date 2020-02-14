@@ -11,7 +11,7 @@
       transform: scale(1.05);
     }
     a.image {
-      transition: opacity 1s, transform 250ms ease-in-out;
+      transition: opacity 1s, all 300ms ease;
       transform-origin: center;
     }
 </style>
@@ -69,11 +69,11 @@
                             {% for i in j.skins %}
                                 <div class="col-4 col-md-3 col-lg-2" style="padding:5px;">
                                     {% if i.icon != "" and i.icon != "image/" %}
-                                      <a class="image" style="display:block" href="/en/{{ i.href }}"><img class="lazyload" style="width:100%;height:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.icon }}"></a>
+                                      <a class="image" style="display:block;background:{{ i.color1 }};border: 5px solid {{ i.color3 }}" href="/en/{{ i.href }}"><img class="lazyload" style="width:100%;height:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.icon }}"></a>
                                     {% elif i.featured != "" and i.featured != "image/" %}
-                                      <a class="image" style="display:block" href="/en/{{ i.href }}"><img class="lazyload" style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.featured }}"></a>
+                                      <a class="image" style="display:block;background:{{ i.color1 }};border: 5px solid {{ i.color3 }}" href="/en/{{ i.href }}"><img class="lazyload" style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.featured }}"></a>
                                     {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
-                                      <a class="image" style="display:block" href="/en/{{ i.href }}"><img class="lazyload" style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.smallIcon }}"></a>
+                                      <a class="image" style="display:block;background:{{ i.color1 }};border: 5px solid {{ i.color3 }}" href="/en/{{ i.href }}"><img class="lazyload" style="width:100%" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ i.smallIcon }}"></a>
                                     {% endif %}
                                 </div>
                             {% endfor %}

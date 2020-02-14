@@ -19,6 +19,7 @@ class Cosmetic(models.Model):
     free_pass = models.BooleanField(default=False)
     href = models.CharField(max_length=50, default=name)
     search_name = models.CharField(max_length=50, default="")
+    eng_redir = models.CharField(max_length=50, default="/en/")
 
     def make_href(self):
         self.href = self.name.replace(" ", "-") + "-" + str(self.pk)

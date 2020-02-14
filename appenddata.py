@@ -147,13 +147,23 @@ def updatedb():
                     hidden = obj.hidden
                 except Exception as e:
                     print(e)
-
-                skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
-                skin.save()
-
-                skin.make_href()
-                skin.make_search()
-                skin.save()
+                    
+                try:
+                    obj = Cosemtic_en.objects.get(icon=icon)
+                    eng_redir = "/en/" + obj.href
+                    skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir)
+                    skin.save()
+                    skin.make_href()
+                    skin.make_search()
+                    skin.save()
+                    obj.ru_redir = "/" + skin.href
+                    obj.save()
+                except Exception as e:
+                    skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
+                    skin.save()
+                    skin.make_href()
+                    skin.make_search()
+                    skin.save()
                 
                 try:
                     hrefs.append(str(skin.href))
@@ -333,12 +343,23 @@ def updatedb_en():
                 except Exception as e:
                     print(e)
 
-                skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
-                skin.save()
-
-                skin.make_href()
-                skin.make_search()
-                skin.save()
+                try:
+                    obj = Cosemtic.objects.get(icon=icon)
+                    ru_redir = "/" + obj.href
+                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir)
+                    skin.save()
+                    skin.make_href()
+                    skin.make_search()
+                    skin.save()
+                    obj.eng_redir = "/en/" + skin.href
+                    obj.save()
+                except Exception as e:
+                    print(e)
+                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
+                    skin.save()
+                    skin.make_href()
+                    skin.make_search()
+                    skin.save()
                 
                 try:
                     hrefs.append(str(skin.href))

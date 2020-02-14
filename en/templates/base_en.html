@@ -29,11 +29,21 @@
 </head>
 <body style="background-color: #12325F">
   <style>
+    a.nav-item.nav-link {
+      color: #ffffff !important;
+    }
     a.nav-item.nav-link:hover {
-      transform: scale(1.05);
+      color: #ffc107 !important;
+    }
+    a#navbarDropdown.nav-link.dropdown-toggle {
+      color: #ffffff;
     }
     a#navbarDropdown.nav-link.dropdown-toggle:hover {
-      transform: scale(1.05);
+      color: #ffc107;
+    }
+    a.dropdown-item:hover {
+      background-color: transparent !important;
+      color: #ffc107 !important;
     }
     a#navbarDropdown.nav-link.dropdown-toggle:active, a#navbarDropdown.nav-link.dropdown-toggle:focus, a#navbarDropdown.nav-link.dropdown-toggle::after {
       outline: none;
@@ -67,39 +77,39 @@
       <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
           <ul class="navbar-nav text-center">
               <li class="nav-item d-none d-md-block">
-                  <a class="nav-item nav-link" href="/en/shop" style="color:#FFFFFF; letter-spacing: 0.02em;">ITEMSHOP</a>
+                  <a class="nav-item nav-link" href="/en/shop" style="letter-spacing: 0.02em;">ITEMSHOP</a>
               </li>
               <li class="nav-item d-none d-md-block">
-                  <a class="nav-item nav-link" href="/en/" style="color:#FFFFFF; letter-spacing: 0.02em;">LOCKER</a>
+                  <a class="nav-item nav-link" href="/en/" style="letter-spacing: 0.02em;">LOCKER</a>
               </li>
               <li class="nav-item d-none d-md-block">
-                  <a class="nav-item nav-link" href="/en/challenges" style="color:#FFFFFF; letter-spacing: 0.02em;">CHALLENGES</a>
+                  <a class="nav-item nav-link" href="/en/challenges" style="letter-spacing: 0.02em;">CHALLENGES</a>
               </li>
               <li class="nav-item dropdown d-none d-md-block">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   LANGUAGE
                 </a>
                 <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="transform: translate3d(0px, 0px, 0px) !important;width:100%;background-color: #004FB3 !important; font-size: 24px;">
                   <a class="dropdown-item" href="/en/">ENGLISH</a>
-                  <a class="dropdown-item" href="/">РУССКИЙ</a>
+                  <a class="dropdown-item" href="{{ru_redir}}">РУССКИЙ</a>
                 </div>
               </li>
               <li class="nav-item d-md-none">
-                  <a class="nav-item nav-link" href="/en/shop" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">ITEMSHOP</a>
+                  <a class="nav-item nav-link" href="/en/shop" style="padding:0px;letter-spacing: 0.02em;">ITEMSHOP</a>
               </li>
               <li class="nav-item d-md-none">
-                  <a class="nav-item nav-link" href="/en/" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">LOCKER</a>
+                  <a class="nav-item nav-link" href="/en/" style="padding:0px;letter-spacing: 0.02em;">LOCKER</a>
               </li>
               <li class="nav-item d-md-none">
-                  <a class="nav-item nav-link" href="/en/challenges" style="padding:0px;color:#FFFFFF; letter-spacing: 0.02em;">CHALLENGES</a>
+                  <a class="nav-item nav-link" href="/en/challenges" style="padding:0px;letter-spacing: 0.02em;">CHALLENGES</a>
               </li>
               <li class="nav-item dropdown d-md-none" style="margin-left:20px;">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:0px;color:white;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:0px;">
                   LANGUAGE
                 </a>
                 <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown" style="padding-top:0px;padding-right: 20px;transform: translate3d(0px, 0px, 0px) !important;width:100%;background-color: #004FB3 !important; font-size: 24px;">
                   <a class="dropdown-item" href="/en/" style="padding:0px;width:100%;">ENGLISH</a>
-                  <a class="dropdown-item" href="/" style="padding:0px;width:100%;">РУССКИЙ</a>
+                  <a class="dropdown-item" href="{{ru_redir}}" style="padding:0px;width:100%;">РУССКИЙ</a>
                 </div>
               </li>
           </ul>
@@ -111,5 +121,6 @@
   <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
   <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static '/js/ajax.js' %}"></script>
+  <script src="{% static '/js/en_scroll.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.4.0/dist/lazyload.min.js"></script>
 </body>

@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-from django.shortcuts import render
 from en.models import Cosmetic_en, ItemShop_en
 import json
 import requests
@@ -122,7 +120,7 @@ def items(request):
         amount = '50'
         cosmetics = cosmetics[:50]
 
-    return render(request, 'main_en.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount})
+    return render(request, 'main_en.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'ru_redir': '/'})
 
 def skin(cosmetics):
     return ["Outfit", cosmetics.filter(short_description="Outfit").order_by("-pk")]
@@ -269,7 +267,7 @@ def shop(request):
                     print("Error loading item from database")
             delta = datetime.strptime(ItemShop_en.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
             delta = str(delta).split(".")[0]
-            return render(request, 'shop_en.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date, 'delta' : delta})
+            return render(request, 'shop_en.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date, 'delta' : delta, 'ru_redir': '/shop'})
         updatedb_en()
         featured = json_data["featured"]
         daily = json_data["daily"]
@@ -312,7 +310,7 @@ def shop(request):
         item_shop.save()
         delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
-        return render(request, 'shop_en.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date, 'delta' : delta})
+        return render(request, 'shop_en.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date, 'delta' : delta, 'ru_redir': '/shop'})
 
     else:
         item_shop = ItemShop_en.objects.last()
@@ -341,13 +339,13 @@ def shop(request):
                 print("Error loading item from database")
         delta = datetime.strptime(ItemShop_en.objects.last().date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
-        return render(request, 'shop_en.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date, 'delta' : delta})
+        return render(request, 'shop_en.html', {'featured' : new_featured_list, 'daily' : new_daily_list, 'date' : date, 'delta' : delta, 'ru_redir': '/shop'})
 
 def oneskin(request, href):
     try:
         obj = Cosmetic_en.objects.get(href=href)
         set_items = Cosmetic_en.objects.filter(setname=obj.setname).order_by("-pk")
-        return render(request, 'skin_en.html', {'cosmetic': obj, 'set_items': set_items})
+        return render(request, 'skin_en.html', {'cosmetic': obj, 'set_items': set_items, 'ru_redir': obj.ru_redir})
     except Exception as e:
         print(e)
         return HttpResponseNotFound('<h1>Page not found</h1>')
@@ -356,14 +354,16 @@ def search(request):
     question = request.GET.get('search1')
     context = {
         'not_found' : True,
-        'search': True
+        'search': True,
+        'ru_redir': '/'
     }
     if question is not None:
         if len(question) > 0:
             cosmetics = Cosmetic_en.objects.filter(search_name__contains=question.lower())
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
-                'search': True
+                'search': True,
+                'ru_redir': '/'
             }
             if len(cosmetics) == 0:
                 context = {'not_found' : True}
@@ -374,7 +374,8 @@ def search(request):
             cosmetics = Cosmetic_en.objects.filter(search_name__contains=question.lower())
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
-                'search': True
+                'search': True,
+                'ru_redir': '/'
             }
             if len(cosmetics) == 0:
                 context = {'not_found' : True}
@@ -385,7 +386,8 @@ def search(request):
             cosmetics = Cosmetic_en.objects.filter(search_name__contains=question.lower())
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
-                'search': True
+                'search': True,
+                'ru_redir': '/'
             }
             if len(cosmetics) == 0:
                 context = {'not_found' : True}
@@ -410,9 +412,7 @@ def history(request):
     shop_set = set()
     for i in ItemShop_en.objects.all():
         shop_set.add(i.date)
-    shops = []
-    for i in shop_set:
-        shops.append(ItemShop_en.objects.filter(date=i)[0])
+    shops = list(shop_set)
     all_shops = ItemShop_en.objects.all().order_by("-pk")
     for i in all_shops:
         if i not in shop_set:
@@ -431,8 +431,12 @@ def history(request):
                     skins.append(Cosmetic_en.objects.get(pk=int(j)))
                     skin_set.add(Cosmetic_en.objects.get(pk=int(j)))
             date = all_shops[i].date.split("-")[2].split(" ")[0] + " " + ru_months[int(all_shops[i].date.split("-")[1])] + " " + all_shops[i].date.split("-")[0]
-            skins_dict[all_shops[i].pk] = {"skins" : skins, "shop" : date, "i" : i % 4}
+            if date[0] == "0":
+                date = date[1:]
+            skins_dict[i] = {"skins" : skins, "shop" : date, "i" : i % 10}
+            print(datetime.now())
     context = {
-        "Cosmetics": skins_dict
+        "Cosmetics": skins_dict,
+        'ru_redir': '/shop/history'
     }
     return render(request, template_name="history_en.html", context=context)
