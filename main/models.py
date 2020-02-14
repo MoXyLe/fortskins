@@ -28,5 +28,7 @@ class Cosmetic(models.Model):
 
 class ItemShop(models.Model):
     date = models.CharField(max_length=30)
+    featured_items = models.ManyToManyField(Cosmetic, related_name="ItemShop_featured")
+    daily_items = models.ManyToManyField(Cosmetic, related_name="ItemShop_daily")
     featured = models.TextField()
     daily = models.TextField()

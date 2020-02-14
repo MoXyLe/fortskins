@@ -406,12 +406,7 @@ def history(request):
         11:'Ноября',
         12:'Декабря',
     }
-    shop_set = set()
-    for i in ItemShop.objects.all():
-        shop_set.add(i.date)
-    shops = []
-    for i in shop_set:
-        shops.append(ItemShop.objects.filter(date=i)[0])
+    shop_set = set(ItemShop.objects.all())
     all_shops = ItemShop.objects.all().order_by("-pk")
     for i in all_shops:
         if i not in shop_set:
@@ -419,20 +414,10 @@ def history(request):
     skins_dict = dict()
     for i in range(1, len(all_shops)):
         if all_shops[i-1].date != all_shops[i].date:
-            skins = list()
-            skin_set = set()
-            for j in all_shops[i].featured.split(".")[:-1]:
-                if Cosmetic.objects.get(pk=int(j)) not in skin_set:
-                    skins.append(Cosmetic.objects.get(pk=int(j)))
-                    skin_set.add(Cosmetic.objects.get(pk=int(j)))
-            for j in all_shops[i].daily.split(".")[:-1]:
-                if Cosmetic.objects.get(pk=int(j)) not in skin_set:
-                    skins.append(Cosmetic.objects.get(pk=int(j)))
-                    skin_set.add(Cosmetic.objects.get(pk=int(j)))
             date = all_shops[i].date.split("-")[2].split(" ")[0] + " " + ru_months[int(all_shops[i].date.split("-")[1])] + " " + all_shops[i].date.split("-")[0]
             if date[0] == "0":
                 date = date[1:]
-            skins_dict[all_shops[i].pk] = {"skins" : skins, "shop" : date, "i" : i % 4}
+            skins_dict[all_shops[i].pk] = {"skins" : all_shops[i], "shop" : date, "i" : i % 10}
     context = {
         "Cosmetics": skins_dict,
         'eng_redir': '/en/shop/history'

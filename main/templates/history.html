@@ -31,7 +31,7 @@
         top: 20px;
     }
   </style>
-  
+
     <div class="container-lg justify-content-center adslot_1" style="padding:0px;padding-top:5px;">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- Horizontal -->
@@ -44,7 +44,7 @@
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
-  
+
     <div class="row">
         <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -66,7 +66,18 @@
                     <h2 style="margin-left: 3px;">{{ j.shop }}</h2>
                     <div class="overflow-auto" style="max-width: 100%;">
                         <div class="row">
-                            {% for i in j.skins %}
+                            {% for i in j.skins.featured_items.all %}
+                                <div class="col-4 col-md-3 col-lg-2" style="padding:5px;">
+                                    {% if i.icon != "" and i.icon != "image/" %}
+                                      <a class="image" style="display:block;background:{{ i.color1 }};border: 5px solid {{ i.color3 }}" href="/{{ i.href }}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="width:100%" data-src="{% static '' %}{{ i.icon }}"></a>
+                                    {% elif i.featured != "" and i.featured != "image/" %}
+                                      <a class="image" style="display:block;background:{{ i.color1 }};border: 5px solid {{ i.color3 }}" href="/{{ i.href }}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="width:100%" data-src="{% static '' %}{{ i.featured }}"></a>
+                                    {% elif i.smallIcon != "" and i.smallIcon != "image/" %}
+                                      <a class="image" style="display:block;background:{{ i.color1 }};border: 5px solid {{ i.color3 }}" href="/{{ i.href }}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="width:100%" data-src="{% static '' %}{{ i.smallIcon }}"></a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                            {% for i in j.skins.daily_items.all %}
                                 <div class="col-4 col-md-3 col-lg-2" style="padding:5px;">
                                     {% if i.icon != "" and i.icon != "image/" %}
                                       <a class="image" style="display:block;background:{{ i.color1 }};border: 5px solid {{ i.color3 }}" href="/{{ i.href }}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="width:100%" data-src="{% static '' %}{{ i.icon }}"></a>
@@ -91,10 +102,10 @@
                             <script>
                                  (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
-                        </div>                        
+                        </div>
                     {% endif %}
                 {% endfor %}
-            </div>            
+            </div>
         </div>
         <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
