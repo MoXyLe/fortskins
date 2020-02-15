@@ -308,6 +308,10 @@ def shop(request):
 
         item_shop = ItemShop_en(date = date, featured = featured_str, daily = daily_str)
         item_shop.save()
+        for i in featured_list:
+            item_shop.featured_items.add(i)
+        for i in daily_list:
+            item_shop.daily_items.add(i)
         delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
         return render(request, 'shop_en.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date, 'delta' : delta, 'ru_redir': '/shop'})
@@ -420,7 +424,7 @@ def history(request):
             date = all_shops[i].date.split("-")[2].split(" ")[0] + " " + ru_months[int(all_shops[i].date.split("-")[1])] + " " + all_shops[i].date.split("-")[0]
             if date[0] == "0":
                 date = date[1:]
-            skins_dict[all_shops[i].pk] = {"skins" : all_shops[i], "shop" : date, "i" : i % 10}
+            skins_dict[all_shops[i].pk] = {"skins" : all_shops[i], "shop" : date, "i" : i % int(len(all_shops) / 8)}
     context = {
         "Cosmetics": skins_dict,
         'ru_redir': '/shop/history'
