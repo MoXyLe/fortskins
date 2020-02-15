@@ -20,6 +20,9 @@ class Cosmetic_en(models.Model):
     href = models.CharField(max_length=50, default="")
     search_name = models.CharField(max_length=50, default="")
     ru_redir = models.CharField(max_length=50, default="/")
+    release_date = models.CharField(max_length=50, default="None")
+    last_appearance = models.CharField(max_length=50, default="None")
+    upcoming = models.BooleanField(default=False)
 
     def make_href(self):
         self.href = self.name.replace(" ", "-") + "-" + str(self.pk)

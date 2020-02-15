@@ -14,7 +14,7 @@
       transition: opacity 1s, all 300ms ease;
       transform-origin: center;
     }
-    
+
     @media screen and (min-width:1200px) {
       h2 {
         font-size: 2vw;
@@ -23,7 +23,7 @@
         font-size: 1vw;
       }
     }
-    
+
     @media screen and (max-width:1199px) {
       h2 {
         font-size: 2.5vw;
@@ -32,7 +32,7 @@
         font-size: 1.5vw;
       }
     }
-    
+
     @media screen and (max-width: 991px) {
       h2 {
         font-size: 3vw;
@@ -41,7 +41,7 @@
         font-size: 1.8vw;
       }
     }
-    
+
     @media screen and (max-width: 767px) {
       h2 {
         font-size: 6vw;
@@ -75,7 +75,7 @@
         top: 20px;
     }
   </style>
-  
+
     <div class="container-lg justify-content-center adslot_1" style="padding:0px;padding-top:5px;">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- Horizontal -->
@@ -88,7 +88,7 @@
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
-    
+
     <div class="row">
         <div class="col-2 d-none d-lg-flex justify-content-center" style="padding-top:5px;">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -115,7 +115,7 @@
                       <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{% static '' %}{{ cosmetic.smallIcon }}" class="card-img-top">
                     {% endif %}
                   </div>
-                  <div class="col-9 col-xl-10" style="padding:0px">
+                  <div class="col-5 col-xl-6" style="padding:0px">
                     <div class="row align-items-start">
                       <div class="col-12 text-left" style="padding:0px;">
                         <h2 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">{{ cosmetic.name }}</h2>
@@ -159,12 +159,27 @@
                           </div>
                         {% endif %}
                       {% endif %}
+                      {% if cosmetic.release_date != "None" %}
+                        <div class="col-12 text-left" style="padding:0px">
+                          <h5 style="margin-bottom: 0rem;">Дата появления: {{ cosmetic.release_date }}</h5>
+                        </div>
+                      {% endif %}
+                      {% if cosmetic.last_appearance != "None" %}
+                        <div class="col-12 text-left" style="padding:0px">
+                          <h5 style="margin-bottom: 0rem;">Последнее появление: {{ cosmetic.last_appearance }}</h5>
+                        </div>
+                      {% endif %}
                       {% if cosmetic.setname != "" %}
                         <div class="col-12 text-left" style="padding:0px">
                           <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
                         </div>
                       {% endif %}
                     </div>
+                  </div>
+                  <div class="col-4" style="padding:0px;padding-top:10px">
+                    {% if cosmetic.upcoming %}
+                      <h5 style="margin-bottom: 0rem;text-transform: uppercase;line-height: 1;">Предмет не был выпущен</h5>
+                    {% endif %}
                   </div>
                 </div>
                 <div class="row justify-content-center d-none d-md-flex">
@@ -203,7 +218,7 @@
                         {% endif %}
                     {% endfor %}
                   {% endif %}
-                </div>                    
+                </div>
             </div>
               <div class="container d-md-none" style="color:white;max-width:100%;width:100%;font-family:'Montserrat',sans-serif;">
                 <div class="row align-items-start">
@@ -258,9 +273,24 @@
                       </div>
                     {% endif %}
                   {% endif %}
+                  {% if cosmetic.release_date != "None" %}
+                    <div class="col-12 text-left" style="padding:0px">
+                      <h5 style="margin-bottom: 0rem;">Дата появления: {{ cosmetic.release_date }}</h5>
+                    </div>
+                  {% endif %}
+                  {% if cosmetic.last_appearance != "None" %}
+                    <div class="col-12 text-left" style="padding:0px">
+                      <h5 style="margin-bottom: 0rem;">Последнее появление: {{ cosmetic.last_appearance }}</h5>
+                    </div>
+                  {% endif %}
                   {% if cosmetic.setname != "" %}
                     <div class="col-12 text-left" style="padding:0px">
                       <h5 style="margin-bottom: 0rem;">Входит в набор: {{ cosmetic.setname }}</h5>
+                    </div>
+                  {% endif %}
+                  {% if cosmetic.upcoming %}
+                    <div class="col-12 text-left" style="padding:0px">
+                      <h5 style="margin-bottom: 0rem;">Предмет не был выпущен</h5>
                     </div>
                   {% endif %}
                 </div>

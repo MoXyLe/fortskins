@@ -310,8 +310,28 @@ def shop(request):
         item_shop.save()
         for i in featured_list:
             item_shop.featured_items.add(i)
+            a = ""
+            b = ""
+            if len(str(datetime.now().month)) == 1:
+                a = "0" + str(datetime.now().month)
+            if len(str(datetime.now().day)) == 1:
+                b = "0" + str(datetime.now().day)
+            i.last_appearance = str(datetime.now().year) + "-" + a + "-" + b
+            if i.release_date == "None":
+                i.release_date = str(datetime.now().year) + "-" + a + "-" + b
+            i.save()
         for i in daily_list:
             item_shop.daily_items.add(i)
+            a = ""
+            b = ""
+            if len(str(datetime.now().month)) == 1:
+                a = "0" + str(datetime.now().month)
+            if len(str(datetime.now().day)) == 1:
+                b = "0" + str(datetime.now().day)
+            i.last_appearance = str(datetime.now().year) + "-" + a + "-" + b
+            if i.release_date == "None":
+                i.release_date = str(datetime.now().year) + "-" + a + "-" + b
+            i.save()
         delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
         return render(request, 'shop_en.html', {'featured' : featured_list, 'daily' : daily_list, 'date' : date, 'delta' : delta, 'ru_redir': '/shop'})

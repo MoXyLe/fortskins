@@ -44,6 +44,19 @@ def updatedb():
 
                 description = ""
 
+                release_date = "None"
+                last_appearance = "None"
+                upcoming = False
+
+                try:
+                    req = requests.get("https://fortniteapi.io/items/get?id=" + i["id"] + "&lang=ru", headers={"Authorization":"afa335c2-cb04ce68-13dfc74e-7214e7cd"})
+                    json_d = json.loads(response.text)["item"]
+                    release_date = str(json_data["releaseDate"])
+                    last_appearance = str(json_data["lastAppearance"])
+                    upcoming = bool(json_data["upcoming"])
+                except Exception as e:
+                    pass
+
                 try:
                     description += i["description"]
                 except Exception as e:
@@ -141,35 +154,32 @@ def updatedb():
                     rarity_sort = obj.rarity_sort
                 except Exception as e:
                     print(e)
-                
+
                 try:
                     obj = Cosmetic.objects.filter(short_description=short_description).last()
                     hidden = obj.hidden
                 except Exception as e:
                     print(e)
-                    
+
                 try:
                     obj = Cosemtic_en.objects.get(icon=icon)
                     eng_redir = "/en/" + obj.href
-                    skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir)
+                    skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
                     skin.save()
                     skin.make_href()
                     skin.make_search()
                     skin.save()
                     obj.ru_redir = "/" + skin.href
                     obj.save()
+                    hrefs.append(str(skin.href))
                 except Exception as e:
-                    skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
+                    skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
                     skin.save()
                     skin.make_href()
                     skin.make_search()
                     skin.save()
-                
-                try:
                     hrefs.append(str(skin.href))
-                except Exception as e:
-                    print(e)
-                    print("Error appending href")
+
 
                 download(i["images"]["smallIcon"]["url"])
                 download(i["images"]["icon"]["url"])
@@ -180,8 +190,8 @@ def updatedb():
         except Exception as e:
             print(e)
             print(i["name"])
-            
-    if len(hrefs) > 0:        
+
+    if len(hrefs) > 0:
         try:
             with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', encoding="utf-8") as f1:
                 lines = f1.readlines()
@@ -232,6 +242,19 @@ def updatedb_en():
                 short_description = i["shortDescription"]
 
                 description = ""
+
+                release_date = "None"
+                last_appearance = "None"
+                upcoming = False
+
+                try:
+                    req = requests.get("https://fortniteapi.io/items/get?id=" + i["id"] + "&lang=en", headers={"Authorization":"afa335c2-cb04ce68-13dfc74e-7214e7cd"})
+                    json_d = json.loads(response.text)["item"]
+                    release_date = str(json_data["releaseDate"])
+                    last_appearance = str(json_data["lastAppearance"])
+                    upcoming = bool(json_data["upcoming"])
+                except Exception as e:
+                    pass
 
                 try:
                     description += i["description"]
@@ -346,26 +369,22 @@ def updatedb_en():
                 try:
                     obj = Cosemtic.objects.get(icon=icon)
                     ru_redir = "/" + obj.href
-                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir)
+                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
                     skin.save()
                     skin.make_href()
                     skin.make_search()
                     skin.save()
                     obj.eng_redir = "/en/" + skin.href
                     obj.save()
+                    hrefs.append(str(skin.href))
                 except Exception as e:
                     print(e)
-                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden)
+                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
                     skin.save()
                     skin.make_href()
                     skin.make_search()
                     skin.save()
-                
-                try:
                     hrefs.append(str(skin.href))
-                except Exception as e:
-                    print(e)
-                    print("Can't append to hrefs")
 
                 try:
                     download(i["images"]["smallIcon"]["url"])
@@ -379,8 +398,8 @@ def updatedb_en():
         except Exception as e:
             print(e)
             print(i["name"])
-        
-    if len(hrefs) > 0:        
+
+    if len(hrefs) > 0:
         try:
             with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', encoding="utf-8") as f1:
                 lines = f1.readlines()
