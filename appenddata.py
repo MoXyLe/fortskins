@@ -162,7 +162,7 @@ def updatedb():
                     print(e)
 
                 try:
-                    obj = Cosemtic_en.objects.get(icon=icon)
+                    obj = Cosmetic_en.objects.get(icon=icon)
                     eng_redir = "/en/" + obj.href
                     skin = Cosmetic(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
                     skin.save()
@@ -367,7 +367,7 @@ def updatedb_en():
                     print(e)
 
                 try:
-                    obj = Cosemtic.objects.get(icon=icon)
+                    obj = Cosmetic.objects.get(icon=icon)
                     ru_redir = "/" + obj.href
                     skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
                     skin.save()

@@ -9,7 +9,8 @@ sitemap = RedirectView.as_view(url='/static/sitemap.xml', permanent=True)
 ads = RedirectView.as_view(url='/static/ads.txt', permanent=True)
 
 urlpatterns = [
-    path('', views.items, name="items"),
+    path('', views.redir, name="redir"),
+    path('ru', views.items, name="items"),
     path('shop', views.shop, name="shop"),
     path('shop/history', views.history, name="history"),
     path('seacrh', views.search, name="search"),

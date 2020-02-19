@@ -23,11 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@-#6ey)abjh$i69-4(zrw=0&5p3h2ow^mo!*t)@pg0e1v!9q57'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1"]
-
-#ALLOWED_HOSTS = ["fortwhat.com", "www.fortwhat.com"]
+ALLOWED_HOSTS = ["fortwhat.com", "www.fortwhat.com"]
 
 APPEND_SLASH = False
 
@@ -52,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'fortskins.urls'

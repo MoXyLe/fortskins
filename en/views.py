@@ -20,7 +20,9 @@ def items(request):
     for i in request.GET:
         if i == "type":
             if request.GET['type'] != 'all':
-                if request.GET['type'] == "skin":
+                if request.GET['type'] == "unreleased":
+                    [type, cosmetics] = unreleased(cosmetics)
+                elif request.GET['type'] == "skin":
                     [type, cosmetics] = skin(cosmetics)
                 elif request.GET['type'] == 'pickaxe':
                     [type, cosmetics] = pickaxe(cosmetics)
@@ -120,7 +122,13 @@ def items(request):
         amount = '50'
         cosmetics = cosmetics[:50]
 
-    return render(request, 'main_en.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'ru_redir': '/'})
+    if len(cosmetics) > 0:
+        return render(request, 'main_en.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'ru_redir': '/ru'})
+    else:
+        return render(request, 'main_en.html', {'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'not_found': True, 'ru_redir': '/ru'})
+
+def unreleased(cosmetics):
+    return ["Unreleased", cosmetics.filter(upcoming=True).order_by("-pk")]
 
 def skin(cosmetics):
     return ["Outfit", cosmetics.filter(short_description="Outfit").order_by("-pk")]
@@ -308,29 +316,36 @@ def shop(request):
 
         item_shop = ItemShop_en(date = date, featured = featured_str, daily = daily_str)
         item_shop.save()
+        ru_months = {
+            1:'January',
+            2:'February',
+            3:'March',
+            4:'April',
+            5:'May',
+            6:'June',
+            7:'July',
+            8:'August',
+            9:'September',
+            10:'October',
+            11:'November',
+            12:'December',
+        }
+        a = int(datetime.now().month)
+        b = str(datetime.now().day)
+        c = str(datetime.now().year)
         for i in featured_list:
             item_shop.featured_items.add(i)
-            a = ""
-            b = ""
-            if len(str(datetime.now().month)) == 1:
-                a = "0" + str(datetime.now().month)
-            if len(str(datetime.now().day)) == 1:
-                b = "0" + str(datetime.now().day)
-            i.last_appearance = str(datetime.now().year) + "-" + a + "-" + b
+            i.last_appearance = b + " " + ru_months[a] + " " + c
             if i.release_date == "None":
-                i.release_date = str(datetime.now().year) + "-" + a + "-" + b
+                i.release_date = b + " " + ru_months[a] + " " + c
+            i.upcoming = False
             i.save()
         for i in daily_list:
             item_shop.daily_items.add(i)
-            a = ""
-            b = ""
-            if len(str(datetime.now().month)) == 1:
-                a = "0" + str(datetime.now().month)
-            if len(str(datetime.now().day)) == 1:
-                b = "0" + str(datetime.now().day)
-            i.last_appearance = str(datetime.now().year) + "-" + a + "-" + b
+            i.last_appearance = b + " " + ru_months[a] + " " + c
             if i.release_date == "None":
-                i.release_date = str(datetime.now().year) + "-" + a + "-" + b
+                i.release_date = b + " " + ru_months[a] + " " + c
+            i.upcoming = False
             i.save()
         delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
@@ -379,7 +394,7 @@ def search(request):
     context = {
         'not_found' : True,
         'search': True,
-        'ru_redir': '/'
+        'ru_redir': '/ru'
     }
     if question is not None:
         if len(question) > 0:
@@ -387,7 +402,7 @@ def search(request):
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True,
-                'ru_redir': '/'
+                'ru_redir': '/ru'
             }
             if len(cosmetics) == 0:
                 context = {'not_found' : True}
@@ -399,7 +414,7 @@ def search(request):
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True,
-                'ru_redir': '/'
+                'ru_redir': '/ru'
             }
             if len(cosmetics) == 0:
                 context = {'not_found' : True}
@@ -411,7 +426,7 @@ def search(request):
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True,
-                'ru_redir': '/'
+                'ru_redir': '/ru'
             }
             if len(cosmetics) == 0:
                 context = {'not_found' : True}

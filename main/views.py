@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from main.models import Cosmetic, ItemShop
 import json
 import requests
@@ -11,6 +11,13 @@ from datetime import datetime, timedelta
 from django.utils.timezone import utc
 from appenddata import updatedb
 
+def redir(request):
+    if "ru" in request.LANGUAGE_CODE or "uk" in request.LANGUAGE_CODE or "kk" in request.LANGUAGE_CODE or "be" in request.LANGUAGE_CODE:
+        return redirect("/ru")
+    else:
+        return redirect("/en/")
+        
+
 def items(request):
     cosmetics = Cosmetic.objects.all().order_by("-pk")
     type = ""
@@ -20,7 +27,9 @@ def items(request):
     for i in request.GET:
         if i == "type":
             if request.GET['type'] != 'all':
-                if request.GET['type'] == "skin":
+                if request.GET['type'] == "unreleased":
+                    [type, cosmetics] = unreleased(cosmetics)
+                elif request.GET['type'] == "skin":
                     [type, cosmetics] = skin(cosmetics)
                 elif request.GET['type'] == 'pickaxe':
                     [type, cosmetics] = pickaxe(cosmetics)
@@ -119,8 +128,14 @@ def items(request):
     else:
         amount = '50'
         cosmetics = cosmetics[:50]
+    
+    if len(cosmetics) > 0:
+        return render(request, 'main.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'eng_redir': '/en/'})
+    else:
+        return render(request, 'main.html', {'type': type, 'source': source, 'rarity': rarity, 'amount': amount,'not_found': True, 'eng_redir': '/en/'})
 
-    return render(request, 'main.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'eng_redir': '/en/'})
+def unreleased(cosmetics):
+    return ["Невышедшие", cosmetics.filter(upcoming=True).order_by("-pk")]
 
 def skin(cosmetics):
     return ["Экипировка", cosmetics.filter(short_description="Экипировка").order_by("-pk")]
@@ -306,29 +321,36 @@ def shop(request):
                 print("Error loading item from shop")
         item_shop = ItemShop(date = date, featured = featured_str, daily = daily_str)
         item_shop.save()
+        ru_months = {
+            1:'Января',
+            2:'Февраля',
+            3:'Марта',
+            4:'Апреля',
+            5:'Мая',
+            6:'Июня',
+            7:'Июля',
+            8:'Августа',
+            9:'Сентября',
+            10:'Октября',
+            11:'Ноября',
+            12:'Декабря',
+        }
+        a = int(datetime.now().month)
+        b = str(datetime.now().day)
+        c = str(datetime.now().year)
         for i in featured_list:
             item_shop.featured_items.add(i)
-            a = ""
-            b = ""
-            if len(str(datetime.now().month)) == 1:
-                a = "0" + str(datetime.now().month)
-            if len(str(datetime.now().day)) == 1:
-                b = "0" + str(datetime.now().day)
-            i.last_appearance = str(datetime.now().year) + "-" + a + "-" + b
+            i.last_appearance = b + " " + ru_months[a] + " " + c
             if i.release_date == "None":
-                i.release_date = str(datetime.now().year) + "-" + a + "-" + b
+                i.release_date = b + " " + ru_months[a] + " " + c
+            i.upcoming = False
             i.save()
         for i in daily_list:
             item_shop.daily_items.add(i)
-            a = ""
-            b = ""
-            if len(str(datetime.now().month)) == 1:
-                a = "0" + str(datetime.now().month)
-            if len(str(datetime.now().day)) == 1:
-                b = "0" + str(datetime.now().day)
-            i.last_appearance = str(datetime.now().year) + "-" + a + "-" + b
+            i.last_appearance = b + " " + ru_months[a] + " " + c
             if i.release_date == "None":
-                i.release_date = str(datetime.now().year) + "-" + a + "-" + b
+                i.release_date = b + " " + ru_months[a] + " " + c
+            i.upcoming = False
             i.save()
         delta = datetime.strptime(date, "%Y-%m-%d %H:%M:%SZ") + timedelta(1) - now
         delta = str(delta).split(".")[0]
@@ -380,7 +402,7 @@ def search(request):
     }
     if question is not None:
         if len(question) > 0:
-            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower().replace("ё", "е"))
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True,
@@ -392,7 +414,7 @@ def search(request):
     question = request.GET.get('search2')
     if question is not None:
         if len(question) > 0:
-            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower().replace("ё", "е"))
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True,
@@ -404,7 +426,7 @@ def search(request):
     question = request.GET.get('search3')
     if question is not None:
         if len(question) > 0:
-            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower())
+            cosmetics = Cosmetic.objects.filter(search_name__contains=question.lower().replace("ё", "е"))
             context = {
                 'Cosmetics': cosmetics.order_by("-pk"),
                 'search': True,

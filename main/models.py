@@ -27,7 +27,7 @@ class Cosmetic(models.Model):
     def make_href(self):
         self.href = self.name.replace(" ", "-") + "-" + str(self.pk)
     def make_search(self):
-        self.search_name = self.name.lower()
+        self.search_name = self.name.lower().replace("ё", "е")
 
 class ItemShop(models.Model):
     date = models.CharField(max_length=30)

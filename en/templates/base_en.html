@@ -69,7 +69,7 @@
   <p class="image_section" style="margin-bottom: 0"><img class="lazyload" data-src="{% static '/image/Up_Panel.png' %}" style="width:100%"></p>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="line-height: 1;padding: 0px 1rem;font-family: 'fortnite_battlefest', Arial, sans-serif; font-size: 35px; background-color: #004FB3 !important">
       <span class="navbar-brand mb-0 h1 d-md-none" style="font-size:24px;">FORTWHAT</span>
-      <div class="d-flex align-items-end w-50 order-2">
+      <div class="d-flex align-items-end">
           <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar" style="border:0px">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -77,13 +77,10 @@
       <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
           <ul class="navbar-nav text-center">
               <li class="nav-item d-none d-md-block">
-                  <a class="nav-item nav-link" href="/en/shop" style="letter-spacing: 0.02em;">ITEMSHOP</a>
+                  <a class="nav-item nav-link" href="/en/shop" style="letter-spacing: 0.02em;">ITEM SHOP</a>
               </li>
               <li class="nav-item d-none d-md-block">
                   <a class="nav-item nav-link" href="/en/" style="letter-spacing: 0.02em;">LOCKER</a>
-              </li>
-              <li class="nav-item d-none d-md-block">
-                  <a class="nav-item nav-link" href="/en/challenges" style="letter-spacing: 0.02em;">CHALLENGES</a>
               </li>
               <li class="nav-item dropdown d-none d-md-block">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,13 +92,10 @@
                 </div>
               </li>
               <li class="nav-item d-md-none">
-                  <a class="nav-item nav-link" href="/en/shop" style="padding:0px;letter-spacing: 0.02em;">ITEMSHOP</a>
+                  <a class="nav-item nav-link" href="/en/shop" style="padding:0px;letter-spacing: 0.02em;">ITEM SHOP</a>
               </li>
               <li class="nav-item d-md-none">
                   <a class="nav-item nav-link" href="/en/" style="padding:0px;letter-spacing: 0.02em;">LOCKER</a>
-              </li>
-              <li class="nav-item d-md-none">
-                  <a class="nav-item nav-link" href="/en/challenges" style="padding:0px;letter-spacing: 0.02em;">CHALLENGES</a>
               </li>
               <li class="nav-item dropdown d-md-none" style="margin-left:20px;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:0px;">
@@ -114,7 +108,6 @@
               </li>
           </ul>
       </div>
-      <span class="navbar-text small text-truncate mt-1 w-50 text-right order-1 order-md-last d-none d-md-block"></span>
   </nav>
   {% block content %}
   {% endblock %}
