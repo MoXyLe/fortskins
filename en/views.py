@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from en.models import Cosmetic_en, ItemShop_en
 import json
 import requests
@@ -10,6 +10,51 @@ from django.http import JsonResponse
 from datetime import datetime, timedelta
 from django.utils.timezone import utc
 from appenddata import updatedb, updatedb_en
+import email, smtplib, ssl
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+
+def contact(request):
+    if request.method == 'POST':
+        try:
+            subject = request.POST.get("name")
+            body = request.POST.get("message") + "\n" + request.POST.get("email")
+            sender_email = "fortnitewhatcom@gmail.com"
+            receiver_email = "fortnitewhatcom@gmail.com"
+            password = 'Lb69jMVhPJEpfmf'
+
+            # Create a multipart message and set headers
+            message = MIMEMultipart()
+            message["From"] = sender_email
+            message["To"] = receiver_email
+            message["Subject"] = subject
+            message["Bcc"] = receiver_email  # Recommended for mass emails
+
+            # Add body to email
+            message.attach(MIMEText(body, "plain"))
+
+            for i in request.FILES.getlist('file'):
+                img = MIMEImage(i.read())
+                img.add_header('Content-ID', '<' + i.name + '>')
+                message.attach(img)
+
+            text = message.as_string()
+
+            # Log in to server using secure context and send email
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, text)
+            return redirect("/en/success")
+        except Exception as e:
+            print(e)
+    return render(request, 'contact_en.html', {'ru_redir': '/contact'})
+
+def success(request):
+    return render(request, 'success_en.html', {'ru_redir': '/ru'})
 
 def items(request):
     cosmetics = Cosmetic_en.objects.all().order_by("-pk")

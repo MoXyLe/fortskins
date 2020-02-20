@@ -1,0 +1,39 @@
+{% extends 'base_en.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block title %}Contact{% endblock %}
+{% block description %}<meta name="description" content="Here you can write your suggestions.">{% endblock %}
+{% block content %}
+
+<div class="row">
+  <div class="col-12">
+    <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; margin-top:0px; margin-bottom: 0px; letter-spacing: 0.02em;">HELLO! IF YOU FOUND BUG, ERROR OR YOU HAVE A SUGGESTION, WRITE IT HERE!</h1>
+  </div>
+</div>
+
+<div class="row" style="color:white">
+  <div class="col-10 col-xl-5 offset-1" style="margin-right:8.333333%">
+    <form action="/en/contact" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="name">Your name</label>
+        <input name="name" class="form-control" id="nameInput">
+      </div>
+      <div class="form-group">
+        <label for="email">Email (required)</label>
+        <input name="email" type="email" class="form-control" id="emailInput" required="required">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea name="message" class="form-control" id="messageInput" rows="5" required="required"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="files">Append images</label>
+        <input name="file" accept="image/*" type="file" class="form-control-file" id="fileInput" multiple>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

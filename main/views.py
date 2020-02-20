@@ -10,13 +10,61 @@ from django.http import JsonResponse
 from datetime import datetime, timedelta
 from django.utils.timezone import utc
 from appenddata import updatedb
+from main.forms import ContactForm
+from django.core.mail import EmailMessage
+import email, smtplib, ssl
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 
 def redir(request):
     if "ru" in request.LANGUAGE_CODE or "uk" in request.LANGUAGE_CODE or "kk" in request.LANGUAGE_CODE or "be" in request.LANGUAGE_CODE:
         return redirect("/ru")
     else:
         return redirect("/en/")
-        
+
+def success(request):
+    return render(request, 'success.html', {'eng_redir': '/en/'})
+
+def contact(request):
+    if request.method == 'POST':
+        # mes = Message.objects.create(name=request.POST.get("name"), email=request.POST.get("email"), message=request.POST.get("message"))
+        # mes.save()
+        try:
+            subject = request.POST.get("name")
+            body = request.POST.get("message") + "\n" + request.POST.get("email")
+            sender_email = "fortnitewhatcom@gmail.com"
+            receiver_email = "fortnitewhatcom@gmail.com"
+            password = 'Lb69jMVhPJEpfmf'
+
+            # Create a multipart message and set headers
+            message = MIMEMultipart()
+            message["From"] = sender_email
+            message["To"] = receiver_email
+            message["Subject"] = subject
+            message["Bcc"] = receiver_email  # Recommended for mass emails
+
+            # Add body to email
+            message.attach(MIMEText(body, "plain"))
+
+            for i in request.FILES.getlist('file'):
+                img = MIMEImage(i.read())
+                img.add_header('Content-ID', '<' + i.name + '>')
+                message.attach(img)
+
+            text = message.as_string()
+
+            # Log in to server using secure context and send email
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, text)
+            return redirect("/success")
+        except Exception as e:
+            print(e)
+    return render(request, 'contact.html', {'eng_redir': '/en/contact'})
 
 def items(request):
     cosmetics = Cosmetic.objects.all().order_by("-pk")
@@ -128,7 +176,7 @@ def items(request):
     else:
         amount = '50'
         cosmetics = cosmetics[:50]
-    
+
     if len(cosmetics) > 0:
         return render(request, 'main.html', {'Cosmetics': cosmetics, 'type': type, 'source': source, 'rarity': rarity, 'amount': amount, 'eng_redir': '/en/'})
     else:

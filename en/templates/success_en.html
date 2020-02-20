@@ -1,0 +1,17 @@
+{% extends 'base_en.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block title %}Success{% endblock %}
+{% block description %}<meta name="description" content="Thank you!">{% endblock %}
+{% block content %}
+<script>
+   setTimeout(function(){
+      window.location.href = '/en/';
+   }, 5000);
+</script>
+<div class="row">
+  <div class="col-12">
+    <h1 class="text-center" style="font-family: 'fortnite_battlefest', sans-serif; color: white; margin-top:0px; margin-bottom: 0px; letter-spacing: 0.02em;">THANK YOU!</h1>
+  </div>
+</div>
+{% endblock %}
