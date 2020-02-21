@@ -10,7 +10,6 @@ from django.http import JsonResponse
 from datetime import datetime, timedelta
 from django.utils.timezone import utc
 from appenddata import updatedb
-from main.forms import ContactForm
 from django.core.mail import EmailMessage
 import email, smtplib, ssl
 from email import encoders
