@@ -36,11 +36,21 @@ def updatedb():
     for i in json_data["data"]:
         try:
             if len(Cosmetic.objects.filter(name = i["name"], short_description = i["shortDescription"])) < 1:
+                
+                if i["shortDescription"] == None:
+                    if i["type"] == "wrap":
+                        if len(Cosmetic.objects.filter(name = i["name"], short_description = "Обёртка")) > 0:
+                            continue
+                
                 name = i["name"]
                 if name == "Чар О'Дей" or name == "TESTING DO NOT USE" or name == "Флаг главной базы" or "_01_" in name:
                     continue
+                
                 display_rarity = i["displayRarity"]
                 short_description = i["shortDescription"]
+                
+                if short_description == None:
+                    short_description = "Обёртка"
 
                 description = ""
 

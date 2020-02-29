@@ -1,10 +1,12 @@
-import requests
-import json
+from urllib.parse import quote
 from main.models import Cosmetic
 from en.models import Cosmetic_en
+import requests
+import json
+import shutil
 import os.path
 import os
-import shutil
+import datetime
 
 def updatedb_en():
     def download(image_url):
@@ -33,7 +35,8 @@ def updatedb_en():
 
     for k, i in json_data["items"].items():
         for j in i:
-            ids.append(j["id"])
+            if len(Cosmetic_en.objects.filter(name=str(j["name"]), description=str(j["description"]))) == 0:
+                ids.append(j["id"])
 
     for i in ids:
         try:
@@ -49,7 +52,12 @@ def updatedb_en():
 
                 name = str(json_data["name"])
 
-                display_rarity = str(json_data["rarity"]).capitalize()
+                display_rarity = ""
+                
+                for i in str(json_data["rarity"]).split(" "):
+                    display_rarity += i.capitalize() + " "
+                    
+                display_rarity = display_rarity[:-1]
 
                 short_description = ""
                 if str(json_data["type"]) == "backpack":
@@ -88,10 +96,13 @@ def updatedb_en():
                 icon = "image/"
 
                 featured = "image/"
-
+                
                 icon += str(json_data["images"]["icon"]).split("/images/")[1].replace("/", "_").split("?")[0]
 
-                featured += str(json_data["images"]["full_size"]).split("/images/")[1].replace("/", "_").split("?")[0]
+                try:
+                    featured += str(json_data["images"]["full_size"]).split("/images/")[1].replace("/", "_").split("?")[0]
+                except:
+                    pass
 
                 source = "Item shop"
 
@@ -202,7 +213,7 @@ def updatedb_en():
             print(e)
             print("Smth went wrong with appending data to xml")
 
-def updatedb_en():
+def updatedb():
     def download(image_url):
         try:
             path = "/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins"
@@ -229,7 +240,8 @@ def updatedb_en():
 
     for k, i in json_data["items"].items():
         for j in i:
-            ids.append(j["id"])
+            if len(Cosmetic.objects.filter(name=str(j["name"]), description=str(j["description"]))) == 0:
+                ids.append(j["id"])
 
     for i in ids:
         try:
@@ -245,7 +257,12 @@ def updatedb_en():
 
                 name = str(json_data["name"])
 
-                display_rarity = str(json_data["rarity"]).capitalize()
+                display_rarity = ""
+                
+                for i in str(json_data["rarity"]).split(" "):
+                    display_rarity += i.capitalize() + " "
+                    
+                display_rarity = display_rarity[:-1]
 
                 short_description = ""
                 if str(json_data["type"]) == "backpack":
@@ -287,7 +304,10 @@ def updatedb_en():
 
                 icon += str(json_data["images"]["icon"]).split("/images/")[1].replace("/", "_").split("?")[0]
 
-                featured += str(json_data["images"]["full_size"]).split("/images/")[1].replace("/", "_").split("?")[0]
+                try:
+                    featured += str(json_data["images"]["full_size"]).split("/images/")[1].replace("/", "_").split("?")[0]
+                except:
+                    pass
 
                 source = "Магазин предметов"
 

@@ -126,6 +126,8 @@ def items(request):
                     [source, cosmetics] = pass10(cosmetics)
                 elif request.GET['source'] == 'pass11':
                     [source, cosmetics] = pass11(cosmetics)
+                elif request.GET['source'] == 'pass12':
+                    [source, cosmetics] = pass12(cosmetics)
         elif i == "rarity":
             if request.GET['rarity'] != 'all':
                 if request.GET['rarity'] == "leg":
@@ -255,6 +257,9 @@ def pass10(cosmetics):
 
 def pass11(cosmetics):
     return ["Боевой пропуск 11 сезона", cosmetics.filter(source="Боевой пропуск 11 сезона").order_by("-pk")]
+    
+def pass12(cosmetics):
+    return ["Боевой пропуск 12 сезона", cosmetics.filter(source="Боевой пропуск 12 сезона").order_by("-pk")]
 
 def leg(cosmetics):
     return ["Легендарный", cosmetics.filter(display_rarity="Легендарный").order_by("-pk")]
