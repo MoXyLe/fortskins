@@ -16,9 +16,9 @@ import datetime
 def updatedb():
     def download(image_url):
         try:
-            path = "/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins"
-            path = os.path.join(path, "static", "image")
-            name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
+            path = os.getcwd()
+            path = str(os.path.join(path, "static", "image"))
+            name = str(os.path.join(path, image_url.split("/br/")[1].replace("/", "_")))
             if os.path.exists(name) == False:
                 local_file = open(name, 'wb')
                 resp = requests.get(image_url, stream=True)
@@ -82,21 +82,21 @@ def updatedb():
                 smallIcon = "image/"
 
                 try:
-                    smallIcon += i["images"]["smallIcon"]["url"].split("/image/")[1].replace("/", "_")
+                    smallIcon += i["images"]["smallIcon"]["url"].split("/br/")[1].replace("/", "_")
                 except Exception as e:
                     pass
 
                 icon = "image/"
 
                 try:
-                    icon += i["images"]["icon"]["url"].split("/image/")[1].replace("/", "_")
+                    icon += i["images"]["icon"]["url"].split("/br/")[1].replace("/", "_")
                 except Exception as e:
                     pass
 
                 featured = "image/"
 
                 try:
-                    featured += i["images"]["featured"]["url"].split("/image/")[1].replace("/", "_")
+                    featured += i["images"]["featured"]["url"].split("/br/")[1].replace("/", "_")
                 except Exception as e:
                     pass
 
@@ -203,9 +203,11 @@ def updatedb():
 
     if len(hrefs) > 0:
         try:
-            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', encoding="utf-8") as f1:
+            path = os.getcwd()
+            path = str(os.path.join(path, "static", "sitemap.xml"))
+            with open(path, encoding="utf-8") as f1:
                 lines = f1.readlines()
-            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', 'w', encoding="utf-8") as f2:
+            with open(path, 'w', encoding="utf-8") as f2:
                 f2.writelines(lines[:-1])
                 for href in hrefs:
                     hexed = quote(href)
@@ -225,9 +227,9 @@ def updatedb():
 def updatedb_en():
     def download(image_url):
         try:
-            path = "/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins"
-            path = os.path.join(path, "static", "image")
-            name = str(os.path.join(path, image_url.split("/image/")[1].replace("/", "_")))
+            path = os.getcwd()
+            path = str(os.path.join(path, "static", "image"))
+            name = str(os.path.join(path, image_url.split("/br/")[1].replace("/", "_")))
             if os.path.exists(name) == False:
                 local_file = open(name, 'wb')
                 resp = requests.get(image_url, stream=True)
@@ -281,21 +283,21 @@ def updatedb_en():
                 smallIcon = "image/"
 
                 try:
-                    smallIcon += i["images"]["smallIcon"]["url"].split("/image/")[1].replace("/", "_")
+                    smallIcon += i["images"]["smallIcon"]["url"].split("/br/")[1].replace("/", "_")
                 except Exception as e:
                     pass
 
                 icon = "image/"
 
                 try:
-                    icon += i["images"]["icon"]["url"].split("/image/")[1].replace("/", "_")
+                    icon += i["images"]["icon"]["url"].split("/br/")[1].replace("/", "_")
                 except Exception as e:
                     pass
 
                 featured = "image/"
 
                 try:
-                    featured += i["images"]["featured"]["url"].split("/image/")[1].replace("/", "_")
+                    featured += i["images"]["featured"]["url"].split("/br/")[1].replace("/", "_")
                 except Exception as e:
                     pass
 
@@ -379,7 +381,7 @@ def updatedb_en():
                 try:
                     obj = Cosmetic.objects.get(icon=icon)
                     ru_redir = "/" + obj.href
-                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, eng_redir=eng_redir, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
+                    skin = Cosmetic_en(name=name, display_rarity=display_rarity, short_description=short_description, description=description, setname=setname, icon=icon, smallIcon=smallIcon, featured=featured, source=source, price=price, color1=color1, color2=color2, color3=color3, rarity_sort=rarity_sort, hidden=hidden, ru_redir=ru_redir, release_date=release_date, last_appearance=last_appearance, upcoming=upcoming)
                     skin.save()
                     skin.make_href()
                     skin.make_search()
@@ -411,9 +413,11 @@ def updatedb_en():
 
     if len(hrefs) > 0:
         try:
-            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', encoding="utf-8") as f1:
+            path = os.getcwd()
+            path = str(os.path.join(path, "static", "sitemap.xml"))
+            with open(path, encoding="utf-8") as f1:
                 lines = f1.readlines()
-            with open('/var/www/www-root/data/www/fortwhat.com/fortwhat/fortskins/static/sitemap.xml', 'w', encoding="utf-8") as f2:
+            with open(path, 'w', encoding="utf-8") as f2:
                 f2.writelines(lines[:-1])
                 for href in hrefs:
                     hexed = quote(href)
